@@ -11,8 +11,8 @@ const api = 'http://localhost:3000'
 
 // did mount? check the token
 export function getUserToken(){ 
-    return (dispatch) => {
     const token = AsyncStorage.getItem('userToken')
+    return (dispatch) => {
     if(token){
         dispatch({type: START_ADDING_USER_REQUEST })
         fetch(`${api}/api/v1/profile`, {

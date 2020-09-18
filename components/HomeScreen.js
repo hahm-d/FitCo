@@ -10,6 +10,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 class HomeScreen extends React.Component {
+    static navigationOptions = {
+        title: "Home"
+      };
+
 
 //debug tool1
     clearAsync = async() => {
@@ -30,7 +34,7 @@ class HomeScreen extends React.Component {
       }
 
     
-    getTokenAsyncStorage = async () => {
+/*     getTokenAsyncStorage = async () => {
         try {
           const value = await AsyncStorage.getItem('@userToken')
           console.log("see this one? ", value)
@@ -48,7 +52,7 @@ class HomeScreen extends React.Component {
     componentDidMount() {
         this.getTokenAsyncStorage();
     }
-
+ */
 
 
     render() {

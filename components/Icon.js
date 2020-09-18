@@ -1,3 +1,5 @@
+//import Icon from "react-native-vector-icons/MaterialIcons";
+
 const Icon = ({ name }) => {
   const iconsList = {
     heart: '&#xe800;',

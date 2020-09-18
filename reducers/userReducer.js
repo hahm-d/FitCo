@@ -5,9 +5,11 @@ const initialState = {
     users: {},
     isLoading: false,
     error: null,
+    selectedUser: null,
 }
 
 const userReducer = (state = initialState, action) => {
+    console.log(action)
         switch (action.type) {
           case FETCH_USERS_REQUEST: {
             return {

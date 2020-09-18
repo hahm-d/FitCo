@@ -10,6 +10,9 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/userActions';
 
 class SignInScreen extends React.Component {
+    static navigationOptions = {
+        title: "Sign in"
+      };
 
     state = {
         user: {

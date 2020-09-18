@@ -7,6 +7,10 @@ export const START_CREATE_USER_REQUEST = 'START_CREATE_USER_REQUEST';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
+//Coach related
+export const FETCH_COACHPOST_REQUEST = 'FETCH_COACHPOST_REQUEST';
+export const ADD_COACH_POSTS = 'ADD_COACH_POSTS';
+
 //Posts and comments
 export const FETCH_POST_REQUEST = 'FETCH_POST_REQUEST';
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';

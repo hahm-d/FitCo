@@ -1,8 +1,8 @@
-import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_POST_REQUEST, ADD_POST} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_POST} from '../constants/actionTypes'
 
 const initialState = {
     posts: {},
-    post: {},
+    coach_posts: {},
     comments: {},
     isLoading: false,
 }
@@ -23,17 +23,17 @@ const userReducer = (state = initialState, action) => {
               isLoading: false
             };
           }
-          case FETCH_POST_REQUEST: {
+          case FETCH_COACHPOST_REQUEST: {
             return {
               ...state,
-              post: {...state.post},
+              coach_posts: {...state.post},
               isLoading: true
             };
           }
-          case ADD_POST: {
+          case ADD_COACH_POSTS: {
             return {
               ...state,
-              post: action.post,
+              coach_posts: action.post,
               isLoading: false
             };
           }

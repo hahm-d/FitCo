@@ -61,7 +61,7 @@ class RegisterScreen extends React.Component {
                 onChangeText={this.handlePassword}
                 />   
                 <TouchableOpacity>
-                    <Button title="Submit" onPress={() => this.props.signInAsync(this.state.user)} />
+                    <Button title="Sign in!" onPress={() => this.signInAsync(this.state.user)} />
                 </TouchableOpacity>
             </View>
         );

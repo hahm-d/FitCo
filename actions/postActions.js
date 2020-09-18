@@ -17,7 +17,7 @@ export function fetchPosts() {
     };
 }
 
-export function fetchPost(postId) {
+/* export function fetchPost(postId) {
   return (dispatch) => {
     const userToken = AsyncStorage.getItem('userToken')
     dispatch({ type: FETCH_POST_REQUEST })
@@ -30,4 +30,4 @@ export function fetchPost(postId) {
     .then(resp => resp.json())
     .then(posts => dispatch({ type: ADD_POST, posts }));
   };
-}
+} */

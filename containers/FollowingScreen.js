@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,ImageBackground,FlatList} from 'react-native';
+import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList} from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -10,10 +10,20 @@ import { LogBox } from 'react-native';
 
 LogBox.ignoreAllLogs();
 class FollowingScreen extends React.Component {
-
+  static navigationOptions = {
+    title: "Following"
+  };
     componentDidMount() {
-        this.props.fetchUsers()
+      const { onfetchUsers } = this.props;
+      onfetchUsers()
     }
+
+    onPressUserRow = ({ user }) => {
+      const { navigation, onfetchCoachPosts } = this.props;
+      navigation.navigate("CoachDetailScreen", { title: user.name });
+      onfetchCoachPosts(user);
+    };
+  
 
     render(){
         return(
@@ -37,9 +47,11 @@ class FollowingScreen extends React.Component {
                       renderItem={({ item }) => (
                         <TouchableOpacity>
                           <CardItem
+                            user={item} 
                             name={item.username}
                             status={item.status}
                             variant
+                            onPress={this.onPressUserRow}
                           />
                         </TouchableOpacity>
                       )}
@@ -54,14 +66,13 @@ class FollowingScreen extends React.Component {
 
 function mapStateToProps(state){
     return {
-            currentUser: state.currentUser,
-            users: state.users,
-            isLoading: state.isLoading
+            users: state.users
            }
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchUsers: () => dispatch(fetchUsers()),
+    onfetchUsers: () => dispatch(fetchUsers()),
+    onfetchCoachPosts: id => dispatch(fetchCoachPosts(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FollowingScreen);

@@ -1,0 +1,8 @@
+export const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST';
+export const ADD_USERS = 'ADD_USERS';
+export const START_ADDING_USER_REQUEST = 'START_ADDING_USER_REQUEST';
+export const ADD_USER = 'ADD_USER';
+export const START_CREATE_USER_REQUEST = 'START_CREATE_USER_REQUEST';
+export const ADD_NEW_USER = 'ADD_NEW_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const ERROR = 'ERROR';

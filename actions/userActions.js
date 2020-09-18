@@ -6,12 +6,10 @@ import {START_ADDING_USER_REQUEST,
         LOGOUT_USER, 
         ERROR} from '../constants/actionTypes'
 
-
-
 const api = 'http://localhost:3000'
 
 
-/* // did mount? check the token
+// did mount? check the token
 export function getUserToken(){ 
     return (dispatch) => {
     const token = AsyncStorage.getItem('userToken')
@@ -30,11 +28,10 @@ export function getUserToken(){
             })
         }
     }
-} */
+}
 
 //sign up 
 export function saveUserToken(userObj){
-    console.log("saveUserToken: ", userObj)
     return dispatch => {
         dispatch({type: START_CREATE_USER_REQUEST})
         fetch(`${api}/api/v1/users`, {
@@ -56,11 +53,11 @@ export function saveUserToken(userObj){
     }
 }
 
-/* //login
+//login
 export function loginUser(userObj){
     return dispatch => {
         dispatch({type: START_CREATE_USER_REQUEST})
-        fetch(`${api}/api/v1/users`, {
+        fetch(`${api}/api/v1/login`, {
             method: "POST",
             headers: {
               accepts: "application/json",
@@ -78,19 +75,17 @@ export function loginUser(userObj){
             AsyncStorage.removeItem("userToken")
         })
     }
-} */
+}
 
 
 //update user profile
-
 //delete user account
 
 //log out  
-/* export function removeUserToken(){
+export function removeUserToken(){
     return dispatch => {
         dispatch({type: LOGOUT_USER })
         AsyncStorage.removeItem('userToken')
     }
 }
 
- */

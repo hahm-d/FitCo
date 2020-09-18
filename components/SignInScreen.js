@@ -2,32 +2,55 @@ import React from 'react';
 import {
     Button,
     StyleSheet,
-    View
+    View,
+    TextInput,
+    TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import { saveUserToken } from '../actions/userActions';
+import { loginUser } from '../actions/userActions';
 
 class SignInScreen extends React.Component {
-    static navigationOptions = {
-        title: 'Please sign in',
-    };
+
+    state = {
+        user: {
+            username: '',
+            password: ''
+        }
+    }
+
+    handleUsername = text => {
+        this.setState({ user: { ...this.state.user, username: text} });
+    }
+    handlePassword = text => {
+        this.setState({ user: { ...this.state.user, password: text} });
+    }
 
     render() {
         return (
             <View style={styles.container}>
-                <Button title="Sign in!" onPress={this.signInAsync} />
+                <TextInput
+                    value={this.state.user.username}
+                    placeholder="Username"
+                    type='username'
+                    onChangeText={this.handleUsername}
+                />    
+                <TextInput
+                    value={this.state.user.password}
+                    placeholder="Password"
+                    secureTextEntry
+                    type='password'
+                    onChangeText={this.handlePassword}
+                /> 
+                <TouchableOpacity>
+                    <Button title="Sign in!" onPress={() => this.signInAsync(this.state.user)} />
+                </TouchableOpacity>
             </View>
         );
     }
 
-    signInAsync = () => {
-        this.props.saveUserToken()
-            .then(() => {
-                this.props.navigation.navigate('Home');
-            })
-            .catch((error) => {
-                this.setState({ error })
-            })
+    signInAsync = (userObj) => {
+        this.props.loginUser(userObj)
+        this.props.navigation.navigate('Home');
     };
 };
 
@@ -42,13 +65,13 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state){
     return {
-            users: state.users,
+            currentUser: state.currentUser,
             isLoading: state.isLoading
            }
 }
 
-const mapDispatchToProps = dispatch => ({
-    saveUserToken: () => dispatch(saveUserToken()),
-});
+function mapDispatchToProps(dispatch){
+    return { loginUser: (userObj) => dispatch(loginUser(userObj)) }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

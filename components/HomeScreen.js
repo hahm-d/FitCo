@@ -7,16 +7,33 @@ import {
 import { connect } from 'react-redux';
 import { removeUserToken } from '../actions/userActions';
 import AsyncStorage from '@react-native-community/async-storage';
-import { NativeModules } from 'react-native'
 
-if (__DEV__) {
-    NativeModules.DevMenu.debugRemotely(true)
-  }
+
 class HomeScreen extends React.Component {
 
+//debug tool1
+    clearAsync = async() => {
+        AsyncStorage.clear();
+    }
+
+//debug tool2
+    logCurrentStorage = () => {
+        AsyncStorage.getAllKeys().then((keyArray) => {
+          AsyncStorage.multiGet(keyArray).then((keyValArray) => {
+            let myStorage = {};
+            for (let keyVal of keyValArray) {
+              myStorage[keyVal[0]] = keyVal[1]
+            }
+            console.log('CURRENT STORAGE: ', myStorage);
+          })
+        });
+      }
+
+    
     getTokenAsyncStorage = async () => {
         try {
           const value = await AsyncStorage.getItem('@userToken')
+          console.log("see this one? ", value)
           if(value !== null) {
             //send to login/signup navi
           }else{
@@ -38,6 +55,8 @@ class HomeScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={{ marginTop: 10 }}>
+                    <Button title="clear async" onPress={this.clearAsync}/>
+                    <Button title="log async" onPress={this.logCurrentStorage}/>
                     <Button title="Sign out" onPress={this.signOutAsync} />
                 </View>
             </View>
@@ -47,13 +66,7 @@ class HomeScreen extends React.Component {
 
     signOutAsync = () => {
         this.props.removeUserToken()
-/*             .then(() => {
-                this.props.navigation.navigate('Home');
-            })
-            .catch(error => {
-                this.setState({ error })
-            }) */
-
+        this.props.navigation.navigate('Sign in');
     };
 }
 

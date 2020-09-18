@@ -32,6 +32,11 @@ class RegisterScreen extends React.Component {
         this.setState({ user: { ...this.state.user, password: text} });
     }
 
+    signInAsync = (userObj) => {
+        this.props.saveUserToken(userObj)
+        this.props.navigation.navigate('Home');
+    };
+
     render() {
         return (
             <View style={styles.container}>
@@ -56,12 +61,16 @@ class RegisterScreen extends React.Component {
                 onChangeText={this.handlePassword}
                 />   
                 <TouchableOpacity>
-                    <Button title="Submit" onPress={() => this.props.saveUserToken(this.state.user)} />
+                    <Button title="Submit" onPress={() => this.props.signInAsync(this.state.user)} />
                 </TouchableOpacity>
             </View>
         );
+
     }
+    
 };
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
  
 function mapStateToProps(state){
     return {
-            users: state.users,
+            currentUser: state.currentUser,
             isLoading: state.isLoading
            }
 }

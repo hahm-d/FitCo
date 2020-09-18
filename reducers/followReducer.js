@@ -4,7 +4,7 @@ const initialState = {
     error: null,
 }
 
-const tokenReducer = (state = initialState, action) => {
+const followReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_TOKEN':
             return { ...state, token: action.token };
@@ -21,4 +21,4 @@ const tokenReducer = (state = initialState, action) => {
     }
 };
 
-export default tokenReducer
+export default followReducer

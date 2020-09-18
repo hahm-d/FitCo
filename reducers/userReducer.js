@@ -1,6 +1,5 @@
 import {FETCH_USERS_REQUEST, ADD_USERS, ADD_USER, START_ADDING_USER_REQUEST, LOGOUT_USER, ERROR} from '../constants/actionTypes'
 
-
 const initialState = {
     currentUser: {},
     users: {},
@@ -9,7 +8,6 @@ const initialState = {
 }
 
 const userReducer = (state = initialState, action) => {
-    console.log("reducer", action)
         switch (action.type) {
           case FETCH_USERS_REQUEST: {
             return {

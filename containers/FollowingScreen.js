@@ -2,13 +2,12 @@ import React from 'react';
 import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList} from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
-import AsyncStorage from '@react-native-community/async-storage';
 import { fetchUsers } from '../actions/followActions';
 import CardItem from '../components/CardItem';
 import Icon from '../components/Icon';
-import { LogBox } from 'react-native';
+/* import { LogBox } from 'react-native';
 
-LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs(); */
 class FollowingScreen extends React.Component {
   static navigationOptions = {
     title: "Following"
@@ -17,12 +16,6 @@ class FollowingScreen extends React.Component {
       const { onfetchUsers } = this.props;
       onfetchUsers()
     }
-
-    onPressUserRow = ({ user }) => {
-      const { navigation, onfetchCoachPosts } = this.props;
-      navigation.navigate("CoachDetailScreen", { title: user.name });
-      onfetchCoachPosts(user);
-    };
   
 
     render(){
@@ -51,7 +44,6 @@ class FollowingScreen extends React.Component {
                             name={item.username}
                             status={item.status}
                             variant
-                            onPress={this.onPressUserRow}
                           />
                         </TouchableOpacity>
                       )}
@@ -72,7 +64,6 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = dispatch => ({
     onfetchUsers: () => dispatch(fetchUsers()),
-    onfetchCoachPosts: id => dispatch(fetchCoachPosts(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FollowingScreen);

@@ -1,4 +1,4 @@
-import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_POST} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS} from '../constants/actionTypes'
 
 const initialState = {
     posts: {},

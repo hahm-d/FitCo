@@ -29,6 +29,7 @@ class SignInScreen extends React.Component {
     }
 
     render() {
+        console.log(this.props.state)
         return (
             <View style={styles.container}>
                 <TextInput
@@ -69,7 +70,9 @@ const styles = StyleSheet.create({
 function mapStateToProps(state){
     return {
             currentUser: state.currentUser,
-            isLoading: state.isLoading
+            isLoading: state.isLoading,
+            users: state.users,
+            selectedUser: state.selectedUser,
            }
 }
 

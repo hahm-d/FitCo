@@ -9,6 +9,7 @@ import SignInScreen from './components/SignInScreen';
 import SignOutScreen from './components/SignOutScreen';
 import RegisterScreen from './components/RegisterScreen';
 import FollowingScreen from './containers/FollowingScreen';
+import FindScreen from './containers/FindScreen';
 import PostContainer from './containers/PostContainer';
 import ProfileScreen from './containers/ProfileScreen';
 import getUserToken from './actions/userActions';
@@ -37,6 +38,7 @@ function TabNavigator(){
   return(
   <Tab.Navigator initialRouteName="Home">
     <Tab.Screen name="Home" component={HomeScreen}/>
+    <Tab.Screen name="Find" component={FindScreen}/>
     <Tab.Screen name="Following" component={FollowingScreen}/>
     <Tab.Screen name="Posts" component={PostContainer}/>
   </Tab.Navigator>

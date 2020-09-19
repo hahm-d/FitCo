@@ -10,8 +10,8 @@ import Icon from '../components/Icon';
 LogBox.ignoreAllLogs(); */
 class PostContainer extends React.Component {
     static navigationOptions = {
-        title: "Posts"
-      }; 
+        title: "PostContainer"
+      };
     componentDidMount() {
         this.props.fetchPosts()
     }

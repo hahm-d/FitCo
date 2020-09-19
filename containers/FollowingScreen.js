@@ -2,7 +2,7 @@ import React from 'react';
 import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList} from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
-import { fetchUsers } from '../actions/followActions';
+import { fetchUsers, selectCoach } from '../actions/followActions';
 import CardItem from '../components/CardItem';
 import Icon from '../components/Icon';
 /* import { LogBox } from 'react-native';
@@ -17,6 +17,10 @@ class FollowingScreen extends React.Component {
       onfetchUsers()
     }
   
+    onPressUserRow = ( user ) => {
+      this.props.navigation.navigate("PostContainer", { title: user.name });
+      this.props.onSelectCoach(user);
+    };
 
     render(){
         return(
@@ -26,7 +30,7 @@ class FollowingScreen extends React.Component {
                 :
                   <ScrollView>
                     <View style={styles.top}>
-                      <Text style={styles.title}>Matches</Text>
+                      <Text style={styles.title}>Following</Text>
                       <TouchableOpacity>
                         <Text style={styles.icon}>
                           <Icon name="optionsV" />
@@ -35,7 +39,7 @@ class FollowingScreen extends React.Component {
                     </View>
                     <FlatList
                       numColumns={1}
-                      data={this.props.users.users}
+                      data={this.props.users}
                       keyExtractor={user => user.id}
                       renderItem={({ item }) => (
                         <TouchableOpacity>
@@ -56,14 +60,15 @@ class FollowingScreen extends React.Component {
 }
 
 
-function mapStateToProps(state){
-    return {
-            users: state.users
-           }
+const mapStateToProps = state => {
+  return {
+          users: state.users.users
+          }
 }
 
 const mapDispatchToProps = dispatch => ({
     onfetchUsers: () => dispatch(fetchUsers()),
+    onSelectCoach: (user) => dispatch(selectCoach(user))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FollowingScreen);

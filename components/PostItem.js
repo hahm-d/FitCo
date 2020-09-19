@@ -39,9 +39,6 @@ const PostItem = ({
 
   return (
     <View style={styles.containerCardItem}>
-      {/* URL */}
-      <Image source={url} style={imageStyle} />
-
       {/* TITLE */}
       <Text style={nameStyle}>Title: {title}</Text>
 

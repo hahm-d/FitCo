@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {FETCH_USERS_REQUEST, ADD_USERS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS} from '../constants/actionTypes'
+import {FETCH_USERS_REQUEST, ADD_USERS, SELECT_USER, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS} from '../constants/actionTypes'
 
 const api = 'http://localhost:3000/api/v1'
 //fetch all coaches (not users)
@@ -34,3 +34,18 @@ export function fetchCoachPosts(id){
         .then(users => dispatch({ type: ADD_COACH_POSTS, users }));
     };
 }
+
+// single coach
+export const selectCoach = user => {
+    return {
+      type: SELECT_USER,
+      user: buildCoachInfo(user)
+    };
+  };
+  
+  function buildCoachInfo(user) {
+    return {
+      ...user,
+      initials
+    };
+  }

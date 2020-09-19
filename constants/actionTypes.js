@@ -10,6 +10,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 //Coach related
 export const FETCH_COACHPOST_REQUEST = 'FETCH_COACHPOST_REQUEST';
 export const ADD_COACH_POSTS = 'ADD_COACH_POSTS';
+export const SELECT_USER = 'SELECT_USER';
 
 //Posts and comments
 export const FETCH_POST_REQUEST = 'FETCH_POST_REQUEST';

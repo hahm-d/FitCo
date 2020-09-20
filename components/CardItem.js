@@ -5,6 +5,7 @@ import Icon from './Icon';
 
 const CardItem = ({
   actions,
+  id,
   description,
   image,
   matches,
@@ -67,7 +68,7 @@ const CardItem = ({
       {/* ACTIONS */}
       {actions && (
         <View style={styles.actionsCardItem} >
-          <TouchableOpacity style={styles.miniButton}>
+          <TouchableOpacity style={styles.miniButton} onPress={console.log(id)}>
             <Text style={styles.star}>
               <Icon name="star" />
             </Text>

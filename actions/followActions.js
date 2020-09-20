@@ -5,6 +5,7 @@ const api = 'http://localhost:3000/api/v1'
 //fetch all coaches (not users)
 export function fetchUsers() {
     const userToken = AsyncStorage.getItem('userToken')
+    console.log(userToken)
     return (dispatch) => {
         dispatch({ type: FETCH_USERS_REQUEST })
         fetch(`${api}/users/coaches`, {
@@ -35,17 +36,5 @@ export function fetchCoachPosts(id){
     };
 }
 
-// single coach
-export const selectCoach = user => {
-    return {
-      type: SELECT_USER,
-      user: buildCoachInfo(user)
-    };
-  };
-  
-  function buildCoachInfo(user) {
-    return {
-      ...user,
-      initials
-    };
-  }
+//change select_user
+export const selectCoach = selecteduser => ({ type: SELECT_USER, selecteduser })

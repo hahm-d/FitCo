@@ -42,9 +42,7 @@ const userReducer = (state = initialState, action) => {
           case SELECT_USER:
             return {
               ...state,
-              selectedUser: state.users.find(user => {
-                return user.id === action.user.id;
-              })
+              selectedUser: action.selecteduser
           }
           case LOGOUT_USER: 
             return { 

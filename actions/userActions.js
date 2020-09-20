@@ -4,29 +4,26 @@ import {START_ADDING_USER_REQUEST,
         ADD_USER, 
         ADD_NEW_USER, 
         LOGOUT_USER, 
-        ERROR} from '../constants/actionTypes'
+        ERROR
+    } from '../constants/actionTypes'
 
 const api = 'http://localhost:3000'
 
 
-// did mount? check the token
-export function getUserToken(){ 
-    const token = AsyncStorage.getItem('userToken')
+export function validateUser(token){ 
     return (dispatch) => {
-    if(token){
         dispatch({type: START_ADDING_USER_REQUEST })
         fetch(`${api}/api/v1/profile`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}`}
             })
             .then(resp => resp.json())
-            .then(user => {
-                dispatch({ type: ADD_USER, user});
+            .then(currentuser => {
+                dispatch({ type: ADD_USER, currentuser});
             })
-            .catch((err) => {
-                dispatch({type: ERROR, err });
+            .catch(err => {
+                console.log(err)
             })
-        }
     }
 }
 
@@ -43,9 +40,9 @@ export function saveUserToken(userObj){
             body: JSON.stringify({ user: userObj })
           })
           .then(resp => resp.json())
-          .then(user => {
-            dispatch({ type: ADD_NEW_USER, user})
-            AsyncStorage.setItem("userToken", user.jwt)
+          .then(currentuser => {
+            dispatch({ type: ADD_NEW_USER, currentuser})
+            AsyncStorage.setItem("userToken", currentuser.jwt)
         })
         .catch((err) => {
             dispatch({type: ERROR, err });
@@ -66,9 +63,9 @@ export function loginUser(userObj){
             body: JSON.stringify({ user: userObj })
           })
           .then(resp => resp.json())
-          .then(user => {
-            dispatch({ type: ADD_NEW_USER, user})
-            AsyncStorage.setItem("userToken", user.jwt)
+          .then(currentuser => {
+            dispatch({ type: ADD_NEW_USER, currentuser})
+            AsyncStorage.setItem("userToken", currentuser.jwt)
         })
         .catch((err) => {
             dispatch({type: ERROR, err });
@@ -79,6 +76,29 @@ export function loginUser(userObj){
 
 
 //update user profile
+export function updateUser(userObj){
+    return dispatch => {
+        dispatch({type: START_ADDING_USER_REQUEST})
+        fetch(`${api}/api/v1/users/${userObj.id}`, {
+            method: "PATCH",
+            headers: {
+              accepts: "application/json",
+              "content-type": "application/json"
+            },
+            body: JSON.stringify(userObj)
+          })
+          .then(resp => resp.json())
+          .then(currentuser => {
+            dispatch({ type: ADD_USER, currentuser})
+            AsyncStorage.setItem("userToken", currentuser.jwt)
+        })
+        .catch((err) => {
+            dispatch({type: ERROR, err });
+        })
+    }
+}
+
+
 //delete user account
 
 //log out  

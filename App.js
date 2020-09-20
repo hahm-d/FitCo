@@ -1,35 +1,34 @@
 import React, { Component } from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 import HomeScreen from './components/HomeScreen';
 import SignInScreen from './components/SignInScreen';
 import SignOutScreen from './components/SignOutScreen';
 import RegisterScreen from './components/RegisterScreen';
 import FollowingScreen from './containers/FollowingScreen';
+import CoachDetailScreen from './containers/CoachDetailScreen'
 import FindScreen from './containers/FindScreen';
 import PostContainer from './containers/PostContainer';
 import ProfileScreen from './containers/ProfileScreen';
-import getUserToken from './actions/userActions';
-//componentDidMount
-//fetch using token 
+import {validateUser} from './actions/userActions';
 
-//if 
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
-
 function UserNavigator(){
   return(
     <Drawer.Navigator initialRouteName="Main">
-    <Drawer.Screen name="Main" component={TabNavigator}/>
-    <Drawer.Screen name="Profile" component={ProfileScreen}/>
-    <Drawer.Screen name="Register" component={RegisterScreen}/>
-    <Drawer.Screen name="Sign in" component={SignInScreen}/>
-    <Drawer.Screen name="Logout" component={SignOutScreen}/>
+      <Drawer.Screen name="Main" component={TabNavigator}/>
+      <Drawer.Screen name="Profile" component={ProfileScreen}/>
+      <Drawer.Screen name="Register" component={RegisterScreen}/>
+      <Drawer.Screen name="Sign in" component={SignInScreen}/>
+      <Drawer.Screen name="Logout" component={SignOutScreen}/>
+      <Drawer.Screen name="Coach Detail" component={CoachDetailScreen}/>
     </Drawer.Navigator>
   )
 }
@@ -45,21 +44,23 @@ function TabNavigator(){
   )
 }
 
-
 class App extends Component {
 
-  state={
-    loggedIn: false
-  }
-
-async componentDidMount() {
-    try{
-        this.props.getUserToken()
-        this.setState( {loggedIn: true})
-      } catch (err){
-        this.setState({ loggedIn: false})
+retrieveData = async () => {
+  try{
+      const token = await AsyncStorage.getItem('userToken')
+      if(token !==null){
+        console.log(token)
+        this.props.validateUser(token)
       }
   }
+  catch(error){
+    console.log(error)
+  }
+}
+async componentDidMount() {
+  await this.retrieveData()
+}
 
   render(){
     console.log(this.state)
@@ -80,7 +81,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return { getUserToken: () => dispatch(getUserToken()) }
+  return { validateUser: () => dispatch(validateUser()) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -17,7 +17,7 @@ class HomeScreen extends React.Component {
 
 //debug tool1
     clearAsync = async() => {
-        AsyncStorage.clear();
+        console.log(this.props.currentUser)
     }
 
 //debug tool2
@@ -33,32 +33,11 @@ class HomeScreen extends React.Component {
         });
       }
 
-    
-/*     getTokenAsyncStorage = async () => {
-        try {
-          const value = await AsyncStorage.getItem('@userToken')
-          console.log("see this one? ", value)
-          if(value !== null) {
-            //send to login/signup navi
-          }else{
-            //grab the current user
-            //send to user profile page on success
-          }
-        } catch(e) {
-          // error reading value
-        }
-    }
-
-    componentDidMount() {
-        this.getTokenAsyncStorage();
-    }
- */
-
     render() {
         return (
             <View style={styles.container}>
                 <View style={{ marginTop: 10 }}>
-                    <Button title="clear async" onPress={this.clearAsync}/>
+                    <Button title="states" onPress={this.clearAsync}/>
                     <Button title="log async" onPress={this.logCurrentStorage}/>
                     <Button title="Sign out" onPress={this.signOutAsync} />
                 </View>

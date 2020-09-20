@@ -34,7 +34,7 @@ class PostContainer extends React.Component {
                     </View>
                     <FlatList
                       numColumns={1}
-                      data={this.props.posts.posts}
+                      data={this.props.posts}
                       keyExtractor={post => post.id}
                       renderItem={({ item }) => (
                         <TouchableOpacity>
@@ -60,7 +60,7 @@ class PostContainer extends React.Component {
 
 function mapStateToProps(state){
     return {
-            posts: state.posts,
+            posts: state.posts.posts,
             users: state.users,
             isLoading: state.isLoading
            }

@@ -3,7 +3,7 @@ import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList} from 
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import { fetchUsers, selectCoach } from '../actions/followActions';
-import CardItem from '../components/CardItem';
+import CoachListItem from "../components/CoachListItem";
 import Icon from '../components/Icon';
 /* import { LogBox } from 'react-native';
 
@@ -13,12 +13,11 @@ class FollowingScreen extends React.Component {
     title: "Following"
   };
     componentDidMount() {
-      const { onfetchUsers } = this.props;
-      onfetchUsers()
+      this.props.onfetchUsers()
     }
   
     onPressUserRow = ( user ) => {
-      this.props.navigation.navigate("PostContainer", { title: user.name });
+      this.props.navigation.navigate("Coach Detail", { title: user.name });
       this.props.onSelectCoach(user);
     };
 
@@ -43,11 +42,9 @@ class FollowingScreen extends React.Component {
                       keyExtractor={user => user.id}
                       renderItem={({ item }) => (
                         <TouchableOpacity>
-                          <CardItem
+                          <CoachListItem
                             user={item} 
-                            name={item.username}
-                            status={item.status}
-                            variant
+                            onPress={this.onPressUserRow}
                           />
                         </TouchableOpacity>
                       )}
@@ -62,7 +59,9 @@ class FollowingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-          users: state.users.users
+          users: state.users.users,
+          isLoading: state.isLoading,
+          selectedUser: state.selectedUser
           }
 }
 

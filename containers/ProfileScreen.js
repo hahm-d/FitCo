@@ -1,43 +1,71 @@
 import React from 'react';
-import styles from '../assets/styles';
 import {
   ScrollView,
   View,
-  Text,
-  StyleSheet,
-  TouchableOpacity
+  ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
-
+import UserDetails from '../components/UserDetails';
+import {validateUser} from '../actions/userActions';
+import AsyncStorage from '@react-native-community/async-storage';
 class ProfileScreen extends React.Component {
-    static navigationOptions = {
-        title: "Profile"
-      };
+  static navigationOptions = {
+    title: "My Profile"
+  };
 
-    render(){
-  return (
-    <View style={customStyles.container}>
-        <Text>User Profile Page</Text>
-    </View>
-
-    )
+  retrieveData = async () => {
+    try{
+        const token = await AsyncStorage.getItem('userToken')
+        if(token !==null){
+          console.log(token)
+          this.props.validateUser(token)
+        }
     }
+    catch(error){
+      console.log(error)
+    }
+  }
+  async componentDidMount() {
+    await this.retrieveData()
+  }
+  
+
+
+  render() {
+    const { currentUser, isLoading } = this.props;
+    console.log("current user? profile: ", this.props.currentUser)
+    return (
+      <ScrollView>
+            <>
+            {this.props.isLoading ?
+                    <ActivityIndicator />
+                :
+          <View>
+            <UserDetails
+              name={currentUser}
+              email={currentUser}
+            />
+          </View>
+        }
+        </>
+      </ScrollView>
+    );
+  }
 }
 
-const customStyles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+const mapStateToProps = state => {
 
-function mapStateToProps(state){
   return {
-          currentUser: state.currentUser,
-          flag: state.flag
-         }
-}
+    currentUser: state.currentUser,
+    isLoading: state.isLoading
+  };
+};
 
-export default connect(mapStateToProps)(ProfileScreen);
+const mapDispatchToProps = dispatch => {
+  console.log(dispatch)
+  return {
+    validateUser: () => dispatch(validateUser())
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProfileScreen);

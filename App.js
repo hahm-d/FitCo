@@ -49,6 +49,7 @@ class App extends Component {
 retrieveData = async () => {
   try{
       const token = await AsyncStorage.getItem('userToken')
+      console.log("Token:", token)
       if(token !==null){
         console.log(token)
         this.props.validateUser(token)
@@ -81,7 +82,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return { validateUser: () => dispatch(validateUser()) }
+  return { validateUser: (token) => dispatch(validateUser(token)) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -11,11 +11,14 @@ const api = 'http://localhost:3000'
 
 
 export function validateUser(token){ 
-    return (dispatch) => {
+   return (dispatch) => {
         dispatch({type: START_ADDING_USER_REQUEST })
         fetch(`${api}/api/v1/profile`, {
             method: "GET",
-            headers: { Authorization: `Bearer ${token}`}
+            headers: { 
+                Accept: 'application/json',
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`}
             })
             .then(resp => resp.json())
             .then(currentuser => {

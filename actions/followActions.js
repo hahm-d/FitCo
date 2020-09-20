@@ -20,7 +20,7 @@ export function fetchUsers() {
 }
 
 
-//fetch that user's posts (coach)
+//fetch that user's posts (coach) !NOT WORK!ING
 export function fetchCoachPosts(id){
     const userToken = AsyncStorage.getItem('userToken')
     return (dispatch) => {

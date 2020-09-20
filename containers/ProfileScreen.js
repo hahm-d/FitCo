@@ -64,7 +64,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   console.log(dispatch)
   return {
-    validateUser: () => dispatch(validateUser())
+    validateUser: (token) => dispatch(validateUser(token))
   };
 };
 

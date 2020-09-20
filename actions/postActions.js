@@ -17,17 +17,14 @@ export function fetchPosts() {
     };
 }
 
-/* export function fetchPost(postId) {
-  return (dispatch) => {
-    const userToken = AsyncStorage.getItem('userToken')
-    dispatch({ type: FETCH_POST_REQUEST })
-    fetch(`${api}/posts/${postId}`, {
-        method: "GET",
-        headers: {
-                    Authorization: `Bearer ${userToken}`
-                }
-            })
-    .then(resp => resp.json())
-    .then(posts => dispatch({ type: ADD_POST, posts }));
-  };
-} */
+//create post
+
+//delete post
+
+
+//select_post
+//export const selectPost = selectedpost => ({ type: SELECT_USER, selectedpost })
+
+//create comment
+
+//delete comment

@@ -53,10 +53,12 @@ retrieveData = async () => {
       if(token !==null){
         console.log(token)
         this.props.validateUser(token)
+        //then navigate to Find tab
       }
   }
   catch(error){
     console.log(error)
+    //navigate to home (has login / register ) 
   }
 }
 async componentDidMount() {

@@ -14,8 +14,8 @@ const userReducer = (state = initialState, action) => {
           case FETCH_USERS_REQUEST: 
             return {
               ...state,
-              users: {...state.users},
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case ADD_USERS: 
@@ -28,8 +28,8 @@ const userReducer = (state = initialState, action) => {
           case START_ADDING_USER_REQUEST: 
             return {
               ...state,
-              currentUser: {...state.user},
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case ADD_USER: 

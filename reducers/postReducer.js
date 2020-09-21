@@ -13,8 +13,8 @@ const userReducer = (state = initialState, action) => {
           case FETCH_POSTS_REQUEST: 
             return {
               ...state,
-              posts: {...state.posts},
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case ADD_POSTS: 
@@ -27,8 +27,8 @@ const userReducer = (state = initialState, action) => {
           case FETCH_COACHPOST_REQUEST: 
             return {
               ...state,
-              coach_posts: {...state.coach_posts},
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case ADD_COACH_POSTS: 
@@ -41,8 +41,8 @@ const userReducer = (state = initialState, action) => {
           case START_CREATE_POST_REQUEST: 
             return {
               ...state,
-              coach_posts: [...state.coach_posts],
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case ADD_POST: 
@@ -55,8 +55,8 @@ const userReducer = (state = initialState, action) => {
           case START_DELETE_POST_REQUEST: 
             return {
               ...state,
-              coach_posts: [...state.coach_posts],
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case DELETE_POST: 
@@ -71,7 +71,7 @@ const userReducer = (state = initialState, action) => {
               ...state, 
               error: action.err
           }
-          
+
           default: 
             return state;
           

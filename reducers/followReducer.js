@@ -3,7 +3,8 @@ import {UNFOLLOW_USER, START_UNFOLLOW_REQUEST, FOLLOW_USER, START_FOLLOW_REQUEST
 const initialState = {
     followers: null,
     followings: [],
-    isLoading: false
+    isLoading: false,
+    error: null
 }
 
 const followReducer = (state = initialState, action) => {
@@ -12,8 +13,8 @@ const followReducer = (state = initialState, action) => {
           case START_UNFOLLOW_REQUEST: 
             return {
               ...state,
-              followings: {...state.users},
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case UNFOLLOW_USER: 
@@ -26,8 +27,8 @@ const followReducer = (state = initialState, action) => {
           case START_FOLLOW_REQUEST: 
             return {
               ...state,
-              currentUser: {...state.user},
-              isLoading: true
+              isLoading: true,
+              error: null
             };
           
           case FOLLOW_USER: 
@@ -53,7 +54,7 @@ const followReducer = (state = initialState, action) => {
           case FETCH_FOLLOWERS_REQUEST:
             return {
               ...state,
-              selectedUser: action.selecteduser
+              isLoading: true
           }
 
           case ADD_FOLLOWERS: 

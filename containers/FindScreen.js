@@ -12,12 +12,12 @@ class FindScreen extends React.Component {
         title: "Find Instructor"
       }
 
-
-      componentDidMount() {
+    componentDidMount() {
         this.props.onfetchUsers()
-      }
+    }
 
       render(){
+          console.log("loading", this.props.isLoading)
         return(
             <>
             {this.props.isLoading ?
@@ -64,9 +64,9 @@ class FindScreen extends React.Component {
 
 const mapStateToProps = state => {
     return {
-            users: state.users,
-            isLoading: state.isLoading
-            }
+        users: state.users,
+        isLoading: state.isLoading,
+        }
   }
   
   const mapDispatchToProps = dispatch => ({

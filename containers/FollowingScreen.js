@@ -22,6 +22,7 @@ class FollowingScreen extends React.Component {
     };
 
     render(){
+      console.log(this.props.isLoading)
         return(
             <>
             {this.props.isLoading ?
@@ -38,7 +39,7 @@ class FollowingScreen extends React.Component {
                     </View>
                     <FlatList
                       numColumns={1}
-                      data={this.props.users}
+                      data={this.props.users.users}
                       keyExtractor={user => user.id}
                       renderItem={({ item }) => (
                         <TouchableOpacity>
@@ -59,7 +60,7 @@ class FollowingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-          users: state.users.users,
+          users: state.users,
           isLoading: state.isLoading,
           selectedUser: state.selectedUser
           }

@@ -13,17 +13,15 @@ import { updateUser } from '../actions/userActions';
 class EditProfile extends React.Component {
 
     state = {
-        user: {
             id: this.props.currentUser.id,
-            email: '',
-            instagram: '',
-            twitter: '',
-            description: ''
-        }
+            email: this.props.currentUser.email,
+            instagram: this.props.currentUser.instagram,
+            twitter: this.props.currentUser.twitter,
+            description: this.props.currentUser.description
     }
 
     changeHandler = (name) => (text) => {
-        this.setState({ user: { ...this.state.user, [name]: text} });
+        this.setState( {[name]: text} );
     }
 
     signInAsync = (userObj) => {
@@ -60,7 +58,7 @@ class EditProfile extends React.Component {
                 onChangeText={this.changeHandler}
                 /> 
                 <TouchableOpacity>
-                    <Button title="Update" onPress={() => this.updateUser(this.state.user)} />
+                    <Button title="Update" onPress={() => this.updateUser(this.state)} />
                 </TouchableOpacity>
             </View>
         );
@@ -68,7 +66,6 @@ class EditProfile extends React.Component {
     }
     
 };
-
 
 
 const styles = StyleSheet.create({

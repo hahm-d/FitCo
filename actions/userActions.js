@@ -72,7 +72,6 @@ export function loginUser(userObj){
         })
         .catch((err) => {
             dispatch({type: ERROR, err });
-            AsyncStorage.removeItem("userToken")
         })
     }
 }

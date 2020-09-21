@@ -41,12 +41,6 @@ class CreatPost extends React.Component {
                 onChangeText={this.changeHandler}
                 />
                 <TextInput
-                value={this.state.content}
-                placeholder="content"
-                type='content'
-                onChangeText={this.changeHandler}
-                /> 
-                <TextInput
                 value={this.state.url}
                 placeholder="url"
                 type='url'
@@ -56,6 +50,12 @@ class CreatPost extends React.Component {
                 value={this.state.images}
                 placeholder="images"
                 type='images'
+                onChangeText={this.changeHandler}
+                /> 
+                <TextInput
+                value={this.state.content}
+                placeholder="content"
+                type='content'
                 onChangeText={this.changeHandler}
                 /> 
                 <TouchableOpacity>

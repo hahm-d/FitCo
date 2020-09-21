@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {FETCH_POST_REQUEST,FETCH_POSTS_REQUEST, ADD_POSTS, ADD_POST} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, ERROR} from '../constants/actionTypes'
 
+//fetch all posts
 const api = 'http://localhost:3000'
 export function fetchPosts() {
     return (dispatch) => {
@@ -17,10 +18,70 @@ export function fetchPosts() {
     };
 }
 
+
+//fetch that user's posts (coach)
+export function fetchCoachPosts(id){
+  const userToken = AsyncStorage.getItem('userToken')
+  return (dispatch) => {
+      dispatch({ type: FETCH_COACHPOST_REQUEST })
+      fetch(`${api}/users/${id}/posts`, {
+          method: "GET",
+          headers: {
+                      Authorization: `Bearer ${userToken}`
+                  }
+      })
+      .then(resp => resp.json())
+      .then(posts => dispatch({ type: ADD_COACH_POSTS, posts }));
+  };
+}
+
+
+
 //create post
+// title, content, url, views, likes, images 
+export function addPost(postObj){
+  const userToken = AsyncStorage.getItem('userToken')
+  return dispatch => {
+      dispatch({type: START_CREATE_POST_REQUEST})
+      fetch(`${api}/api/v1/users`, {
+          method: "POST",
+          headers: {
+            accepts: "application/json",
+            "content-type": "application/json",
+            Authorization: `Bearer ${userToken}`
+          },
+          body: JSON.stringify({ post: postObj })
+        })
+        .then(resp => resp.json())
+        .then(post => {
+          dispatch({ type: ADD_POST, post})
+      })
+      .catch((err) => {
+          dispatch({type: ERROR, err });
+      })
+  }
+}
 
 //delete post
-
+export function deletePost(postid){
+  const userToken = AsyncStorage.getItem('userToken')
+  return dispatch => {
+      dispatch({type: START_DELETE_POST_REQUEST})
+      fetch(`${api}/posts/${postid}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${userToken}`
+          }
+        })
+        .then(resp => resp.json())
+        .then(post => {
+          dispatch({ type: DELETE_POST, post})
+      })
+      .catch((err) => {
+          dispatch({type: ERROR, err });
+      })
+  }
+}
 
 //select_post
 //export const selectPost = selectedpost => ({ type: SELECT_USER, selectedpost })

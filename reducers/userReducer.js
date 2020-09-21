@@ -54,7 +54,7 @@ const userReducer = (state = initialState, action) => {
           case ERROR: 
               return { 
                 ...state, 
-                error: action.error
+                error: action.err
             }
           
           default: 

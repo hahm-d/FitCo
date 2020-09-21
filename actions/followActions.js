@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {FETCH_USERS_REQUEST, ADD_USERS, SELECT_USER, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, UNFOLLOW_USER, START_UNFOLLOW_REQUEST, FOLLOW_USER, START_FOLLOW_REQUEST, ADD_FOLLOWING, FETCH_FOLLOWING_REQUEST, ADD_FOLLOWERS, FETCH_FOLLOWERS_REQUEST} from '../constants/actionTypes'
+import {FETCH_USERS_REQUEST, ADD_USERS, SELECT_USER, UNFOLLOW_USER, START_UNFOLLOW_REQUEST, FOLLOW_USER, START_FOLLOW_REQUEST, ADD_FOLLOWING, FETCH_FOLLOWING_REQUEST, ADD_FOLLOWERS, FETCH_FOLLOWERS_REQUEST} from '../constants/actionTypes'
 
 const api = 'http://localhost:3000/api/v1'
 //fetch all coaches (not users)
@@ -20,24 +20,6 @@ export function fetchUsers() {
 }
 
 
-//fetch that user's posts (coach)
-export function fetchCoachPosts(id){
-    const userToken = AsyncStorage.getItem('userToken')
-    return (dispatch) => {
-        dispatch({ type: FETCH_COACHPOST_REQUEST })
-        fetch(`${api}/users/${id}/posts`, {
-            method: "GET",
-            headers: {
-                        Authorization: `Bearer ${userToken}`
-                    }
-        })
-        .then(resp => resp.json())
-        .then(users => dispatch({ type: ADD_COACH_POSTS, users }));
-    };
-}
-
-
-
 //change select_user
 export const selectCoach = selecteduser => ({ type: SELECT_USER, selecteduser })
 
@@ -55,12 +37,12 @@ export function fetchFollowers(id){
                   }
       })
       .then(resp => resp.json())
-      .then(users => dispatch({ type: ADD_FOLLOWERS, users }));
+      .then(followers => dispatch({ type: ADD_FOLLOWERS, followers }));
   };
 }
 
 //User following 
-export function fetchFollowing(id){
+export function fetchFollowings(id){
   const userToken = AsyncStorage.getItem('userToken')
   return (dispatch) => {
       dispatch({ type: FETCH_FOLLOWING_REQUEST })
@@ -71,13 +53,14 @@ export function fetchFollowing(id){
                   }
       })
       .then(resp => resp.json())
-      .then(users => dispatch({ type: ADD_FOLLOWING, users }));
+      .then(followings => dispatch({ type: ADD_FOLLOWING, followings }));
   };
 }
 
 
 // followObj = {follower_id: ,followed_id }
 export function followCoach(followObj){
+  const userToken = AsyncStorage.getItem('userToken')
   return dispatch => {
       dispatch({type: START_FOLLOW_REQUEST})
       fetch(`${api}/relationship`, {
@@ -101,6 +84,7 @@ export function followCoach(followObj){
 
 //unfollow coach (need to track relationship id's in state )
 export function unFollowCoach(relationshipid){
+  const userToken = AsyncStorage.getItem('userToken')
   return dispatch => {
       dispatch({type: START_UNFOLLOW_REQUEST})
       fetch(`${api}/relationship/${relationshipid}`, {

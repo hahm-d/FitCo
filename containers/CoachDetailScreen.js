@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, ScrollView, Text } from "react-native";
 import { connect } from "react-redux";
-import {fetchCoachPosts} from '../actions/followActions';
+import {fetchCoachPosts} from '../actions/postActions';
 import CoachDetails from "../components/CoachDetails";
 import CoachPosts from "../components/CoachPosts";
 import Spinner from "../components/Spinner";

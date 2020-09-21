@@ -12,11 +12,16 @@ export const FETCH_COACHPOST_REQUEST = 'FETCH_COACHPOST_REQUEST';
 export const ADD_COACH_POSTS = 'ADD_COACH_POSTS';
 export const SELECT_USER = 'SELECT_USER';
 
-//Posts and comments
-export const FETCH_POST_REQUEST = 'FETCH_POST_REQUEST';
+//Posts
 export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const ADD_POSTS = 'ADD_POSTS';
+export const START_CREATE_POST_REQUEST = 'START_CREATE_POST_REQUEST';
 export const ADD_POST = 'ADD_POST';
+export const START_DELETE_POST_REQUEST = 'START_DELETE_POST_REQUEST';
+export const DELETE_POST = 'DELETE_POST';
+
+//Comments
+
 
 //following/followers
 export const UNFOLLOW_USER = 'UNFOLLOW_USER';

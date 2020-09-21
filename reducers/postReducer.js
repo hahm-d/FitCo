@@ -1,10 +1,11 @@
-import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, ERROR} from '../constants/actionTypes'
 
 const initialState = {
     posts: [],
     coach_posts: [],
     comments: [],
     isLoading: false,
+    error: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -26,16 +27,50 @@ const userReducer = (state = initialState, action) => {
           case FETCH_COACHPOST_REQUEST: 
             return {
               ...state,
-              coach_posts: {...state.post},
+              coach_posts: {...state.coach_posts},
               isLoading: true
             };
           
           case ADD_COACH_POSTS: 
             return {
               ...state,
-              coach_posts: action.post,
+              coach_posts: action.posts,
               isLoading: false
             };
+
+          case START_CREATE_POST_REQUEST: 
+            return {
+              ...state,
+              coach_posts: [...state.coach_posts],
+              isLoading: true
+            };
+          
+          case ADD_POST: 
+            return {
+              ...state,
+              coach_posts: [...state.coach_posts, action.post],
+              isLoading: false
+            };
+
+          case START_DELETE_POST_REQUEST: 
+            return {
+              ...state,
+              coach_posts: [...state.coach_posts],
+              isLoading: true
+            };
+          
+          case DELETE_POST: 
+            return {
+              ...state,
+              coach_posts: state.coach_posts.filter(post => post !== action.post),
+              isLoading: false
+            };    
+
+          case ERROR: 
+            return { 
+              ...state, 
+              error: action.err
+          }
           
           default: 
             return state;

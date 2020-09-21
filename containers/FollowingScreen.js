@@ -22,10 +22,9 @@ class FollowingScreen extends React.Component {
     };
 
     render(){
-      console.log(this.props.isLoading)
         return(
             <>
-            {this.props.isLoading ?
+            {this.props.users.isLoading ?
                     <ActivityIndicator />
                 :
                   <ScrollView>
@@ -60,9 +59,7 @@ class FollowingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-          users: state.users,
-          isLoading: state.isLoading,
-          selectedUser: state.selectedUser
+          users: state.users
           }
 }
 

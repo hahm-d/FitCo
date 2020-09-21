@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {START_ADDING_USER_REQUEST, 
         START_CREATE_USER_REQUEST, 
         ADD_USER, 
-        ADD_NEW_USER, 
         LOGOUT_USER, 
         ERROR
     } from '../constants/actionTypes'
@@ -44,7 +43,7 @@ export function saveUserToken(userObj){
           })
           .then(resp => resp.json())
           .then(currentuser => {
-            dispatch({ type: ADD_NEW_USER, currentuser})
+            dispatch({ type: ADD_USER, currentuser})
             AsyncStorage.setItem("userToken", currentuser.jwt)
         })
         .catch((err) => {
@@ -67,7 +66,7 @@ export function loginUser(userObj){
           })
           .then(resp => resp.json())
           .then(currentuser => {
-            dispatch({ type: ADD_NEW_USER, currentuser})
+            dispatch({ type: ADD_USER, currentuser})
             AsyncStorage.setItem("userToken", currentuser.jwt)
         })
         .catch((err) => {

@@ -17,11 +17,11 @@ class FindScreen extends React.Component {
     }
 
       render(){
-          console.log("loading", this.props.isLoading)
+          console.log("Users", this.props.users)
         return(
             <>
-            {this.props.isLoading ?
-                    <ActivityIndicator />
+            {this.props.users.isLoading ?
+                    <ActivityIndicator size="large" color="#0000ff"/>
                 :
                 <ImageBackground
                 source={require('../assets/images/bg.png')}
@@ -65,7 +65,6 @@ class FindScreen extends React.Component {
 const mapStateToProps = state => {
     return {
         users: state.users,
-        isLoading: state.isLoading,
         }
   }
   

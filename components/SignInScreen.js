@@ -15,38 +15,34 @@ class SignInScreen extends React.Component {
       };
 
     state = {
-        user: {
             username: '',
             password: ''
-        }
     }
 
-    handleUsername = text => {
-        this.setState({ user: { ...this.state.user, username: text} });
-    }
-    handlePassword = text => {
-        this.setState({ user: { ...this.state.user, password: text} });
+    changeHandler = (name) => (text) => {
+        this.setState({ [name]: text});
     }
 
     render() {
-        console.log(this.props.state)
         return (
             <View style={styles.container}>
                 <TextInput
-                    value={this.state.user.username}
-                    placeholder="Username"
+                    value={this.state.username}
+                    placeholder="username"
                     type='username'
-                    onChangeText={this.handleUsername}
+                    onChangeText={this.changeHandler("username")}
+                    placeholderTextColor={'darkgray'}
                 />    
                 <TextInput
-                    value={this.state.user.password}
-                    placeholder="Password"
+                    value={this.state.password}
+                    placeholder="password"
                     secureTextEntry
                     type='password'
-                    onChangeText={this.handlePassword}
+                    onChangeText={this.changeHandler("password")}
+                    placeholderTextColor={'darkgray'}
                 /> 
                 <TouchableOpacity>
-                    <Button title="Sign in!" onPress={() => this.signInAsync(this.state.user)} />
+                    <Button title="Sign in!" onPress={() => this.signInAsync(this.state)} />
                 </TouchableOpacity>
             </View>
         );
@@ -67,17 +63,8 @@ const styles = StyleSheet.create({
     },
 });
 
-function mapStateToProps(state){
-    return {
-            currentUser: state.currentUser,
-            isLoading: state.isLoading,
-            users: state.users,
-            selectedUser: state.selectedUser,
-           }
-}
-
 function mapDispatchToProps(dispatch){
     return { loginUser: (userObj) => dispatch(loginUser(userObj)) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
+export default connect(null, mapDispatchToProps)(SignInScreen);

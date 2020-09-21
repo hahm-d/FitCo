@@ -19,6 +19,7 @@ const PostItem = ({
 }) => {
   // Custom styling
   const fullWidth = Dimensions.get('window').width;
+  
   const imageStyle = [
     {
       borderRadius: 8,
@@ -89,7 +90,7 @@ const PostItem = ({
 
 function mapStateToProps(state){
     return {
-            post: state.post,
+            post: state.posts,
            }
 }
 

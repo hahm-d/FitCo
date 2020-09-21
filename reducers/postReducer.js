@@ -1,14 +1,15 @@
-import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, ERROR} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, SELECT_POST, ERROR} from '../constants/actionTypes'
 
 const initialState = {
     posts: [],
     coach_posts: [],
     comments: [],
     isLoading: false,
+    selectedPost: null,
     error: null
 }
 
-const userReducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
         switch (action.type) {
           case FETCH_POSTS_REQUEST: 
             return {
@@ -66,6 +67,12 @@ const userReducer = (state = initialState, action) => {
               isLoading: false
             };    
 
+            case SELECT_POST:
+              return {
+                ...state,
+                selectedPost: action.selectedPost.post,
+                isLoading: false
+            }
           case ERROR: 
             return { 
               ...state, 
@@ -78,4 +85,4 @@ const userReducer = (state = initialState, action) => {
     }
 };
 
-export default userReducer
+export default postReducer

@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { updateUser } from '../actions/userActions';
 
 class EditProfile extends React.Component {
-
+    //fix this one later
     state = {
             id: this.props.currentUser.id,
             email: this.props.currentUser.email,
@@ -34,28 +34,28 @@ class EditProfile extends React.Component {
             <View style={styles.container}>
                 <Text>Update Profile</Text>
                 <TextInput
-                value={this.state.user.username}
+                value={this.state.email}
                 placeholder="email"
                 type='email'
-                onChangeText={this.changeHandler}
+                onChangeText={this.changeHandler("email")}
                 />
                 <TextInput
-                value={this.state.user.email}
+                value={this.state.instagram}
                 placeholder="instagram"
                 type='instagram'
-                onChangeText={this.changeHandler}
+                onChangeText={this.changeHandler("instagram")}
                 /> 
                 <TextInput
-                value={this.state.user.email}
+                value={this.state.twitter}
                 placeholder="twitter"
                 type='twitter'
-                onChangeText={this.changeHandler}
+                onChangeText={this.changeHandler("twitter")}
                 /> 
                 <TextInput
-                value={this.state.user.email}
+                value={this.state.description}
                 placeholder="description"
                 type='description'
-                onChangeText={this.changeHandler}
+                onChangeText={this.changeHandler("description")}
                 /> 
                 <TouchableOpacity>
                     <Button title="Update" onPress={() => this.updateUser(this.state)} />
@@ -78,10 +78,8 @@ const styles = StyleSheet.create({
 });
  
 function mapStateToProps(state){
-    console.log(state.currentUser)
     return {
-            currentUser: state.currentUser,
-            isLoading: state.isLoading
+            currentUser: state.users.currentUser,
            }
 }
 

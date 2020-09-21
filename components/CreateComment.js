@@ -8,16 +8,14 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import { addPost } from '../actions/postActions';
+import { addComment } from '../actions/commentActions';
 
-class CreatePost extends React.Component {
+class CreateComment extends React.Component {
 
     state = {
-        title: "",
-        content: "",
-        url: "",
-        views: 1,
-        likes: 0
+        post_id: null,
+        commenter_name: "",
+        comment: ""
         }
 
     changeHandler = (name) => (text) => {
@@ -30,6 +28,7 @@ class CreatePost extends React.Component {
     };
 
     render() {
+
         return (
             <View style={styles.container}>
                 <Text>Update Profile</Text>
@@ -79,7 +78,8 @@ const styles = StyleSheet.create({
  
 function mapStateToProps(state){
     return {
-            currentUser: state.users
+            currentUser: state.users,
+            posts: state.posts.selectedPost
            }
 }
 
@@ -87,4 +87,4 @@ function mapDispatchToProps(dispatch){
     return { addPost: (postObj) => dispatch(addPost(postObj)) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateComment);

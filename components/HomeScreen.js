@@ -17,7 +17,7 @@ class HomeScreen extends React.Component {
 
 //debug tool1
     clearAsync = async() => {
-        console.log(this.props.currentUser)
+        console.log("current User: ", this.props.currentUser)
     }
 
 //debug tool2
@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state){
     return {
-            currentUser: state.currentUser,
-            isLoading: state.isLoading
+            currentUser: state.users.currentUser
            }
 }
 

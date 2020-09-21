@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import HomeScreen from './components/HomeScreen';
 import SignInScreen from './components/SignInScreen';
-import SignOutScreen from './components/SignOutScreen';
 import RegisterScreen from './components/RegisterScreen';
 import FollowingScreen from './containers/FollowingScreen';
 import CoachDetailScreen from './containers/CoachDetailScreen'
@@ -15,7 +14,8 @@ import FindScreen from './containers/FindScreen';
 import PostContainer from './containers/PostContainer';
 import ProfileScreen from './containers/ProfileScreen';
 import {validateUser} from './actions/userActions';
-
+import CreatePost from './components/CreatePost';
+import EditProfile from './components/EditProfile';
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,8 +27,8 @@ function UserNavigator(){
       <Drawer.Screen name="Profile" component={ProfileScreen}/>
       <Drawer.Screen name="Register" component={RegisterScreen}/>
       <Drawer.Screen name="Sign in" component={SignInScreen}/>
-      <Drawer.Screen name="Logout" component={SignOutScreen}/>
       <Drawer.Screen name="Coach Detail" component={CoachDetailScreen}/>
+      <Drawer.Screen name="Add Post" component={CreatePost}/>
     </Drawer.Navigator>
   )
 }

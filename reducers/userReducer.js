@@ -35,14 +35,15 @@ const userReducer = (state = initialState, action) => {
           case ADD_USER: 
             return {
               ...state,
-              currentUser: action.user,
+              currentUser: action.currentuser.user,
               isLoading: false
             };
           
           case SELECT_USER:
             return {
               ...state,
-              selectedUser: action.selecteduser
+              selectedUser: action.selecteduser.user,
+              isLoading: false
           }
           case LOGOUT_USER: 
             return { 

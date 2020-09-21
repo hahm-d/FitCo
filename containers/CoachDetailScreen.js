@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import { View, ScrollView, Text } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import {fetchCoachPosts} from '../actions/postActions';
 import CoachDetails from "../components/CoachDetails";
 import CoachPosts from "../components/CoachPosts";
-import Spinner from "../components/Spinner";
 
-/**
- * Screen that shows detailed data of the selected friend
- */
 
 class CoachDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -22,62 +18,67 @@ class CoachDetailScreen extends Component {
   }
 
   getCoachData = () => {
-    console.log(this.props.selectedUser)
-/*     const {
+    const {
       onFetchCoachPosts,
       selectedUser
     } = this.props;
-    onFetchCoachPosts(selectedUser.user.id) */
+    onFetchCoachPosts(selectedUser.id) 
   };
 
-/*   onPressPost = ({ post }) => {
+  onPressPost = ({ post }) => {
     const { navigation, onSelectPost } = this.props;
     onSelectPost(post.id);
     navigation.navigate("UserPostDetails", { title: post.title });
-  }; */
+  };
+
+  renderSeparator = () => <View style={styles.separator} />;
 
   render() {
-   const { posts, users, selectedUser } = this.props; 
-   console.log(this.props.selectedUser) 
+    const { posts, selectedUser } = this.props;
+    console.log("coach id: ", this.props.posts.coach_posts)
     return (
-/*       <ScrollView>
-        <Spinner loading={users.loading} />
-        {!users.loading && users.selectedUser && (
+      <ScrollView>
+        <>
+        {selectedUser.isLoading ?
+            <ActivityIndicator size="large" color="#0000ff"/>
+            :
           <View>
             <CoachDetails
-              username={users.selectedUser.name}
-              status={users.selectedUser.status}
+              name={selectedUser.username}
+              email={selectedUser.email}
+              instragram={selectedUser.instragram}
+              twitter={selectedUser.twitter}
+              description={selectedUser.description}
+              status={selectedUser.status}
             />
             <CoachPosts
-              posts={posts.posts}
-              loading={posts.loading}
+              posts={posts.coach_posts}
+              onPress={this.onPressPost}
+              loading={posts.isloading}
             />
           </View>
-        )}
-      </ScrollView> */
-      <View>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>COACH DETAIL PAGE</Text>
-        <Text>{selectedUser}</Text>
-        </View>
+        }
+        </>
+      </ScrollView>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  separator: {
+    height: 1,
+    width: "100%",
+    backgroundColor: "white"
+  }
+});
+
 const mapStateToProps = state => {
-  console.log(state.selectedUser)
   return {
-    users: state.users.users,
+    selectedUser: state.users.selectedUser,
     posts: state.posts,
-    selectedUser: state.selectedUser
   };
 };
 

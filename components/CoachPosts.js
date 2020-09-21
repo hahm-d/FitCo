@@ -11,25 +11,17 @@ class CoachPosts extends Component {
   renderSeparator = () => <View style={styles.separator} />;
 
   render() {
-    const { posts, loading, onPress } = this.props;
+    const { posts, onPress } = this.props;
 
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Posts</Text>
-        <Spinner loading={loading} />
-        {!loading && (
           <FlatList
             data={posts}
             keyExtractor={item => `${item.id}`}
             renderItem={({ item }) => <Post onPress={onPress} {...item} />}
             ItemSeparatorComponent={this.renderSeparator}
           />
-        )}
-        {!posts.length && !loading && (
-          <View style={styles.noPostsDescription}>
-            <Text>No Posts found.</Text>
-          </View>
-        )}
       </View>
     );
   }

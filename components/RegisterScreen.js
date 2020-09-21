@@ -13,23 +13,13 @@ import { saveUserToken } from '../actions/userActions';
 class RegisterScreen extends React.Component {
 
     state = {
-        user: {
             username: '',
             password: '',
             email: ''
-        }
     }
 
-    handleUsername = text => {
-        this.setState({ user: { ...this.state.user, username: text} });
-    }
-
-    handleEmail = text => {
-        this.setState({ user: { ...this.state.user, email: text} });
-    }
-      
-    handlePassword = text => {
-        this.setState({ user: { ...this.state.user, password: text} });
+    changeHandler = (name) => (text) => {
+        this.setState({ [name]: text});
     }
 
     signInAsync = (userObj) => {
@@ -42,26 +32,26 @@ class RegisterScreen extends React.Component {
             <View style={styles.container}>
                 <Text>fill this out</Text>
                 <TextInput
-                value={this.state.user.username}
+                value={this.state.username}
                 placeholder="Username"
                 type='username'
-                onChangeText={this.handleUsername}
+                onChangeText={this.changeHandler("username")}
                 />
                 <TextInput
-                value={this.state.user.email}
+                value={this.state.email}
                 placeholder="Email"
                 type='email'
-                onChangeText={this.handleEmail}
+                onChangeText={this.changeHandler("email")}
                 /> 
                 <TextInput
-                value={this.state.user.password}
+                value={this.state.password}
                 placeholder="Password"
                 secureTextEntry
                 type='password'
-                onChangeText={this.handlePassword}
+                onChangeText={this.changeHandler("password")}
                 />   
                 <TouchableOpacity>
-                    <Button title="Sign in!" onPress={() => this.signInAsync(this.state.user)} />
+                    <Button title="Sign in!" onPress={() => this.signInAsync(this.state)} />
                 </TouchableOpacity>
             </View>
         );
@@ -81,15 +71,9 @@ const styles = StyleSheet.create({
     },
 });
  
-function mapStateToProps(state){
-    return {
-            currentUser: state.currentUser,
-            isLoading: state.isLoading
-           }
-}
 
 function mapDispatchToProps(dispatch){
     return { saveUserToken: (userObj) => dispatch(saveUserToken(userObj)) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen);
+export default connect(null, mapDispatchToProps)(RegisterScreen);

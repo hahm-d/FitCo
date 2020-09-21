@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-/**
- * A reusable card that renders the details of a user
- */
-
 class CoachDetails extends Component {
 
   render() {
-    const { initials, name, email, address } = this.props;
+    const { username, email, instagram, twitter, description, status } = this.props;
 
     return (
       <View style={styles.userCard}>
         <View style={styles.userIcon}>
-          <Text style={styles.userInitials}>{initials}</Text>
+          <Text style={styles.userInitials}>COACH</Text>
         </View>
         <View style={styles.userInfo}>
-          {name && <Text style={styles.userLabel}>{name}</Text>}
+          {username && <Text style={styles.userLabel}>{username}</Text>}
           {email && <Text style={styles.userLabel}>{email}</Text>}
-          {address && <Text style={styles.userLabel}>{address}</Text>}
+          {instagram && <Text style={styles.userLabel}>{instagram}</Text>}
+          {twitter && <Text style={styles.userLabel}>{twitter}</Text>}
+          {description && <Text style={styles.userLabel}>{description}</Text>}
+          {status && <Text style={styles.userLabel}>{status}</Text>}
         </View>
       </View>
     );

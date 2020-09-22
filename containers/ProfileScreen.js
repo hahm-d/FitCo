@@ -42,8 +42,8 @@ class ProfileScreen extends React.Component {
                 :
           <View>
             <UserDetails
-              name={currentUser}
-              email={currentUser}
+              name={currentUser.username}
+              email={currentUser.email}
             />
           </View>
         }
@@ -56,7 +56,7 @@ class ProfileScreen extends React.Component {
 const mapStateToProps = state => {
 
   return {
-    currentUser: state.currentUser,
+    currentUser: state.users.currentUser,
     isLoading: state.isLoading
   };
 };

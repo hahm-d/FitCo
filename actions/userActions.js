@@ -84,16 +84,16 @@ export function loginUser(userObj){
     }
 }
 
-//TO_DO: might need bearer token on header - check backend 
 //update user profile 
-export function updateUser(userObj){
+export function updateUser(userObj, token){
     return dispatch => {
         dispatch({type: START_ADDING_USER_REQUEST})
         fetch(`${api}/api/v1/users/${userObj.id}`, {
             method: "PATCH",
             headers: {
               accepts: "application/json",
-              "content-type": "application/json"
+              "content-type": "application/json",
+              Authorization: `Bearer ${token}`
             },
             body: JSON.stringify(userObj)
           })

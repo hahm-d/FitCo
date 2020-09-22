@@ -35,7 +35,7 @@ class CoachDetailScreen extends Component {
 
   render() {
     const { posts, selectedUser } = this.props;
-    console.log("coach id: ", this.props.posts.coach_posts)
+    console.log("coach posts: ", this.props.posts.coach_posts)
     return (
       <ScrollView>
         <>
@@ -44,9 +44,9 @@ class CoachDetailScreen extends Component {
             :
           <View>
             <CoachDetails
-              name={selectedUser.username}
+              username={selectedUser.username}
               email={selectedUser.email}
-              instragram={selectedUser.instragram}
+              instagram={selectedUser.instagram}
               twitter={selectedUser.twitter}
               description={selectedUser.description}
               status={selectedUser.status}

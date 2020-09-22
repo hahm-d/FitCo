@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
-import Icon from "react-native-vector-icons/MaterialIcons";
 
 class Post extends Component {
   onPressComment = () => {
-    const { onPress, id, title, body } = this.props;
-    onPress && onPress({ post: { id, title, body } });
+    const { onPress, content, likes, title, views} = this.props;
+    onPress && onPress({ post: { id, title, content, likes, views } });
   };
 
   render() {
-    const { title, body, disabled, commentsCount } = this.props;
+    const { title, content, disabled, commentsCount, likes, views } = this.props;
 
     return (
       <View style={styles.postContainer}>
         <Text style={styles.postTitle}>{title}</Text>
-        <Text>{body}</Text>
+        <Text>{content}</Text>
+    <Text>likes: {likes}</Text>
+    <Text>views: {views}</Text>
         <TouchableOpacity
           style={styles.postCommentContainer}
           onPress={this.onPressComment}
           disabled={disabled}
         >
-          <Icon style={styles.postCommentIcon} name="comment" size={14} />
-          <Text style={styles.postCommentLink}>{commentsCount} Comments</Text>
+          <Text style={styles.postCommentLink}>{commentsCount} See comment</Text>
         </TouchableOpacity>
       </View>
     );

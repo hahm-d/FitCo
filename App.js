@@ -30,6 +30,7 @@ function UserNavigator(){
       <Drawer.Screen name="Sign in" component={SignInScreen}/>
       <Drawer.Screen name="Coach Detail" component={CoachDetailScreen}/>
       <Drawer.Screen name="Add Post" component={CreatePost}/>
+      <Drawer.Screen name="Edit Profile" component={EditProfile}/>
     </Drawer.Navigator>
   )
 }

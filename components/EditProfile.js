@@ -11,13 +11,13 @@ import { connect } from 'react-redux';
 import { updateUser } from '../actions/userActions';
 
 class EditProfile extends React.Component {
-    //fix this one later
+
     state = {
-            id: this.props.currentUser.id,
-            email: this.props.currentUser.email,
-            instagram: this.props.currentUser.instagram,
-            twitter: this.props.currentUser.twitter,
-            description: this.props.currentUser.description
+            id: null,
+            email: "",
+            instagram: "",
+            twitter: "",
+            description: ""
     }
 
     changeHandler = (name) => (text) => {
@@ -25,14 +25,16 @@ class EditProfile extends React.Component {
     }
 
     signInAsync = (userObj) => {
-        this.props.updateUser(userObj)
+        this.props.updateUser(userObj, this.props.token.authToken)
         this.props.navigation.navigate('Home');
     };
 
     render() {
+
         return (
             <View style={styles.container}>
                 <Text>Update Profile</Text>
+                <Text>User: {this.props.currentUser.username}</Text>
                 <TextInput
                 value={this.state.email}
                 placeholder="email"
@@ -80,11 +82,12 @@ const styles = StyleSheet.create({
 function mapStateToProps(state){
     return {
             currentUser: state.users.currentUser,
+            token: state.token
            }
 }
 
 function mapDispatchToProps(dispatch){
-    return { updateUser: (userObj) => dispatch(updateUser(userObj)) }
+    return { updateUser: (userObj, token) => dispatch(updateUser(userObj, token)) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

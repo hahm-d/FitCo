@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import Post from "./Post";
-import Spinner from "./Spinner";
 
 /**
  * Renders a list of posts

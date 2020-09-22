@@ -5,7 +5,6 @@ import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS
 const api = 'http://localhost:3000'
 export function fetchPosts(token) {
     return (dispatch) => {
-      const userToken = AsyncStorage.getItem('userToken')
       dispatch({ type: FETCH_POSTS_REQUEST })
       fetch(`${api}/posts`, {
           method: "GET",
@@ -21,7 +20,6 @@ export function fetchPosts(token) {
 
 //fetch that user's posts (coach)
 export function fetchCoachPosts(id, token){
-
   return (dispatch) => {
       dispatch({ type: FETCH_COACHPOST_REQUEST })
       fetch(`${api}/api/v1/users/${id}/posts`, {
@@ -40,7 +38,6 @@ export function fetchCoachPosts(id, token){
 //create post
 // title, content, url, views, likes, images, poster_username 
 export function addPost(postObj, token){
-
   return dispatch => {
       dispatch({type: START_CREATE_POST_REQUEST})
       fetch(`${api}/posts`, {
@@ -61,7 +58,7 @@ export function addPost(postObj, token){
   }
 }
 
-//delete post
+//delete post (FIX)
 export function deletePost(postid){
   const userToken = AsyncStorage.getItem('userToken')
   return dispatch => {

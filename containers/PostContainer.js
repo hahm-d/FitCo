@@ -35,7 +35,7 @@ class PostContainer extends React.Component {
                     <FlatList
                       numColumns={1}
                       data={this.props.posts}
-                      keyExtractor={post => post.id}
+                      keyExtractor={post => post.id.toString()}
                       renderItem={({ item }) => (
                         <TouchableOpacity>
                           <PostItem

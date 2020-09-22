@@ -39,7 +39,7 @@ class FollowingScreen extends React.Component {
                     <FlatList
                       numColumns={1}
                       data={this.props.users.users}
-                      keyExtractor={user => user.id}
+                      keyExtractor={user => user.id.toString()}
                       renderItem={({ item }) => (
                         <TouchableOpacity>
                           <CoachListItem

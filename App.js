@@ -14,6 +14,7 @@ import FindScreen from './containers/FindScreen';
 import PostContainer from './containers/PostContainer';
 import ProfileScreen from './containers/ProfileScreen';
 import {validateUser} from './actions/userActions';
+import { saveToken } from './actions/tokenActions';
 import CreatePost from './components/CreatePost';
 import EditProfile from './components/EditProfile';
 
@@ -49,10 +50,9 @@ class App extends Component {
 retrieveData = async () => {
   try{
       const token = await AsyncStorage.getItem('userToken')
-      console.log("Token:", token)
       if(token !==null){
-        console.log(token)
         this.props.validateUser(token)
+        this.props.saveToken(token)
         //then navigate to Find tab
       }
   }
@@ -66,7 +66,6 @@ async componentDidMount() {
 }
 
   render(){
-    console.log(this.state)
     return (
       <NavigationContainer>
     <UserNavigator />
@@ -84,7 +83,10 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return { validateUser: (token) => dispatch(validateUser(token)) }
+  return { 
+    validateUser: (token) => dispatch(validateUser(token)), 
+    saveToken: (token) => dispatch(saveToken(token)) 
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

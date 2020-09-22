@@ -35,7 +35,7 @@ const userReducer = (state = initialState, action) => {
           case ADD_USER: 
             return {
               ...state,
-              currentUser: action.currentuser.user,
+              currentUser: action.addUser,
               isLoading: false
             };
           

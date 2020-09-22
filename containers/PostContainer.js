@@ -13,7 +13,7 @@ class PostContainer extends React.Component {
         title: "PostContainer"
       };
     componentDidMount() {
-        this.props.fetchPosts()
+        this.props.fetchPosts(this.props.token.authToken)
     }
 
     render(){
@@ -61,13 +61,14 @@ class PostContainer extends React.Component {
 function mapStateToProps(state){
     return {
             posts: state.posts.posts,
+            token: state.token,
             users: state.users,
             isLoading: state.isLoading
            }
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchPosts: (token) => dispatch(fetchPosts(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostContainer);

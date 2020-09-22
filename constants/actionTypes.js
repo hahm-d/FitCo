@@ -37,4 +37,6 @@ export const ADD_FOLLOWERS = 'ADD_FOLLOWERS';
 export const FETCH_FOLLOWERS_REQUEST = 'FETCH_FOLLOWERS_REQUEST';
 
 //Other
+export const SAVE_APP_TOKEN = 'SAVE_APP_TOKEN';
+export const DELETE_APP_TOKEN = 'DELETE_APP_TOKEN';
 export const ERROR = 'ERROR';

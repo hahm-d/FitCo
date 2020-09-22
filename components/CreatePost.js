@@ -20,16 +20,19 @@ class CreatePost extends React.Component {
         likes: 0
         }
 
+
     changeHandler = (name) => (text) => {
         this.setState({[name]: text});
     }
 
     signInAsync = (postObj) => {
-        this.props.addPost(postObj)
+
+        this.props.addPost(postObj, this.props.token.authToken)
         this.props.navigation.navigate('Profile');
     };
 
     render() {
+        console.log(this.props.state)
         return (
             <View style={styles.container}>
                 <Text>Update Profile</Text>
@@ -79,12 +82,13 @@ const styles = StyleSheet.create({
  
 function mapStateToProps(state){
     return {
-            currentUser: state.users
+            currentUser: state.users,
+            token: state.token
            }
 }
 
 function mapDispatchToProps(dispatch){
-    return { addPost: (postObj) => dispatch(addPost(postObj)) }
+    return { addPost: (postObj, token) => dispatch(addPost(postObj, token)) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

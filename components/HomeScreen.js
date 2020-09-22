@@ -5,9 +5,9 @@ import {
     View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { removeUserToken } from '../actions/userActions';
+import { signOutUser } from '../actions/userActions';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import {deleteToken} from '../actions/tokenActions'
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -17,7 +17,7 @@ class HomeScreen extends React.Component {
 
 //debug tool1
     clearAsync = async() => {
-        console.log("current User: ", this.props.currentUser)
+        console.log("current User: ", this.props.stateALL)
     }
 
 //debug tool2
@@ -47,7 +47,8 @@ class HomeScreen extends React.Component {
 
 
     signOutAsync = () => {
-        this.props.removeUserToken()
+        this.props.signOutUser()
+        this.props.deleteToken()
         this.props.navigation.navigate('Sign in');
     };
 }
@@ -64,12 +65,13 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state){
     return {
-            currentUser: state.users.currentUser
+            stateALL: state
            }
 }
 
 const mapDispatchToProps = dispatch => ({
-    removeUserToken: () => dispatch(removeUserToken()),
+  signOutUser: () => dispatch(signOutUser()),
+  deleteToken: () => dispatch(deleteToken())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

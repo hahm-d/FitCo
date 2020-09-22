@@ -3,14 +3,14 @@ import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS
 
 //fetch all posts
 const api = 'http://localhost:3000'
-export function fetchPosts() {
+export function fetchPosts(token) {
     return (dispatch) => {
       const userToken = AsyncStorage.getItem('userToken')
       dispatch({ type: FETCH_POSTS_REQUEST })
       fetch(`${api}/posts`, {
           method: "GET",
           headers: {
-                      Authorization: `Bearer ${userToken}`
+                      Authorization: `Bearer ${token}`
                   }
               })
       .then(resp => resp.json())
@@ -20,18 +20,18 @@ export function fetchPosts() {
 
 
 //fetch that user's posts (coach)
-export function fetchCoachPosts(id){
-  const userToken = AsyncStorage.getItem('userToken')
+export function fetchCoachPosts(id, token){
+
   return (dispatch) => {
       dispatch({ type: FETCH_COACHPOST_REQUEST })
       fetch(`${api}/api/v1/users/${id}/posts`, {
           method: "GET",
           headers: {
-                      Authorization: `Bearer ${userToken}`
+                      Authorization: `Bearer ${token}`
                   }
       })
       .then(resp => resp.json())
-      .then(posts => dispatch({ type: ADD_COACH_POSTS, posts }));
+      .then(posts => dispatch({ type: ADD_COACH_POSTS, posts }))
   };
 }
 
@@ -39,15 +39,15 @@ export function fetchCoachPosts(id){
 
 //create post
 // title, content, url, views, likes, images, poster_username 
-export function addPost(postObj){
-  const userToken = AsyncStorage.getItem('userToken')
+export function addPost(postObj, token){
+
   return dispatch => {
       dispatch({type: START_CREATE_POST_REQUEST})
       fetch(`${api}/posts`, {
           method: "POST",
           headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${userToken}`
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify({ post: postObj })
         })

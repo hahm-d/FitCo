@@ -22,7 +22,7 @@ class CoachDetailScreen extends Component {
       onFetchCoachPosts,
       selectedUser
     } = this.props;
-    onFetchCoachPosts(selectedUser.id) 
+    onFetchCoachPosts(selectedUser.id, this.props.token.authToken) 
   };
 
   onPressPost = ({ post }) => {
@@ -79,12 +79,13 @@ const mapStateToProps = state => {
   return {
     selectedUser: state.users.selectedUser,
     posts: state.posts,
+    token: state.token
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchCoachPosts: userId => dispatch(fetchCoachPosts(userId)),
+    onFetchCoachPosts: (userId, token) => dispatch(fetchCoachPosts(userId, token)),
   };
 };
 

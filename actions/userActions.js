@@ -3,6 +3,7 @@ import {START_ADDING_USER_REQUEST,
         START_CREATE_USER_REQUEST, 
         ADD_USER, 
         LOGOUT_USER, 
+        SAVE_APP_TOKEN,
         ERROR
     } from '../constants/actionTypes'
 
@@ -21,7 +22,9 @@ export function validateUser(token){
             })
             .then(resp => resp.json())
             .then(currentuser => {
-                dispatch({ type: ADD_USER, currentuser});
+                const addUser = currentuser.user
+                dispatch({ type: ADD_USER, addUser})
+                //make sure to save token to state manually 
             })
             .catch(err => {
                 console.log(err)
@@ -43,8 +46,11 @@ export function saveUserToken(userObj){
           })
           .then(resp => resp.json())
           .then(currentuser => {
-            dispatch({ type: ADD_USER, currentuser})
-            AsyncStorage.setItem("userToken", currentuser.jwt)
+            const addUser = currentuser.user
+            const authToken = currentuser.jwt
+            dispatch({ type: ADD_USER, addUser})
+            dispatch({ type: SAVE_APP_TOKEN, authToken})
+            AsyncStorage.setItem('userToken', authToken)
         })
         .catch((err) => {
             dispatch({type: ERROR, err });
@@ -66,8 +72,11 @@ export function loginUser(userObj){
           })
           .then(resp => resp.json())
           .then(currentuser => {
-            dispatch({ type: ADD_USER, currentuser})
-            AsyncStorage.setItem("userToken", currentuser.jwt)
+            const addUser = currentuser.user
+            const authToken = currentuser.jwt
+            dispatch({ type: ADD_USER, addUser})
+            dispatch({ type: SAVE_APP_TOKEN, authToken})
+            AsyncStorage.setItem('userToken', authToken)
         })
         .catch((err) => {
             dispatch({type: ERROR, err });
@@ -75,8 +84,8 @@ export function loginUser(userObj){
     }
 }
 
-
-//update user profile
+//TO_DO: might need bearer token on header - check backend 
+//update user profile 
 export function updateUser(userObj){
     return dispatch => {
         dispatch({type: START_ADDING_USER_REQUEST})
@@ -90,8 +99,11 @@ export function updateUser(userObj){
           })
           .then(resp => resp.json())
           .then(currentuser => {
-            dispatch({ type: ADD_USER, currentuser})
-            AsyncStorage.setItem("userToken", currentuser.jwt)
+            const addUser = currentuser.user
+            const authToken = currentuser.jwt
+            dispatch({ type: ADD_USER, addUser})
+            dispatch({ type: SAVE_APP_TOKEN, authToken})
+            AsyncStorage.setItem('userToken', authToken)
         })
         .catch((err) => {
             dispatch({type: ERROR, err });
@@ -103,10 +115,9 @@ export function updateUser(userObj){
 //delete user account
 
 //log out  
-export function removeUserToken(){
+export function signOutUser(){
     return dispatch => {
         dispatch({type: LOGOUT_USER })
-        AsyncStorage.removeItem('userToken')
     }
 }
 

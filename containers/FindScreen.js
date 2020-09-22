@@ -13,11 +13,10 @@ class FindScreen extends React.Component {
       }
 
     componentDidMount() {
-        this.props.onfetchUsers()
+        this.props.onfetchUsers(this.props.token.authToken)
     }
 
       render(){
-          console.log("Users", this.props.users)
         return(
             <>
             {this.props.users.isLoading ?
@@ -65,11 +64,12 @@ class FindScreen extends React.Component {
 const mapStateToProps = state => {
     return {
         users: state.users,
+        token: state.token
         }
   }
   
   const mapDispatchToProps = dispatch => ({
-      onfetchUsers: () => dispatch(fetchUsers()),
+      onfetchUsers: (token) => dispatch(fetchUsers(token)),
       onSelectCoach: (user) => dispatch(selectCoach(user))
   });
   

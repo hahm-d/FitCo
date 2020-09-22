@@ -68,7 +68,8 @@ export function followCoach(followObj, token){
                       "content-type": "application/json",
                       Authorization: `Bearer ${token}`
           },
-          body: JSON.stringify({ followObj })
+          body: JSON.stringify({ user_id: followObj.user_id,
+                                 coach_id: followObj.coach_id })
         })
         .then(resp => resp.json())
         .then(following => {

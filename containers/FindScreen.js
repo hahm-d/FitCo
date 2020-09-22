@@ -16,7 +16,7 @@ class FindScreen extends React.Component {
         this.props.onfetchUsers(this.props.token.authToken)
     }
 
-    followRight = (coach_id) => {
+    swipeRight = (coach_id) => {
         const followObj = {
             user_id: this.props.users.currentUser.id,
             coach_id: coach_id,
@@ -47,7 +47,8 @@ class FindScreen extends React.Component {
                     ref={swiper => (this.swiper = swiper)}
                     >
                     {this.props.users.users.map((item, index) => (
-                        <Card key={index}>
+                        <Card key={index}
+                        onSwipedRight={() => this.swipeRight(item.id)}>
                         <CardItem
                             id={item.id}
                             image={item.image.cloudinary}
@@ -58,7 +59,7 @@ class FindScreen extends React.Component {
                             status={item.status}
                             actions
                             onPressLeft={() => this.swiper.swipeLeft()}
-                            onPressRight={() => this.swiper.swipeRight(this.followRight(item.id))}
+                            onPressRight={() => this.swipeRight(item.id)}
                         />
                         </Card>
                     ))}

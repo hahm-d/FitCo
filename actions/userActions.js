@@ -24,7 +24,6 @@ export function validateUser(token){
             .then(currentuser => {
                 const addUser = currentuser.user
                 dispatch({ type: ADD_USER, addUser})
-                //make sure to save token to state manually 
             })
             .catch(err => {
                 console.log(err)

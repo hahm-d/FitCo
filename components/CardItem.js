@@ -38,7 +38,7 @@ const CardItem = ({
   return (
     <View style={styles.containerCardItem}>
       {/* IMAGE */}
-      <Image source={image} style={imageStyle} />
+      <Image source={ {uri: image}} style={imageStyle} />
 
       {/* MATCHES */}
       {matches && (
@@ -60,7 +60,7 @@ const CardItem = ({
       {/* STATUS */}
       {status && (
         <View style={styles.status}>
-          <View style={status === 'Online' ? styles.online : styles.offline} />
+          <View style={status === "online" ? styles.online : styles.offline} />
           <Text style={styles.statusText}>{status}</Text>
         </View>
       )}
@@ -68,15 +68,10 @@ const CardItem = ({
       {/* ACTIONS */}
       {actions && (
         <View style={styles.actionsCardItem} >
-          <TouchableOpacity style={styles.miniButton} onPress={console.log(id)}>
-            <Text style={styles.star}>
-              <Icon name="star" />
-            </Text>
-          </TouchableOpacity>
 
           <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
             <Text style={styles.like}>
-              <Icon name="like" onPress={() => console.log("Like me!")} />
+              Pass
             </Text>
           </TouchableOpacity>
 
@@ -85,13 +80,7 @@ const CardItem = ({
             onPress={() => onPressRight()}
           >
             <Text style={styles.dislike}>
-              <Icon name="dislike" />
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.miniButton}>
-            <Text style={styles.flash}>
-              <Icon name="flash" />
+              Yes
             </Text>
           </TouchableOpacity>
         </View>

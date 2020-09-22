@@ -2,7 +2,7 @@ import React from 'react';
 import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList} from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
-import { fetchUsers, selectCoach } from '../actions/followActions';
+import { fetchFollowing, selectCoach } from '../actions/followActions';
 import CoachListItem from "../components/CoachListItem";
 import Icon from '../components/Icon';
 /* import { LogBox } from 'react-native';
@@ -13,7 +13,7 @@ class FollowingScreen extends React.Component {
     title: "Following"
   };
     componentDidMount() {
-      this.props.onfetchUsers()
+      this.props.onfetchFollowing(this.props.users.currentUser.id, this.props.token.authToken)
     }
   
     onPressUserRow = ( user ) => {
@@ -59,12 +59,13 @@ class FollowingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-          users: state.users
+          users: state.users,
+          token: state.token
           }
 }
 
 const mapDispatchToProps = dispatch => ({
-    onfetchUsers: () => dispatch(fetchUsers()),
+  onfetchFollowing: (id, token) => dispatch(fetchFollowing(id, token)),
     onSelectCoach: (user) => dispatch(selectCoach(user))
 });
 

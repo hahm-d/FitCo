@@ -69,7 +69,12 @@ async componentDidMount() {
   render(){
     return (
       <NavigationContainer>
-    <UserNavigator />
+        {this.props.token.authToken !== null ? (
+          <UserNavigator />
+        )
+          :
+          <HomeScreen/>  
+        }
       </NavigationContainer>
     )
   }
@@ -77,9 +82,8 @@ async componentDidMount() {
 
 function mapStateToProps(state){
   return {
-          currentUser: state.currentUser,
-          isLoading: state.isLoading,
-          flag: state.flag
+          users: state.users.currentUser,
+          token: state.token
          }
 }
 

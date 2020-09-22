@@ -23,14 +23,15 @@ export const selectCoach = selecteduser => ({ type: SELECT_USER, selecteduser })
 
 
 //User's followers
-export function fetchFollowers(id){
-//  const userToken = AsyncStorage.getItem('userToken')
+//http://localhost:3000/api/v1/users/67/followers
+export function fetchFollowers(id, token){
   return (dispatch) => {
       dispatch({ type: FETCH_FOLLOWERS_REQUEST })
       fetch(`${api}/users/${id}/followers`, {
           method: "GET",
           headers: {
-                      Authorization: `Bearer ${userToken}`
+                     "content-type": "application/json",
+                      Authorization: `Bearer ${token}`
                   }
       })
       .then(resp => resp.json())
@@ -39,14 +40,15 @@ export function fetchFollowers(id){
 }
 
 //User following 
-export function fetchFollowings(id){
- // const userToken = AsyncStorage.getItem('userToken')
+//http://localhost:3000/api/v1/users/64/following
+export function fetchFollowing(id, token){
   return (dispatch) => {
       dispatch({ type: FETCH_FOLLOWING_REQUEST })
       fetch(`${api}/users/${id}/following`, {
           method: "GET",
-          headers: {
-                      Authorization: `Bearer ${userToken}`
+          headers: {            
+                      "content-type": "application/json",
+                      Authorization: `Bearer ${token}`
                   }
       })
       .then(resp => resp.json())
@@ -55,19 +57,18 @@ export function fetchFollowings(id){
 }
 
 
-// followObj = {follower_id: ,followed_id }
-export function followCoach(followObj){
-//  const userToken = AsyncStorage.getItem('userToken')
+// followObj = {user_id: ,coach_id }
+export function followCoach(followObj, token){
   return dispatch => {
       dispatch({type: START_FOLLOW_REQUEST})
-      fetch(`${api}/relationship`, {
+      fetch(`http://localhost:3000/relationships`, {
           method: "POST",
           headers: {
-            accepts: "application/json",
-            "content-type": "application/json",
-            Authorization: `Bearer ${userToken}`
+                      accepts: "application/json",
+                      "content-type": "application/json",
+                      Authorization: `Bearer ${token}`
           },
-          body: JSON.stringify({ relationship: followObj })
+          body: JSON.stringify({ followObj })
         })
         .then(resp => resp.json())
         .then(following => {
@@ -79,16 +80,16 @@ export function followCoach(followObj){
   }
 }
 
-//unfollow coach (need to track relationship id's in state )
-export function unFollowCoach(relationshipid){
- // const userToken = AsyncStorage.getItem('userToken')
+// followObj = {user_id: ,coach_id }
+export function unFollowCoach(followObj, token){
   return dispatch => {
       dispatch({type: START_UNFOLLOW_REQUEST})
-      fetch(`${api}/relationship/${relationshipid}`, {
+      fetch(`http://localhost:3000/relationships`, {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${userToken}`
-          }
+                      Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ followObj })
         })
         .then(resp => resp.json())
         .then(following => {

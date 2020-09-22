@@ -20,7 +20,7 @@ const followReducer = (state = initialState, action) => {
           case UNFOLLOW_USER: 
             return {
               ...state,
-              users: action.users,
+              followers: action.users,
               isLoading: false
             };
           
@@ -34,33 +34,35 @@ const followReducer = (state = initialState, action) => {
           case FOLLOW_USER: 
             return {
               ...state,
-              currentUser: action.user,
+              followers: action.user,
               isLoading: false
             };
           
           case FETCH_FOLLOWING_REQUEST:
             return {
               ...state,
-              selectedUser: action.selecteduser
+              isLoading: true,
+              error: null
           }
 
           case ADD_FOLLOWING: 
             return { 
               ...state, 
-              currentUser: null,
+              followers: null,
               isLoading: false
           }
 
           case FETCH_FOLLOWERS_REQUEST:
             return {
               ...state,
-              isLoading: true
+              isLoading: true,
+              error: null
           }
 
           case ADD_FOLLOWERS: 
             return { 
               ...state, 
-              currentUser: null,
+              followers: null,
               isLoading: false
           }
           case ERROR: 

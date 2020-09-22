@@ -9,6 +9,7 @@ import { signOutUser } from '../actions/userActions';
 import AsyncStorage from '@react-native-community/async-storage';
 import {deleteToken} from '../actions/tokenActions'
 
+
 class HomeScreen extends React.Component {
     static navigationOptions = {
         title: "Home"
@@ -37,6 +38,7 @@ class HomeScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={{ marginTop: 10 }}>
+
                     <Button title="states" onPress={this.clearAsync}/>
                     <Button title="log async" onPress={this.logCurrentStorage}/>
                     <Button title="Sign out" onPress={this.signOutAsync} />

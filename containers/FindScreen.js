@@ -6,7 +6,7 @@ import Filters from '../components/Filters';
 import CardItem from '../components/CardItem';
 import styles from '../assets/styles';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../actions/followActions';
+import { fetchUsers, followCoach } from '../actions/followActions';
 class FindScreen extends React.Component {
     static navigationOptions = {
         title: "Find Instructor"
@@ -14,6 +14,14 @@ class FindScreen extends React.Component {
 
     componentDidMount() {
         this.props.onfetchUsers(this.props.token.authToken)
+    }
+
+    followRight = (coach_id) => {
+        const followObj = {
+            user_id: this.props.users.currentUser.id,
+            coach_id: coach_id,
+        }
+        this.props.onfollowCoach(followObj, this.props.token.authToken)
     }
 
       render(){
@@ -42,12 +50,15 @@ class FindScreen extends React.Component {
                         <Card key={index}>
                         <CardItem
                             id={item.id}
+                            image={item.image.cloudinary}
                             user={item} 
                             name={item.username}
                             status={item.status}
+                            description={item.description}
+                            status={item.status}
                             actions
                             onPressLeft={() => this.swiper.swipeLeft()}
-                            onPressRight={() => this.swiper.swipeRight()}
+                            onPressRight={() => this.swiper.swipeRight(this.followRight(item.id))}
                         />
                         </Card>
                     ))}
@@ -70,7 +81,8 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => ({
       onfetchUsers: (token) => dispatch(fetchUsers(token)),
-      onSelectCoach: (user) => dispatch(selectCoach(user))
+      onSelectCoach: (user) => dispatch(selectCoach(user)),
+      onfollowCoach: (followObj, token) => dispatch(followCoach(followObj, token))
   });
   
   export default connect(mapStateToProps, mapDispatchToProps)(FindScreen);

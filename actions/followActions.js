@@ -60,7 +60,7 @@ export function fetchFollowing(id, token){
 // followObj = {user_id: ,coach_id }
 export function followCoach(followObj, token){
   return dispatch => {
-      dispatch({type: START_FOLLOW_REQUEST})
+     // dispatch({type: START_FOLLOW_REQUEST})
       fetch(`http://localhost:3000/relationships`, {
           method: "POST",
           headers: {
@@ -73,7 +73,9 @@ export function followCoach(followObj, token){
         })
         .then(resp => resp.json())
         .then(following => {
-          dispatch({ type: FOLLOW_USER, following})
+          if(!following.confirmation){
+            dispatch({ type: FOLLOW_USER, following})
+          }
       })
       .catch((err) => {
           dispatch({type: ERROR, err });
@@ -84,17 +86,20 @@ export function followCoach(followObj, token){
 // followObj = {user_id: ,coach_id }
 export function unFollowCoach(followObj, token){
   return dispatch => {
-      dispatch({type: START_UNFOLLOW_REQUEST})
+     // dispatch({type: START_UNFOLLOW_REQUEST})
       fetch(`http://localhost:3000/relationships`, {
           method: "DELETE",
           headers: {
                       Authorization: `Bearer ${token}`
           },
-          body: JSON.stringify({ followObj })
+          body: JSON.stringify({ user_id: followObj.user_id,
+                                 coach_id: followObj.coach_id })
         })
         .then(resp => resp.json())
         .then(following => {
-          dispatch({ type: UNFOLLOW_USER, following})
+          if(!following.confirmation){
+            dispatch({ type: UNFOLLOW_USER, following})
+          }
       })
       .catch((err) => {
           dispatch({type: ERROR, err });

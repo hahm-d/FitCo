@@ -18,7 +18,7 @@ class HomeScreen extends React.Component {
 
 //debug tool1
     clearAsync = async() => {
-        console.log("current User: ", this.props.stateALL)
+        console.log(this.props.stateALL)
     }
 
 //debug tool2
@@ -39,8 +39,8 @@ class HomeScreen extends React.Component {
             <View style={styles.container}>
                 <View style={{ marginTop: 10 }}>
 
-                    <Button title="states" onPress={this.clearAsync}/>
-                    <Button title="log async" onPress={this.logCurrentStorage}/>
+                    <Button title="log states" onPress={this.clearAsync}/>
+                    <Button title="log asyncStorage" onPress={this.logCurrentStorage}/>
                     <Button title="Sign out" onPress={this.signOutAsync} />
                 </View>
             </View>

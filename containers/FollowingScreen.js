@@ -13,9 +13,15 @@ class FollowingScreen extends React.Component {
     title: "Following"
   };
     componentDidMount() {
-      this.props.onfetchFollowing(this.props.users.currentUser.id, this.props.token.authToken)
+      this.props.fetchFollowing(this.props.currentUser.id, this.props.token.authToken)
     }
   
+/*     componentDidUpdate(prevProps){
+      if(this.props.follows.followings !== prevProps.followings){
+        this.props.fetchFollowing(this.props.users.currentUser.id, this.props.token.authToken)
+      }
+    } */
+
     onPressUserRow = ( user ) => {
       this.props.navigation.navigate("Coach Detail", { title: user.name });
       this.props.onSelectCoach(user);
@@ -24,7 +30,7 @@ class FollowingScreen extends React.Component {
     render(){
         return(
             <>
-            {this.props.users.isLoading ?
+            {this.props.follows.isLoading ?
                     <ActivityIndicator />
                 :
                   <ScrollView>
@@ -38,7 +44,7 @@ class FollowingScreen extends React.Component {
                     </View>
                     <FlatList
                       numColumns={1}
-                      data={this.props.users.users}
+                      data={this.props.follows.followings}
                       keyExtractor={user => user.id.toString()}
                       renderItem={({ item }) => (
                         <TouchableOpacity>
@@ -59,13 +65,14 @@ class FollowingScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-          users: state.users,
+          currentUser: state.users.currentUser,
+          follows: state.follows,
           token: state.token
           }
 }
 
 const mapDispatchToProps = dispatch => ({
-  onfetchFollowing: (id, token) => dispatch(fetchFollowing(id, token)),
+  fetchFollowing: (id, token) => dispatch(fetchFollowing(id, token)),
     onSelectCoach: (user) => dispatch(selectCoach(user))
 });
 

@@ -3,7 +3,6 @@ import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS
 const initialState = {
     posts: [],
     coach_posts: [],
-    comments: [],
     isLoading: false,
     selectedPost: null,
     error: null
@@ -70,9 +69,9 @@ const postReducer = (state = initialState, action) => {
             case SELECT_POST:
               return {
                 ...state,
-                selectedPost: action.selectedPost.post,
-                isLoading: false
+                selectedPost: action.postObj
             }
+
           case ERROR: 
             return { 
               ...state, 

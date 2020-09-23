@@ -10,9 +10,10 @@ import SignInScreen from './components/SignInScreen';
 import RegisterScreen from './components/RegisterScreen';
 import FollowingScreen from './containers/FollowingScreen';
 import CoachDetailScreen from './containers/CoachDetailScreen'
+import UserPostDetailsScreen from './containers/UserPostDetailsScreen';
+import ProfileScreen from './containers/ProfileScreen';
 import FindScreen from './containers/FindScreen';
 import PostContainer from './containers/PostContainer';
-import ProfileScreen from './containers/ProfileScreen';
 import {validateUser} from './actions/userActions';
 import { saveToken } from './actions/tokenActions';
 import CreatePost from './components/CreatePost';
@@ -31,6 +32,7 @@ function UserNavigator(){
       <Drawer.Screen name="Add Post" component={CreatePost}/>
       <Drawer.Screen name="Edit Profile" component={EditProfile}/>
       <Drawer.Screen name="All Posts" component={PostContainer}/>      
+      <Drawer.Screen name="Post Details" component={UserPostDetailsScreen}/>    
     </Drawer.Navigator>
   )
 }

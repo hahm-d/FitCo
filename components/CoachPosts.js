@@ -3,9 +3,7 @@ import { FlatList, View, Text, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import Post from "./Post";
 
-/**
- * Renders a list of posts
- */
+
 class CoachPosts extends Component {
   renderSeparator = () => <View style={styles.separator} />;
 

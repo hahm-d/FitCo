@@ -1,5 +1,22 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {START_CREATE_COMMENT_REQUEST, ADD_COMMENT, START_DELETE_COMMENT_REQUEST, DELETE_COMMENT, ERROR} from '../constants/actionTypes'
+import {FETCH_COMMENT_REQUEST, POST_COMMENTS, START_CREATE_COMMENT_REQUEST, ADD_COMMENT, START_DELETE_COMMENT_REQUEST, DELETE_COMMENT, ERROR} from '../constants/actionTypes'
+
+const api = 'http://localhost:3000'
+//fetch individual post by id (with nested comments)
+export function fetchPostComments(id, token) {
+  return (dispatch) => {
+    dispatch({ type: FETCH_COMMENT_REQUEST })
+    fetch(`${api}/posts/${id}`, {
+        method: "GET",
+        headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+    .then(resp => resp.json())
+    .then(post => dispatch({ type: POST_COMMENTS, post }));
+  };
+}
+
 
 //create comment
 // username, comment, commenter_name

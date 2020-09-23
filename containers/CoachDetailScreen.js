@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { connect } from "react-redux";
-import {fetchCoachPosts} from '../actions/postActions';
+import {fetchCoachPosts, selectPost} from '../actions/postActions';
 import CoachDetails from "../components/CoachDetails";
 import CoachPosts from "../components/CoachPosts";
 
@@ -13,8 +13,14 @@ class CoachDetailScreen extends Component {
     }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.getCoachData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.selectedUser !== prevProps.selectedUser) {
+      this.getCoachData();
+    }
   }
 
   getCoachData = () => {
@@ -27,14 +33,13 @@ class CoachDetailScreen extends Component {
 
   onPressPost = ({ post }) => {
     const { navigation, onSelectPost } = this.props;
-    onSelectPost(post.id);
-    navigation.navigate("UserPostDetails", { title: post.title });
+    onSelectPost(post);
+    navigation.navigate("Post Details", { title: post.title });
   };
 
 
   render() {
     const { posts, selectedUser } = this.props;
-    console.log("coach posts: ", this.props.posts.coach_posts)
     return (
       <ScrollView>
         <>
@@ -86,6 +91,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchCoachPosts: (userId, token) => dispatch(fetchCoachPosts(userId, token)),
+    onSelectPost: postId => dispatch(selectPost(postId))
   };
 };
 

@@ -1,13 +1,27 @@
-import {START_CREATE_COMMENT_REQUEST, ADD_COMMENT, START_DELETE_COMMENT_REQUEST, DELETE_COMMENT, ERROR} from '../constants/actionTypes'
+import {FETCH_COMMENT_REQUEST, POST_COMMENTS, START_CREATE_COMMENT_REQUEST, ADD_COMMENT, START_DELETE_COMMENT_REQUEST, DELETE_COMMENT, ERROR} from '../constants/actionTypes'
 
 const initialState = {
-    comment: [],
+    comments: [],
     isLoading: false,
     error: null
 }
 
 const commentReducer = (state = initialState, action) => {
         switch (action.type) {
+          case FETCH_COMMENT_REQUEST: 
+            return {
+              ...state,
+              isLoading: true,
+              error: null
+            };
+
+          case POST_COMMENTS:
+            return {
+              ...state,
+              comments: action.post.comments,
+              isLoading: false,
+          }
+
           case START_CREATE_COMMENT_REQUEST: 
             return {
               ...state,
@@ -18,7 +32,7 @@ const commentReducer = (state = initialState, action) => {
           case ADD_COMMENT: 
             return {
               ...state,
-              comment: action.comment,
+              comments: [...state.comments, action.comment],
               isLoading: false
             };
 
@@ -32,7 +46,7 @@ const commentReducer = (state = initialState, action) => {
           case DELETE_COMMENT: 
             return {
               ...state,
-              comment: state.comment.filter(comment => comment !== action.comment),
+              comment: state.comments.filter(comment => comment !== action.comment),
               isLoading: false
             };    
 

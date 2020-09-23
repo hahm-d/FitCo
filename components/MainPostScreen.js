@@ -1,12 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
-import PropTypes from "prop-types";
 
-class Post extends Component {
+class MainPostScreen extends React.Component {
 
   onPressComment = () => {
-    const { onPress, id, title, content, likes, views, image } = this.props;
-    onPress && onPress({ post: { id, title, content, likes, views, image } });
+
   };
 
   render() {
@@ -22,7 +20,7 @@ class Post extends Component {
         <TouchableOpacity
           style={styles.postCommentContainer}
           onPress={this.onPressComment}> 
-          <Text style={styles.postCommentContainer}> View Post </Text>
+          <Text style={styles.postCommentContainer}> Add Comments </Text>
         </TouchableOpacity>  
       </View>
     );
@@ -56,13 +54,4 @@ const styles = StyleSheet.create({
   }
 });
 
-Post.propTypes = {
-  onPress: PropTypes.func,
-  id: PropTypes.number,
-  title: PropTypes.string,
-  body: PropTypes.string,
-  disabled: PropTypes.bool,
-  commentsCount: PropTypes.number
-};
-
-export default Post;
+export default MainPostScreen;

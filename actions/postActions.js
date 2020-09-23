@@ -17,7 +17,6 @@ export function fetchPosts(token) {
     };
 }
 
-
 //fetch that user's posts (coach)
 export function fetchCoachPosts(id, token){
   return (dispatch) => {
@@ -80,5 +79,4 @@ export function deletePost(postid){
 }
 
 //select_post
-export const selectPost = selectedpost => ({ type: SELECT_POST, selectedpost })
-
+export const selectPost = postObj => ({ type: SELECT_POST, postObj })

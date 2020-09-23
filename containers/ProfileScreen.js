@@ -2,12 +2,16 @@ import React from 'react';
 import {
   ScrollView,
   View,
-  ActivityIndicator
+  ActivityIndicator,
+  Button,
+  Text
 } from 'react-native';
 import { connect } from 'react-redux';
 import UserDetails from '../components/UserDetails';
 import {validateUser} from '../actions/userActions';
 import AsyncStorage from '@react-native-community/async-storage';
+
+
 class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: "My Profile"
@@ -17,12 +21,12 @@ class ProfileScreen extends React.Component {
     try{
         const token = await AsyncStorage.getItem('userToken')
         if(token !==null){
-          console.log(token)
           this.props.validateUser(token)
         }
     }
     catch(error){
       console.log(error)
+      //navigate to home
     }
   }
   async componentDidMount() {
@@ -30,21 +34,37 @@ class ProfileScreen extends React.Component {
   }
   
 
+  addPost = () => {
+    this.props.navigation.navigate("Add Post");
+  };
+
+  editProfile = () => {
+    this.props.navigation.navigate("Edit Profile");
+  };
+
 
   render() {
-    const { currentUser, isLoading } = this.props;
-    console.log("current user? profile: ", this.props.currentUser)
+    const { users } = this.props;
+    console.log(this.props.users)
     return (
       <ScrollView>
             <>
-            {this.props.isLoading ?
+            {users.isLoading ?
                     <ActivityIndicator />
                 :
           <View>
             <UserDetails
-              name={currentUser.username}
-              email={currentUser.email}
+              username={users.currentUser.username}
+              email={users.currentUser.email}
+              instagram={users.currentUser.instagram}
+              twitter={users.currentUser.twitter}
+              description={users.currentUser.description}
+              status={users.currentUser.status}
+              image={users.currentUser.image}
             />
+            <Button title="Update Profile" onPress={this.editProfile}/>
+            <Button title="Add Post" onPress={this.addPost}/>
+            <Text>ADD User's Posts</Text>
           </View>
         }
         </>
@@ -56,13 +76,11 @@ class ProfileScreen extends React.Component {
 const mapStateToProps = state => {
 
   return {
-    currentUser: state.users.currentUser,
-    isLoading: state.isLoading
+    users: state.users,
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  console.log(dispatch)
   return {
     validateUser: (token) => dispatch(validateUser(token))
   };

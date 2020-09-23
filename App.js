@@ -25,12 +25,12 @@ function UserNavigator(){
   return(
     <Drawer.Navigator initialRouteName="Main">
       <Drawer.Screen name="Main" component={TabNavigator}/>
-      <Drawer.Screen name="Profile" component={ProfileScreen}/>
       <Drawer.Screen name="Register" component={RegisterScreen}/>
       <Drawer.Screen name="Sign in" component={SignInScreen}/>
       <Drawer.Screen name="Coach Detail" component={CoachDetailScreen}/>
       <Drawer.Screen name="Add Post" component={CreatePost}/>
       <Drawer.Screen name="Edit Profile" component={EditProfile}/>
+      <Drawer.Screen name="All Posts" component={PostContainer}/>      
     </Drawer.Navigator>
   )
 }
@@ -41,7 +41,7 @@ function TabNavigator(){
     <Tab.Screen name="Home" component={HomeScreen}/>
     <Tab.Screen name="Find" component={FindScreen}/>
     <Tab.Screen name="Following" component={FollowingScreen}/>
-    <Tab.Screen name="Posts" component={PostContainer}/>
+    <Tab.Screen name="Profile" component={ProfileScreen}/>
   </Tab.Navigator>
   )
 }

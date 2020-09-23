@@ -31,7 +31,6 @@ class CoachDetailScreen extends Component {
     navigation.navigate("UserPostDetails", { title: post.title });
   };
 
-  renderSeparator = () => <View style={styles.separator} />;
 
   render() {
     const { posts, selectedUser } = this.props;

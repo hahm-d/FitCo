@@ -7,7 +7,7 @@ const Type = () => {
   return (
     <TouchableOpacity style={styles.city}>
       <Text style={styles.cityText}>
-        <Icon name="marker" /> Boxing
+        <Icon name="marker" /> TYPE GOES HERE
       </Text>
     </TouchableOpacity>
   );

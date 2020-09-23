@@ -11,7 +11,12 @@ import { connect } from 'react-redux';
 import { addPost } from '../actions/postActions';
 
 class CreatePost extends React.Component {
-
+    static navigationOptions = ({ navigation }) => {
+        return {
+          title: navigation.getParam("title")
+        }
+      };
+      
     state = {
         title: "",
         content: "",

@@ -8,7 +8,7 @@ const Filters = () => {
   return (
     <TouchableOpacity style={styles.filters}>
       <Text style={styles.filtersText}>
-        <Icon name="filter" /> Filters
+        Filter Coach Button
       </Text>
     </TouchableOpacity>
   );

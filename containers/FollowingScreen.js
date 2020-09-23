@@ -23,8 +23,9 @@ class FollowingScreen extends React.Component {
     } */
 
     onPressUserRow = ( user ) => {
-      this.props.navigation.navigate("Coach Detail", { title: user.name });
       this.props.onSelectCoach(user);
+      this.props.navigation.navigate("Coach Detail", { title: user.name });
+
     };
 
     render(){
@@ -41,7 +42,6 @@ class FollowingScreen extends React.Component {
                       <Text style={styles.title}>Following</Text>
                       <TouchableOpacity>
                         <Text style={styles.icon}>
-                          <Icon name="optionsV" />
                         </Text>
                       </TouchableOpacity>
                     </View>
@@ -72,6 +72,7 @@ const mapStateToProps = state => {
   return {
           currentUser: state.users.currentUser,
           follows: state.follows,
+          posts: state.posts,
           token: state.token
           }
 }

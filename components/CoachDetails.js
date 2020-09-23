@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-class CoachDetails extends Component {
+class CoachDetails  extends React.Component {
 
   render() {
     const { username, email, instagram, twitter, description, status, image } = this.props;

@@ -1,22 +1,21 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-
-/**
- * A reusable card that renders the details of a user
- */
+import { View, Text, StyleSheet, Image } from "react-native";
 
 class UserDetails extends React.Component {
   render() {
-    const { username, email } = this.props;
-
+    const { username, email, image, instagram, status, twitter, description } = this.props;
     return (
       <View style={styles.userCard}>
         <View style={styles.userIcon}>
-          <Text style={styles.userInitials}>{username}</Text>
+          <Image source={ {uri: image.cloudinary}} style={styles.image} />
         </View>
         <View style={styles.userInfo}>
-          {username && <Text style={styles.userLabel}>{username}</Text>}
-          {email && <Text style={styles.userLabel}>{email}</Text>}
+          <Text style={styles.userLabel}>User: {username}</Text>
+          <Text style={styles.userLabel}>Email: {email}</Text>
+          <Text style={styles.userLabel}>Instagram: {instagram}</Text>
+          <Text style={styles.userLabel}>Twitter: {twitter}</Text>
+          <Text style={styles.userLabel}>status: {status}</Text>
+          <Text style={styles.userLabel}>{description}</Text>
         </View>
       </View>
     );
@@ -27,7 +26,8 @@ const styles = StyleSheet.create({
   userCard: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 20
+    padding: 20,
+    marginTop: 40,
   },
   userIcon: {
     borderRadius: 50,

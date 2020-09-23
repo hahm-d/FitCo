@@ -1,29 +1,21 @@
 import React, { Component } from "react";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
 import PropTypes from "prop-types";
 
 class Post extends Component {
-  onPressComment = () => {
-    const { onPress, content, likes, title, views} = this.props;
-    onPress && onPress({ post: { id, title, content, likes, views } });
-  };
 
   render() {
-    const { title, content, disabled, commentsCount, likes, views } = this.props;
+    const { title, content, likes, views, image } = this.props;
 
     return (
       <View style={styles.postContainer}>
         <Text style={styles.postTitle}>{title}</Text>
+        <Image source={ {uri: image.cloudinary}} style={styles.image} />
         <Text>{content}</Text>
     <Text>likes: {likes}</Text>
     <Text>views: {views}</Text>
-        <TouchableOpacity
-          style={styles.postCommentContainer}
-          onPress={this.onPressComment}
-          disabled={disabled}
-        >
-          <Text style={styles.postCommentLink}>{commentsCount} See comment</Text>
-        </TouchableOpacity>
+          
+          <Text style={styles.postCommentContainer}> See comment</Text>
       </View>
     );
   }
@@ -47,6 +39,12 @@ const styles = StyleSheet.create({
   },
   postCommentLink: {
     color: "black"
+  },
+  image: {
+    borderRadius: 8,
+    width: 80,
+    height: 80,
+    margin: 2  
   }
 });
 

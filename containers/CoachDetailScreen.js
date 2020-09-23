@@ -50,6 +50,7 @@ class CoachDetailScreen extends Component {
               twitter={selectedUser.twitter}
               description={selectedUser.description}
               status={selectedUser.status}
+              image={selectedUser.image}
             />
             <CoachPosts
               posts={posts.coach_posts}

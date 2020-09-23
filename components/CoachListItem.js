@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import PropTypes from "prop-types";
 
 class CoachListItem extends Component {
   render() {
-    const { user, onPress } = this.props;
+    const { user, image, onPress } = this.props;
 
     return (
       <TouchableOpacity
@@ -12,8 +12,9 @@ class CoachListItem extends Component {
         onPress={() => onPress({ user })}
       >
         <View>
+          <Image source={ {uri: image.cloudinary}} style={styles.image} />
           <Text>{user.username}</Text>
-          <Text>{user.status}</Text>
+          <Text> [light icon here]  {user.status}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -24,8 +25,15 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 40,
     paddingVertical: 30,
+  },
+  image: {
+    borderRadius: 8,
+    width: 180,
+    height: 180,
+    margin: 2  
   }
 });
+
 
 CoachListItem.propTypes = {
   user: PropTypes.object,

@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 
 class CoachDetails extends Component {
 
   render() {
-    const { username, email, instagram, twitter, description, status } = this.props;
+    const { username, email, instagram, twitter, description, status, image } = this.props;
 
     return (
       <View style={styles.userCard}>
         <View style={styles.userIcon}>
-          <Text style={styles.userInitials}>COACH</Text>
+          <Image source={ {uri: image.cloudinary}} style={styles.image} />
         </View>
         <View style={styles.userInfo}>
-          {username && <Text style={styles.userLabel}>{username}</Text>}
-          {email && <Text style={styles.userLabel}>{email}</Text>}
-          {instagram && <Text style={styles.userLabel}>{instagram}</Text>}
-          {twitter && <Text style={styles.userLabel}>{twitter}</Text>}
+          {username && <Text style={styles.userLabel}>User: {username}</Text>}
+          {email && <Text style={styles.userLabel}>Email: {email}</Text>}
+          {instagram && <Text style={styles.userLabel}>Instagram: {instagram}</Text>}
+          {twitter && <Text style={styles.userLabel}>Twitter: {twitter}</Text>}
           {description && <Text style={styles.userLabel}>{description}</Text>}
           {status && <Text style={styles.userLabel}>{status}</Text>}
         </View>
@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
   userCard: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 20
+    padding: 20,
+    marginTop: 30
   },
   userIcon: {
     borderRadius: 50,
@@ -47,6 +48,12 @@ const styles = StyleSheet.create({
   },
   userLabel: {
     marginBottom: 5
+  },
+  image: {
+    borderRadius: 8,
+    width: 120,
+    height: 120,
+    margin: 3  
   }
 });
 

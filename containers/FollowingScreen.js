@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList} from 'react-native';
+import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList, ImageBackground} from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import { fetchFollowing, selectCoach } from '../actions/followActions';
@@ -33,6 +33,9 @@ class FollowingScreen extends React.Component {
             {this.props.follows.isLoading ?
                     <ActivityIndicator />
                 :
+                <ImageBackground
+                source={require('../assets/images/bg.png')}
+                style={styles.bg}>
                   <ScrollView>
                     <View style={styles.top}>
                       <Text style={styles.title}>Following</Text>
@@ -50,12 +53,14 @@ class FollowingScreen extends React.Component {
                         <TouchableOpacity>
                           <CoachListItem
                             user={item} 
+                            image={item.image}
                             onPress={this.onPressUserRow}
                           />
                         </TouchableOpacity>
                       )}
                     />
                   </ScrollView>
+                  </ImageBackground>
             }
            </>
         )

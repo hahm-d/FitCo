@@ -59,7 +59,7 @@ class FindScreen extends React.Component {
                             status={item.status}
                             actions
                             onPressLeft={() => this.swiper.swipeLeft()}
-                            onPressRight={() => this.swipeRight(item.id)}
+                            onPressRight={() => this.swiper.swipeRight(item.id)}
                         />
                         </Card>
                     ))}

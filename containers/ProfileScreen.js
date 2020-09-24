@@ -33,11 +33,11 @@ class ProfileScreen extends React.Component {
     await this.retrieveData()
   }
   
-  componentDidUpdate(prevProps) {
+/*   componentDidUpdate(prevProps) {
     if (this.props.users.currentUser !== prevProps.users.currentUser) {
     }
   }
-
+ */
 
   addPost = () => {
     this.props.navigation.navigate("Add Post");

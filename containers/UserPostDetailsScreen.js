@@ -18,12 +18,12 @@ class UserPostDetailsScreen extends React.Component {
     onFetchPostComments(posts.selectedPost.id, token.authToken);
   }
 
-/*   componentDidUpdate(prevProps) {
-    const { onFetchPostComments, comments, posts, token } = this.props;
-    if (comments.comments !== prevProps.comments.comments) {
+  componentDidUpdate(prevProps) {
+    const { onFetchPostComments, posts, token } = this.props;
+    if (posts.selectedPost !== prevProps.posts.selectedPost ) {
       onFetchPostComments(posts.selectedPost.id, token.authToken);
     }
-  } */
+  }
 
 
   render() {

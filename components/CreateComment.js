@@ -13,8 +13,8 @@ import { addComment } from '../actions/commentActions';
 class CreateComment extends React.Component {
 
     state = {
-        post_id: null,
-        commenter_name: "",
+        post_id: this.props.posts.id,
+        username: this.props.comments.comments.username,
         comment: ""
         }
 
@@ -22,8 +22,8 @@ class CreateComment extends React.Component {
         this.setState({[name]: text});
     }
 
-    signInAsync = (postObj) => {
-        this.props.addPost(postObj)
+    signInAsync = (commentObj) => {
+        this.props.addComment(commentObj, this.props.token.authToken)
         this.props.navigation.navigate('Profile');
     };
 
@@ -31,33 +31,15 @@ class CreateComment extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text>Update Profile</Text>
+                <Text>Add Comment</Text>
                 <TextInput
-                value={this.state.title}
-                placeholder="title"
-                type='title'
-                onChangeText={this.changeHandler("title")}
-                />
-                <TextInput
-                value={this.state.url}
-                placeholder="url"
-                type='url'
-                onChangeText={this.changeHandler("url")}
-                /> 
-                <TextInput
-                value={this.state.images}
-                placeholder="images"
-                type='images'
-                onChangeText={this.changeHandler("images")}
-                /> 
-                <TextInput
-                value={this.state.content}
-                placeholder="content"
-                type='content'
-                onChangeText={this.changeHandler("content")}
+                value={this.state.comment}
+                placeholder="comment"
+                type='comment'
+                onChangeText={this.changeHandler("comment")}
                 /> 
                 <TouchableOpacity>
-                    <Button title="Create Post" onPress={() => this.signInAsync(this.state)} />
+                    <Button title="Submit" onPress={() => this.signInAsync(this.state)} />
                 </TouchableOpacity>
             </View>
         );
@@ -79,12 +61,14 @@ const styles = StyleSheet.create({
 function mapStateToProps(state){
     return {
             currentUser: state.users,
-            posts: state.posts.selectedPost
+            posts: state.posts.selectedPost,
+            comments: state.comments, 
+            token: state.token
            }
 }
 
 function mapDispatchToProps(dispatch){
-    return { addPost: (postObj) => dispatch(addPost(postObj)) }
+    return { addComment: (commentObj, token) => dispatch(addComment(commentObj, token)) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateComment);

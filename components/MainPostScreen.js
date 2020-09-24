@@ -1,6 +1,6 @@
 import React from "react";
-import { TouchableOpacity, View, Text, StyleSheet, Image } from "react-native";
-
+import { TouchableOpacity, View, Text, StyleSheet, Button, Image } from "react-native";
+import CreateComment from './CreateComment';
 class MainPostScreen extends React.Component {
 
   onPressComment = () => {
@@ -20,7 +20,7 @@ class MainPostScreen extends React.Component {
         <TouchableOpacity
           style={styles.postCommentContainer}
           onPress={this.onPressComment}> 
-          <Text style={styles.postCommentContainer}> Add Comments </Text>
+          <Button title="Add Comment" style={styles.postCommentContainer}/>
         </TouchableOpacity>  
       </View>
     );

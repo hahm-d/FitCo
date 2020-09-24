@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import {FETCH_COMMENT_REQUEST, POST_COMMENTS, START_CREATE_COMMENT_REQUEST, ADD_COMMENT, START_DELETE_COMMENT_REQUEST, DELETE_COMMENT, ERROR} from '../constants/actionTypes'
 
 const api = 'http://localhost:3000'
@@ -20,8 +19,7 @@ export function fetchPostComments(id, token) {
 
 //create comment
 // username, comment, commenter_name
-export function addComment(commentObj){
-  const userToken = AsyncStorage.getItem('userToken')
+export function addComment(commentObj, token){
   return dispatch => {
       dispatch({type: START_CREATE_COMMENT_REQUEST})
       fetch(`${api}/comments`, {
@@ -29,7 +27,7 @@ export function addComment(commentObj){
           headers: {
             accepts: "application/json",
             "content-type": "application/json",
-            Authorization: `Bearer ${userToken}`
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify({ comment: commentObj })
         })
@@ -44,14 +42,14 @@ export function addComment(commentObj){
 }
 
 //delete comment
-export function deleteComment(commentid){
-  const userToken = AsyncStorage.getItem('userToken')
+export function deleteComment(commentid, token){
+
   return dispatch => {
       dispatch({type: START_DELETE_COMMENT_REQUEST})
       fetch(`${api}/comments/${commentid}`, {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${userToken}`
+            Authorization: `Bearer ${token}`
           }
         })
         .then(resp => resp.json())

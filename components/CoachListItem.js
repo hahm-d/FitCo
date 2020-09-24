@@ -12,7 +12,7 @@ class CoachListItem extends Component {
         onPress={() => onPress({ user })}
       >
         <View>
-          <Image source={ {uri: image.cloudinary}} style={styles.image} />
+          {image && <Image source={ {uri: image.cloudinary}} style={styles.image} />}
           <Text>{user.username}</Text>
           <Text> [light icon here]  {user.status}</Text>
         </View>

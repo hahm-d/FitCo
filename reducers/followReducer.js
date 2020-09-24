@@ -34,7 +34,7 @@ const followReducer = (state = initialState, action) => {
           case FOLLOW_USER: 
             return {
               ...state,
-              followings: [...state.action.followings, action.following],
+              followings: [...state.followings, action.following],
               isLoading: false
             };
           

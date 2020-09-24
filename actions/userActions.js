@@ -2,9 +2,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {START_ADDING_USER_REQUEST, 
         START_CREATE_USER_REQUEST, 
         ADD_USER, 
-        LOGOUT_USER, 
         SAVE_APP_TOKEN,
-        USER_ERROR
+        USER_ERROR,
+        DESTROY_SESSION
     } from '../constants/actionTypes'
 
 const api = 'http://localhost:3000'
@@ -116,7 +116,7 @@ export function updateUser(userObj, token){
 //log out  
 export function signOutUser(){
     return dispatch => {
-        dispatch({type: LOGOUT_USER })
+        dispatch({type: DESTROY_SESSION })
     }
 }
 

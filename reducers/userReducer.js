@@ -1,4 +1,4 @@
-import {FETCH_USERS_REQUEST, ADD_USERS, ADD_USER, START_ADDING_USER_REQUEST, LOGOUT_USER, SELECT_USER, USER_ERROR} from '../constants/actionTypes'
+import {FETCH_USERS_REQUEST, ADD_USERS, ADD_USER, START_ADDING_USER_REQUEST, SELECT_USER, USER_ERROR} from '../constants/actionTypes'
 
 const initialState = {
     currentUser: null,
@@ -45,13 +45,7 @@ const userReducer = (state = initialState, action) => {
               selectedUser: action.selecteduser.user,
               isLoading: false
           }
-          case LOGOUT_USER: 
-            return { 
-              ...state, 
-              currentUser: null,
-              isLoading: false
-          }
-        
+
           case USER_ERROR: 
               return { 
                 ...state, 

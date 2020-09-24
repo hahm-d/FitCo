@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import { fetchFollowing, selectCoach } from '../actions/followActions';
 import CoachListItem from "../components/CoachListItem";
-import Icon from '../components/Icon';
+
 /* import { LogBox } from 'react-native';
 
 LogBox.ignoreAllLogs(); */
@@ -17,8 +17,11 @@ class FollowingScreen extends React.Component {
     }
   
 /*     componentDidUpdate(prevProps){
-      if(this.props.follows.followings !== prevProps.followings){
-        this.props.fetchFollowing(this.props.users.currentUser.id, this.props.token.authToken)
+      const { follows, token, currentUser} = this.props;
+      if(follows.followings !== prevProps.follows.followings){
+        console.log('update', follows.followings)
+        console.log('preprops', prevProps.follows.followings)
+        //this.props.fetchFollowing(currentUser.id, token.authToken)
       }
     } */
 

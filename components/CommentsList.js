@@ -14,7 +14,7 @@ class CommentsList extends React.Component {
       <View>
         <Text style={styles.title}>Comments</Text>
         {loading ?
-          <ActivityIndicator size="large" color="#0000ff"/>
+          <ActivityIndicator size="small" color="#0000ff"/>
                 :
           <FlatList
             data={comments}

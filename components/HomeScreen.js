@@ -3,6 +3,7 @@ import {
     Button,
     StyleSheet,
     View,
+    ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
 import { signOutUser } from '../actions/userActions';
@@ -38,7 +39,7 @@ class HomeScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={{ marginTop: 10 }}>
-
+                    <ActivityIndicator style={styles.loading}/>
                     <Button title="log states" onPress={this.clearAsync}/>
                     <Button title="log asyncStorage" onPress={this.logCurrentStorage}/>
                     <Button title="Sign out" onPress={this.signOutAsync} />
@@ -62,6 +63,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    loading: {
+        alignItems: "center",
+        justifyContent: "center",
+        height: 100
+    }
 });
 
 

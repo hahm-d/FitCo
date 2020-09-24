@@ -4,7 +4,7 @@ import {START_ADDING_USER_REQUEST,
         ADD_USER, 
         LOGOUT_USER, 
         SAVE_APP_TOKEN,
-        ERROR
+        USER_ERROR
     } from '../constants/actionTypes'
 
 const api = 'http://localhost:3000'
@@ -26,7 +26,7 @@ export function validateUser(token){
                 dispatch({ type: ADD_USER, addUser})
             })
             .catch(err => {
-                console.log(err)
+                dispatch({type: USER_ERROR, err });
             })
     }
 }
@@ -52,7 +52,7 @@ export function saveUserToken(userObj){
             AsyncStorage.setItem('userToken', authToken)
         })
         .catch((err) => {
-            dispatch({type: ERROR, err });
+            dispatch({type: USER_ERROR, err });
         })
     }
 }
@@ -78,7 +78,7 @@ export function loginUser(userObj){
             AsyncStorage.setItem('userToken', authToken)
         })
         .catch((err) => {
-            dispatch({type: ERROR, err });
+            dispatch({type: USER_ERROR, err });
         })
     }
 }
@@ -105,7 +105,7 @@ export function updateUser(userObj, token){
             AsyncStorage.setItem('userToken', authToken)
         })
         .catch((err) => {
-            dispatch({type: ERROR, err });
+            dispatch({type: USER_ERROR, err });
         })
     }
 }

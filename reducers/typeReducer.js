@@ -1,4 +1,4 @@
-import {FETCH_TYPE_REQUEST, ADD_TYPES, START_CREATE_TYPE_REQUEST, ADD_TYPE, START_DELETE_TYPE_REQUEST, DELETE_TYPE, ERROR} from '../constants/actionTypes'
+import {FETCH_TYPE_REQUEST, ADD_TYPES, START_CREATE_TYPE_REQUEST, ADD_TYPE, START_DELETE_TYPE_REQUEST, DELETE_TYPE, TYPE_ERROR} from '../constants/actionTypes'
 
 const initialState = {
     types: [],
@@ -50,7 +50,7 @@ const typeReducer = (state = initialState, action) => {
               isLoading: false
             };    
 
-          case ERROR: 
+          case TYPE_ERROR: 
             return { 
               ...state, 
               error: action.err

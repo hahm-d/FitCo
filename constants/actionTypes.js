@@ -50,4 +50,9 @@ export const DELETE_TYPE = 'DELETE_TYPE';
 //Other
 export const SAVE_APP_TOKEN = 'SAVE_APP_TOKEN';
 export const DELETE_APP_TOKEN = 'DELETE_APP_TOKEN';
+export const USER_ERROR = 'USER_ERROR';
+export const FOLLOW_ERROR = 'FOLLOW_ERROR';
+export const POST_ERROR = 'POST_ERROR';
+export const COMMENT_ERROR = 'COMMENT_ERROR';
+export const TYPE_ERROR = 'TYPE_ERROR';
 export const ERROR = 'ERROR';

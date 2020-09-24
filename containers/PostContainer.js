@@ -21,7 +21,7 @@ class PostContainer extends React.Component {
         return(
             <>
             {this.props.isLoading ?
-                    <ActivityIndicator />
+                    <ActivityIndicator size="small"/>
                 :
                   <ScrollView>
                     <View style={styles.top}>

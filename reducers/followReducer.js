@@ -1,4 +1,4 @@
-import {UNFOLLOW_USER, START_UNFOLLOW_REQUEST, FOLLOW_USER, START_FOLLOW_REQUEST, ADD_FOLLOWING, FETCH_FOLLOWING_REQUEST, ADD_FOLLOWERS, FETCH_FOLLOWERS_REQUEST, ERROR} from '../constants/actionTypes'
+import {UNFOLLOW_USER, START_UNFOLLOW_REQUEST, FOLLOW_USER, START_FOLLOW_REQUEST, ADD_FOLLOWING, FETCH_FOLLOWING_REQUEST, ADD_FOLLOWERS, FETCH_FOLLOWERS_REQUEST, FOLLOW_ERROR} from '../constants/actionTypes'
 
 const initialState = {
     followers: null,
@@ -65,7 +65,7 @@ const followReducer = (state = initialState, action) => {
               followers: action.followers,
               isLoading: false
           }
-          case ERROR: 
+          case FOLLOW_ERROR: 
               return { 
                 ...state, 
                 error: action.error

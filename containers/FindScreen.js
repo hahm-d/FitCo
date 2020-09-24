@@ -28,7 +28,7 @@ class FindScreen extends React.Component {
         return(
             <>
             {this.props.users.isLoading ?
-                    <ActivityIndicator size="large" color="#0000ff"/>
+                    <ActivityIndicator size="small"/>
                 :
                 <ImageBackground
                 source={require('../assets/images/bg.png')}

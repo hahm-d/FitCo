@@ -44,7 +44,7 @@ class CoachDetailScreen extends Component {
       <ScrollView>
         <>
         {selectedUser.isLoading ?
-            <ActivityIndicator size="large" color="#0000ff"/>
+            <ActivityIndicator size="small"/>
             :
           <View>
             <CoachDetails

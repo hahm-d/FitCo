@@ -1,4 +1,10 @@
-import {FETCH_TYPE_REQUEST, ADD_TYPES, START_CREATE_TYPE_REQUEST, ADD_TYPE, START_DELETE_TYPE_REQUEST, DELETE_TYPE, ERROR} from '../constants/actionTypes'
+import {FETCH_TYPE_REQUEST, 
+        ADD_TYPES, 
+        START_CREATE_TYPE_REQUEST, 
+        ADD_TYPE, 
+        START_DELETE_TYPE_REQUEST, 
+        DELETE_TYPE, 
+        TYPE_ERROR} from '../constants/actionTypes'
 
 const api = 'http://localhost:3000'
 //fetch Type
@@ -36,7 +42,7 @@ export function addType(typeObj, token){
           dispatch({ type: ADD_TYPE, usertype})
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: TYPE_ERROR, err });
       })
   }
 }
@@ -56,7 +62,7 @@ export function deleteType(typeId, token){
           dispatch({ type: DELETE_TYPE, usertype})
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: TYPE_ERROR, err });
       })
   }
 }

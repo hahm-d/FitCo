@@ -55,7 +55,7 @@ class ProfileScreen extends React.Component {
       <ScrollView>
             <>
             {users.isLoading ?
-                    <ActivityIndicator />
+                    <ActivityIndicator size="small"/>
                 :
           <View>
             <UserDetails

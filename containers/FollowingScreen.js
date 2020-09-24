@@ -32,7 +32,7 @@ class FollowingScreen extends React.Component {
         return(
             <>
             {this.props.follows.isLoading ?
-                    <ActivityIndicator />
+                    <ActivityIndicator size="small"/>
                 :
                 <ImageBackground
                 source={require('../assets/images/bg.png')}

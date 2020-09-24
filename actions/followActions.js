@@ -1,4 +1,13 @@
-import {FETCH_USERS_REQUEST, ADD_USERS, SELECT_USER, UNFOLLOW_USER, FOLLOW_USER, ADD_FOLLOWING, FETCH_FOLLOWING_REQUEST, ADD_FOLLOWERS, FETCH_FOLLOWERS_REQUEST, ERROR} from '../constants/actionTypes'
+import {FETCH_USERS_REQUEST, 
+        ADD_USERS, 
+        SELECT_USER, 
+        UNFOLLOW_USER, 
+        FOLLOW_USER, 
+        ADD_FOLLOWING, 
+        FETCH_FOLLOWING_REQUEST, 
+        ADD_FOLLOWERS, 
+        FETCH_FOLLOWERS_REQUEST, 
+        FOLLOW_ERROR} from '../constants/actionTypes'
 
 const api = 'http://localhost:3000/api/v1'
 //fetch all coaches (not users)
@@ -78,7 +87,7 @@ export function followCoach(followObj, token){
           }
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: FOLLOW_ERROR, err });
       })
   }
 }
@@ -102,7 +111,7 @@ export function unFollowCoach(followObj, token){
           }
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: FOLLOW_ERROR, err });
       })
   }
 }

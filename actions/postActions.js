@@ -1,5 +1,14 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, SELECT_POST, ERROR} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, 
+        ADD_POSTS, 
+        FETCH_COACHPOST_REQUEST, 
+        ADD_COACH_POSTS, 
+        START_CREATE_POST_REQUEST, 
+        ADD_POST, 
+        START_DELETE_POST_REQUEST, 
+        DELETE_POST, 
+        SELECT_POST, 
+        POST_ERROR} from '../constants/actionTypes'
 
 //fetch all posts
 const api = 'http://localhost:3000'
@@ -52,7 +61,7 @@ export function addPost(postObj, token){
           dispatch({ type: ADD_POST, post})
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: POST_ERROR, err });
       })
   }
 }
@@ -73,7 +82,7 @@ export function deletePost(postid){
           dispatch({ type: DELETE_POST, post})
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: POST_ERROR, err });
       })
   }
 }

@@ -1,4 +1,10 @@
-import {FETCH_COMMENT_REQUEST, POST_COMMENTS, START_CREATE_COMMENT_REQUEST, ADD_COMMENT, START_DELETE_COMMENT_REQUEST, DELETE_COMMENT, ERROR} from '../constants/actionTypes'
+import {FETCH_COMMENT_REQUEST, 
+        POST_COMMENTS, 
+        START_CREATE_COMMENT_REQUEST, 
+        ADD_COMMENT, 
+        START_DELETE_COMMENT_REQUEST, 
+        DELETE_COMMENT, 
+        COMMENT_ERROR} from '../constants/actionTypes'
 
 const api = 'http://localhost:3000'
 //fetch individual post by id (with nested comments)
@@ -36,7 +42,7 @@ export function addComment(commentObj, token){
           dispatch({ type: ADD_COMMENT, comment})
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: COMMENT_ERROR, err });
       })
   }
 }
@@ -57,7 +63,7 @@ export function deleteComment(commentid, token){
           dispatch({ type: DELETE_COMMENT, comment})
       })
       .catch((err) => {
-          dispatch({type: ERROR, err });
+          dispatch({type: COMMENT_ERROR, err });
       })
   }
 }

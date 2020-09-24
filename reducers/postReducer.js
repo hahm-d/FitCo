@@ -1,4 +1,4 @@
-import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, SELECT_POST, ERROR} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, SELECT_POST, POST_ERROR} from '../constants/actionTypes'
 
 const initialState = {
     posts: [],
@@ -72,7 +72,7 @@ const postReducer = (state = initialState, action) => {
                 selectedPost: action.postObj
             }
 
-          case ERROR: 
+          case POST_ERROR: 
             return { 
               ...state, 
               error: action.err

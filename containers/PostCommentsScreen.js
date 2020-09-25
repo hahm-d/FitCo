@@ -6,7 +6,7 @@ import MainPostScreen from "../components/MainPostScreen";
 import CommentsList from "../components/CommentsList";
 
 
-class UserPostDetailsScreen extends React.Component {
+class PostCommentsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam("title", "Post")
@@ -65,4 +65,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserPostDetailsScreen);
+)(PostCommentsScreen);

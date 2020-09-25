@@ -16,28 +16,13 @@ class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: "My Profile"
   };
-
-  retrieveData = async () => {
-    try{
-        const token = await AsyncStorage.getItem('userToken')
-        if(token !==null){
-          this.props.validateUser(token)
-        }
-    }
-    catch(error){
-      console.log(error)
-      //navigate to home
-    }
-  }
-  async componentDidMount() {
-    await this.retrieveData()
-  }
   
-/*   componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (this.props.users.currentUser !== prevProps.users.currentUser) {
+      console.log("fetch currentUser again if changes")
     }
   }
- */
+
 
   addPost = () => {
     this.props.navigation.navigate("Add Post");
@@ -50,7 +35,6 @@ class ProfileScreen extends React.Component {
 
   render() {
     const { users } = this.props;
-    console.log(this.props.users)
     return (
       <ScrollView>
             <>
@@ -81,7 +65,7 @@ class ProfileScreen extends React.Component {
 const mapStateToProps = state => {
 
   return {
-    users: state.users,
+    users: state.users
   };
 };
 

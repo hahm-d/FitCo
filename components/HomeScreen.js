@@ -8,8 +8,8 @@ import {
 import { connect } from 'react-redux';
 import { signOutUser } from '../actions/userActions';
 import AsyncStorage from '@react-native-community/async-storage';
-import {deleteToken} from '../actions/tokenActions'
-
+import {deleteToken} from '../actions/tokenActions';
+import Video from 'react-native-video';
 
 class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -38,6 +38,15 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <Video
+                repeat
+                source={{ uri:'https://res.cloudinary.com/dkagcuui6/video/upload/v1600989182/homeworkout_videos_107997429_108027144236730_6710574680008345028_n_sxzd0q.mp4'}}
+                resizeMode="cover"
+                muted
+                rate={1.0}
+
+                style={StyleSheet.absoluteFill}
+                />
                 <View style={{ marginTop: 10 }}>
                     <ActivityIndicator style={styles.loading}/>
                     <Button title="log states" onPress={this.clearAsync}/>

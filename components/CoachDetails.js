@@ -9,7 +9,7 @@ class CoachDetails  extends React.Component {
     return (
       <View style={styles.userCard}>
         <View style={styles.userIcon}>
-          {image.cloudinary ? 
+          {image ? 
             <Image source={ {uri: image.cloudinary}} style={styles.image} />
           :
             null 

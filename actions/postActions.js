@@ -63,7 +63,9 @@ export function fetchUserPosts(id, token){
 
 //create post
 // title, content, url, views, likes, images, poster_username 
+//images and videos will need a FormData 
 export function addPost(postObj, token){
+
   return dispatch => {
       dispatch({type: START_CREATE_POST_REQUEST})
       fetch(`${api}/posts`, {

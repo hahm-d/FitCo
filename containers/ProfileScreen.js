@@ -69,11 +69,11 @@ class ProfileScreen extends React.Component {
             />}
             <Button title="Update Profile" onPress={this.editProfile}/>
             <Button title="Add Post" onPress={this.addPost}/>
-              <CoachPosts
+            {posts && <CoachPosts
               posts={posts.user_posts}
               onPress={this.onPressPost}
               loading={posts.isloading}
-              />
+              />}
           </View>
         }
         </>

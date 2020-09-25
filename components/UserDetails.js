@@ -7,15 +7,19 @@ class UserDetails extends React.Component {
     return (
       <View style={styles.userCard}>
         <View style={styles.userIcon}>
-          <Image source={ {uri: image.cloudinary}} style={styles.image} />
+        {image ? 
+            <Image source={ {uri: image.cloudinary}} style={styles.image} />
+          :
+            <Text>no avatar</Text>
+          }
         </View>
         <View style={styles.userInfo}>
           <Text style={styles.userLabel}>User: {username}</Text>
           <Text style={styles.userLabel}>Email: {email}</Text>
           <Text style={styles.userLabel}>Instagram: {instagram}</Text>
           <Text style={styles.userLabel}>Twitter: {twitter}</Text>
-          <Text style={styles.userLabel}>status: {status}</Text>
-          <Text style={styles.userLabel}>{description}</Text>
+          <Text style={styles.userLabel}>Description: {description}</Text>
+          <Text style={styles.userLabel}>Status: {status}</Text>
         </View>
       </View>
     );

@@ -9,7 +9,6 @@ import {
 import { connect } from 'react-redux';
 import UserDetails from '../components/UserDetails';
 import {validateUser} from '../actions/userActions';
-import AsyncStorage from '@react-native-community/async-storage';
 
 
 class ProfileScreen extends React.Component {

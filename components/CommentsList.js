@@ -1,7 +1,6 @@
 import React from "react";
 import { FlatList, View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import PropTypes from "prop-types";
-import Spinner from "./Spinner";
 import Comment from "./Comment";
 
 class CommentsList extends React.Component {

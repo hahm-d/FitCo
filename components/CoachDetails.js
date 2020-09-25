@@ -9,7 +9,11 @@ class CoachDetails  extends React.Component {
     return (
       <View style={styles.userCard}>
         <View style={styles.userIcon}>
-          <Image source={ {uri: image.cloudinary}} style={styles.image} />
+          {image.cloudinary ? 
+            <Image source={ {uri: image.cloudinary}} style={styles.image} />
+          :
+            null 
+          }
         </View>
         <View style={styles.userInfo}>
           {username && <Text style={styles.userLabel}>User: {username}</Text>}

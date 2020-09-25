@@ -14,7 +14,7 @@ class CreateComment extends React.Component {
 
     state = {
         post_id: this.props.posts.id,
-        username: this.props.comments.comments.username,
+        username: this.props.currentUser.username,
         comment: ""
         }
 
@@ -24,7 +24,7 @@ class CreateComment extends React.Component {
 
     signInAsync = (commentObj) => {
         this.props.addComment(commentObj, this.props.token.authToken)
-        this.props.navigation.navigate('Profile');
+        this.props.navigation.navigate('Post');
     };
 
     render() {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
  
 function mapStateToProps(state){
     return {
-            currentUser: state.users,
+            currentUser: state.users.currentUser,
             posts: state.posts.selectedPost,
             comments: state.comments, 
             token: state.token

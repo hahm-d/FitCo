@@ -13,11 +13,12 @@ import { updateUser } from '../actions/userActions';
 class EditProfile extends React.Component {
 
     state = {
-            id: null,
-            email: "",
-            instagram: "",
-            twitter: "",
-            description: ""
+            id: this.props.currentUser.id,
+            username: this.props.currentUser.username,
+            email: this.props.currentUser.email,
+            instagram: this.props.currentUser.instagram,
+            twitter: this.props.currentUser.twitter,
+            description: this.props.currentUser.description
     }
 
     changeHandler = (name) => (text) => {
@@ -25,16 +26,19 @@ class EditProfile extends React.Component {
     }
 
     signInAsync = (userObj) => {
-        this.props.updateUser(userObj, this.props.token.authToken)
-        this.props.navigation.navigate('Home');
+        const { navigation, updateUser, token, currentUser } = this.props;
+        userObj["username"] = currentUser.username
+        userObj["id"] = currentUser.id
+        updateUser(userObj, token.authToken)
+        navigation.navigate('Home');
     };
 
     render() {
-
+            console.log(this.state)
         return (
             <View style={styles.container}>
                 <Text>Update Profile</Text>
-                <Text>User: {this.props.currentUser.username}</Text>
+                {this.props.currentUser && <Text>User: {this.props.currentUser.username}</Text>}
                 <TextInput
                 value={this.state.email}
                 placeholder="email"
@@ -60,7 +64,7 @@ class EditProfile extends React.Component {
                 onChangeText={this.changeHandler("description")}
                 /> 
                 <TouchableOpacity>
-                    <Button title="Update" onPress={() => this.updateUser(this.state)} />
+                    <Button title="Update" onPress={() => this.signInAsync(this.state)} />
                 </TouchableOpacity>
             </View>
         );

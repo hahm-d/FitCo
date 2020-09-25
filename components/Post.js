@@ -61,12 +61,12 @@ class Post extends Component {
 
 
         <Text style={styles.nameStyle}>{title}</Text>
-        {image.cloudinary ? 
+        {image ? 
             <Image source={ {uri: image.cloudinary}} style={styles.image} />
           :
             null 
         }
-        {video.cloudinary ? 
+        {video ? 
             <TouchableHighlight 
             onPress={() => this.setModalVisible(true, video.cloudinary)} 
             style={{ ...styles.openButton, backgroundColor: "#2196F3" }}>

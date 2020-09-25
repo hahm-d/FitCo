@@ -1,8 +1,20 @@
-import {FETCH_POSTS_REQUEST, ADD_POSTS, FETCH_COACHPOST_REQUEST, ADD_COACH_POSTS, START_CREATE_POST_REQUEST, ADD_POST, START_DELETE_POST_REQUEST, DELETE_POST, SELECT_POST, POST_ERROR} from '../constants/actionTypes'
+import {FETCH_POSTS_REQUEST, 
+        ADD_POSTS, 
+        FETCH_COACHPOST_REQUEST, 
+        ADD_COACH_POSTS, 
+        START_CREATE_POST_REQUEST, 
+        ADD_POST, 
+        START_DELETE_POST_REQUEST, 
+        DELETE_POST, 
+        SELECT_POST, 
+        FETCH_USERPOST_REQUEST,
+        ADD_USER_POSTS, 
+        POST_ERROR} from '../constants/actionTypes'
 
 const initialState = {
     posts: [],
     coach_posts: [],
+    user_posts: [],
     isLoading: false,
     selectedPost: null,
     error: null
@@ -38,6 +50,20 @@ const postReducer = (state = initialState, action) => {
               isLoading: false
             };
 
+          case FETCH_USERPOST_REQUEST: 
+            return {
+              ...state,
+              isLoading: true,
+              error: null
+            };
+          
+          case ADD_USER_POSTS: 
+            return {
+              ...state,
+              user_posts: action.posts,
+              isLoading: false
+            };
+
           case START_CREATE_POST_REQUEST: 
             return {
               ...state,
@@ -48,7 +74,7 @@ const postReducer = (state = initialState, action) => {
           case ADD_POST: 
             return {
               ...state,
-              coach_posts: [...state.coach_posts, action.post],
+              user_posts: [...state.user_posts, action.post],
               isLoading: false
             };
 

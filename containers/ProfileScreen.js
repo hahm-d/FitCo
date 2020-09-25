@@ -9,16 +9,26 @@ import {
 import { connect } from 'react-redux';
 import UserDetails from '../components/UserDetails';
 import {validateUser} from '../actions/userActions';
-
+import {fetchUserPosts, selectPost} from '../actions/postActions';
+import CoachPosts from "../components/CoachPosts";
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: "My Profile"
   };
-  
+
+
+  componentDidMount(){
+    const { token, users, fetchUserPosts, validateUser } = this.props;
+    validateUser(token.authToken)
+    fetchUserPosts(users.currentUser.id, token.authToken)
+  }
+
+
   componentDidUpdate(prevProps) {
-    if (this.props.users.currentUser !== prevProps.users.currentUser) {
-      console.log("fetch currentUser again if changes")
+    const { token, users, fetchUserPosts } = this.props;
+    if (users.currentUser !== prevProps.users.currentUser) {
+      fetchUserPosts(users.currentUser.id, token.authToken)
     }
   }
 
@@ -32,8 +42,15 @@ class ProfileScreen extends React.Component {
   };
 
 
+  onPressPost = ({ post }) => {
+    const { navigation, onSelectPost } = this.props;
+    onSelectPost(post);
+    navigation.navigate("Post Details", { title: post.title });
+  };
+
+
   render() {
-    const { users } = this.props;
+    const { users, posts } = this.props;
     return (
       <ScrollView>
             <>
@@ -41,7 +58,7 @@ class ProfileScreen extends React.Component {
                     <ActivityIndicator size="small"/>
                 :
           <View>
-            <UserDetails
+            {users.currentUser && <UserDetails
               username={users.currentUser.username}
               email={users.currentUser.email}
               instagram={users.currentUser.instagram}
@@ -49,10 +66,14 @@ class ProfileScreen extends React.Component {
               description={users.currentUser.description}
               status={users.currentUser.status}
               image={users.currentUser.image}
-            />
+            />}
             <Button title="Update Profile" onPress={this.editProfile}/>
             <Button title="Add Post" onPress={this.addPost}/>
-            <Text>ADD User's Posts</Text>
+              <CoachPosts
+              posts={posts.user_posts}
+              onPress={this.onPressPost}
+              loading={posts.isloading}
+              />
           </View>
         }
         </>
@@ -64,13 +85,17 @@ class ProfileScreen extends React.Component {
 const mapStateToProps = state => {
 
   return {
-    users: state.users
+    users: state.users,
+    posts: state.posts,
+    token: state.token
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    validateUser: (token) => dispatch(validateUser(token))
+    validateUser: token => dispatch(validateUser(token)),
+    fetchUserPosts: (id, token) => dispatch(fetchUserPosts(id, token)),
+    onSelectPost: postId => dispatch(selectPost(postId))
   };
 };
 

@@ -8,10 +8,14 @@ import {FETCH_POSTS_REQUEST,
         START_DELETE_POST_REQUEST, 
         DELETE_POST, 
         SELECT_POST, 
+        FETCH_USERPOST_REQUEST,
+        ADD_USER_POSTS,
         POST_ERROR} from '../constants/actionTypes'
 
-//fetch all posts
+
 const api = 'http://localhost:3000'
+
+//fetch all posts
 export function fetchPosts(token) {
     return (dispatch) => {
       dispatch({ type: FETCH_POSTS_REQUEST })
@@ -41,6 +45,20 @@ export function fetchCoachPosts(id, token){
   };
 }
 
+//fetch that Current user's posts (coach)
+export function fetchUserPosts(id, token){
+  return (dispatch) => {
+      dispatch({ type: FETCH_USERPOST_REQUEST })
+      fetch(`${api}/api/v1/users/${id}/posts`, {
+          method: "GET",
+          headers: {
+                      Authorization: `Bearer ${token}`
+                  }
+      })
+      .then(resp => resp.json())
+      .then(posts => dispatch({ type: ADD_USER_POSTS, posts }))
+  };
+}
 
 
 //create post

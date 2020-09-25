@@ -16,11 +16,12 @@ class CreatePost extends React.Component {
           title: navigation.getParam("title")
         }
       };
-      
+
     state = {
         title: "",
         content: "",
-        url: "",
+        url: null,
+        video: null,
         views: 1,
         likes: 0
         }
@@ -40,7 +41,7 @@ class CreatePost extends React.Component {
         console.log(this.props.state)
         return (
             <View style={styles.container}>
-                <Text>Update Profile</Text>
+                <Text>Create Post</Text>
                 <TextInput
                 value={this.state.title}
                 placeholder="title"

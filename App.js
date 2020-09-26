@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import {  View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
-import HomeScreen from './components/HomeScreen';
+import HomeScreen from './containers/HomeScreen';
 import SignInScreen from './components/SignInScreen';
 import RegisterScreen from './components/RegisterScreen';
 import FollowingScreen from './containers/FollowingScreen';
@@ -18,6 +19,10 @@ import {validateUser} from './actions/userActions';
 import { saveToken } from './actions/tokenActions';
 import CreatePost from './components/CreatePost';
 import EditProfile from './components/EditProfile';
+import SplashScreen from './components/SplashScreen';
+
+import AppNavigator from './navigation/AppNavigator'
+import LoginStackNavigator from "./navigation/LoginStackNavigator";
 
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,7 +37,8 @@ function UserNavigator(){
       <Drawer.Screen name="Add Post" component={CreatePost}/>
       <Drawer.Screen name="Edit Profile" component={EditProfile}/>
       <Drawer.Screen name="All Posts" component={PostContainer}/>      
-      <Drawer.Screen name="Post Details" component={PostCommentsScreen}/>    
+      <Drawer.Screen name="Post Details" component={PostCommentsScreen}/>  
+      <Drawer.Screen name="Splash" component={SplashScreen}/>         
     </Drawer.Navigator>
   )
 }
@@ -50,36 +56,40 @@ function TabNavigator(){
 
 class App extends Component {
 
+  state = {
+    isSignedIn: false,
+  };
+
+
 retrieveData = async () => {
   try{
       const token = await AsyncStorage.getItem('userToken')
       if(token !==null){
         this.props.validateUser(token)
         this.props.saveToken(token)
-        //then navigate to Find tab
+        this.setState({isSignedIn: true})
       }
   }
   catch(error){
     console.log(error)
-    //navigate to home (has login / register ) 
   }
 }
 async componentDidMount() {
   await this.retrieveData()
 }
 
-  render(){
-    return (
-      <NavigationContainer>
-        {this.props.token.authToken !== null ? (
-          <UserNavigator />
-        )
-          :
-          <HomeScreen/>  
-        }
-      </NavigationContainer>
-    )
-  }
+render(){
+  return (
+    <NavigationContainer>
+      {this.props.token.authToken !== null ? (
+        <UserNavigator />
+      )
+        :
+        <HomeScreen/>  
+      }
+    </NavigationContainer>
+  )
+}
 };
 
 function mapStateToProps(state){

@@ -69,7 +69,11 @@ onPressComment = (comment) => {
         </Modal>
 
         <Text style={styles.postTitle}>{title}</Text>
-        <Image source={ {uri: image.cloudinary}} style={styles.image} />
+        {image ? 
+            <Image source={ {uri: image.cloudinary}} style={styles.image} />
+          :
+            <Text>no avatar</Text>
+          }
         <Text>{content}</Text>
         <Text>likes: {likes}</Text>
         <Text>views: {views}</Text>

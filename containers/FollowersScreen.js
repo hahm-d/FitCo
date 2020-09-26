@@ -2,18 +2,17 @@ import React from 'react';
 import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList, ImageBackground} from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
-import { fetchFollowing, selectCoach } from '../actions/followActions';
+import { fetchFollowers, selectCoach } from '../actions/followActions';
 import CoachListItem from "../components/CoachListItem";
 
-/* import { LogBox } from 'react-native';
+//IN PROGRESS FOR COACH 
 
-LogBox.ignoreAllLogs(); */
-class FollowingScreen extends React.Component {
+class FollowersScreen extends React.Component {
   static navigationOptions = {
     title: "Following"
   };
     componentDidMount() {
-      this.props.fetchFollowing(this.props.currentUser.id, this.props.token.authToken)
+      this.props.fetchFollowers(this.props.currentUser.id, this.props.token.authToken)
     }
   
 
@@ -34,14 +33,14 @@ class FollowingScreen extends React.Component {
                 style={styles.bg}>
                   <ScrollView>
                     <View style={styles.top}>
-                      <Text style={styles.title}>Following</Text>
+                      <Text style={styles.title}>Followers</Text>
                       <TouchableOpacity>
                         <Text style={styles.icon}>
                         </Text>
                       </TouchableOpacity>
                     </View>
                     <FlatList
-                      numColumns={1}
+                      numColumns={2}
                       data={this.props.follows.followings}
                       keyExtractor={user => user.id.toString()}
                       renderItem={({ item }) => (
@@ -73,8 +72,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchFollowing: (id, token) => dispatch(fetchFollowing(id, token)),
+  fetchFollowers: (id, token) => dispatch(fetchFollowers(id, token)),
     onSelectCoach: (user) => dispatch(selectCoach(user))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FollowingScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FollowersScreen);

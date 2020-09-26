@@ -62,19 +62,29 @@ export function fetchUserPosts(id, token){
 
 
 //create post
-// title, content, url, views, likes, images, poster_username 
-//images and videos will need a FormData 
 export function addPost(postObj, token){
 
   return dispatch => {
+
       dispatch({type: START_CREATE_POST_REQUEST})
       fetch(`${api}/posts`, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
           },
-          body: JSON.stringify({ post: postObj })
+          body: JSON.stringify({
+            post: { 
+              title: postObj.title,
+              content: postObj.content,
+              url: postObj.url,
+              views: postObj.views,
+              likes: postObj.likes,
+              image: postObj.image,
+              video: postObj.video            
+            }
+           })
         })
         .then(resp => resp.json())
         .then(post => {

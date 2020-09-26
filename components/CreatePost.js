@@ -6,7 +6,8 @@ import {
     StyleSheet,
     View,
     PixelRatio,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 import { connect } from 'react-redux';
 import { addPost } from '../actions/postActions';
@@ -23,11 +24,10 @@ class CreatePost extends React.Component {
         title: null,
         content: null,
         url: null,
-        video: null,
         views: 1,
         likes: 0,
-        avatarSource: null,
-        videoSource: null,
+        image: null,
+        video: null
         }
 
 
@@ -35,10 +35,16 @@ class CreatePost extends React.Component {
         this.setState({[name]: text});
     }
 
-    signInAsync = (postObj) => {
-
+    onPressCreate = (postObj) => {
+        if(postObj["image"] !== null){
+            postObj["image"] = this.state.image.data
+        }
+        if(postObj["video"] !== null){
+            postObj["video"] = this.state.video.data
+        }
         this.props.addPost(postObj, this.props.token.authToken)
         this.props.navigation.navigate('Profile');
+        this.setState({ })
     };
 
     selectPhotoTapped() {
@@ -51,7 +57,7 @@ class CreatePost extends React.Component {
           },
         };
     
-        ImagePicker.showImagePicker(options, response => {
+    ImagePicker.showImagePicker(options, response => {
           console.log('Response = ', response);
     
           if (response.didCancel) {
@@ -61,13 +67,8 @@ class CreatePost extends React.Component {
           } else if (response.customButton) {
             console.log('User tapped custom button: ', response.customButton);
           } else {
-            let source = {uri: response.uri};
-    
-            // You can also display the image using data:
-            // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-    
             this.setState({
-              avatarSource: source,
+              image: response
             });
           }
         });
@@ -75,7 +76,7 @@ class CreatePost extends React.Component {
     
       selectVideoTapped() {
         const options = {
-          title: 'Video Picker',
+          title: 'Upload Video',
           takePhotoButtonTitle: 'Take Video...',
           mediaType: 'video',
           videoQuality: 'medium',
@@ -92,37 +93,54 @@ class CreatePost extends React.Component {
             console.log('User tapped custom button: ', response.customButton);
           } else {
             this.setState({
-              videoSource: response.uri,
+              video: response
             });
           }
         });
       }    
 
     render() {
-        console.log(this.props.state)
+        console.log(this.state)
         return (
             <View style={styles.container}>
-                <Text>Create Post</Text>
+                <Text style={styles.title}>Create Post</Text>
                 <TextInput
+                style={styles.text}
                 value={this.state.title}
                 placeholder="title"
                 type='title'
                 onChangeText={this.changeHandler("title")}
                 />
-                <TextInput
-                value={this.state.images}
-                placeholder="images"
-                type='images'
-                onChangeText={this.changeHandler("images")}
-                /> 
+                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                    <View
+                        style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+                        {this.state.image === null ? (
+                        <Text>Select Photo</Text>
+                        ) : (
+                        <Image style={styles.avatar} source={this.state.image} />
+                        )}
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
+                    <View style={[styles.avatar, styles.avatarContainer]}>
+                        <Text>Select Video</Text>
+                    </View>
+                </TouchableOpacity>
+                {this.state.video && (
+                    <Text style={{margin: 8, textAlign: 'center'}}>
+                        {this.state.video.fileName}
+                    </Text>
+                )}
+                <Text style={styles.text}>Add Description</Text>
                 <TextInput
                 value={this.state.content}
                 placeholder="content"
                 type='content'
                 onChangeText={this.changeHandler("content")}
                 /> 
-                <TouchableOpacity>
-                    <Button title="Create Post" onPress={() => this.signInAsync(this.state)} />
+                <TouchableOpacity style={styles.touch}>
+                    <Button title="Create Post" onPress={() => this.onPressCreate(this.state)} />
                 </TouchableOpacity>
             </View>
         );
@@ -136,6 +154,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: 25,
     },
     avatarContainer: {
         borderColor: '#9B9B9B',
@@ -144,10 +163,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     avatar: {
-        borderRadius: 75,
-        width: 150,
-        height: 150,
-  }
+        borderRadius: 10,
+        width: 100,
+        height: 100,
+    }, 
+    title: {
+        paddingTop: 25,
+        paddingBottom: 5,
+        fontSize: 25,
+        textAlign: "center"
+    },
+    text: {
+        paddingTop: 25,
+        paddingBottom: 5,
+        fontSize: 15,
+        textAlign: "center"
+    },
+    touch: {
+        paddingTop: 25,       
+    }
 });
  
 function mapStateToProps(state){

@@ -33,7 +33,7 @@ const MainTabScreen = () => (
         options={{
           tabBarLabel: 'Find',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-aperture" color={color} size={26} />
+            <Icon name="search-outline" color={color} size={26} />
           ),
         }}
       />
@@ -43,7 +43,7 @@ const MainTabScreen = () => (
         options={{
           tabBarLabel: 'Following',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
+            <Icon name="people-circle-outline" color={color} size={26} />
           ),
         }}
       />

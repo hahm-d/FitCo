@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { saveUserToken } from '../actions/userActions';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useTheme } from 'react-native-paper';
+
 
 class RegisterScreen extends React.Component {
 

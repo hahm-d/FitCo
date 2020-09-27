@@ -34,7 +34,7 @@ class CoachDetailScreen extends Component {
   onPressPost = ({ post }) => {
     const { navigation, onSelectPost } = this.props;
     onSelectPost(post);
-    navigation.navigate("Post Details", { title: post.title });
+    navigation.navigate("PostCommentsScreen", { title: post.title });
   };
 
 

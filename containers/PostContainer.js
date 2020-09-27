@@ -5,9 +5,6 @@ import styles from '../assets/styles';
 import { fetchPosts } from '../actions/postActions';
 import PostItem from '../components/PostItem';
 import Icon from '../components/Icon';
-/* import { LogBox } from 'react-native';
-
-LogBox.ignoreAllLogs(); */
 class PostContainer extends React.Component {
     static navigationOptions = {
         title: "PostContainer"

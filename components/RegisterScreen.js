@@ -20,17 +20,24 @@ class RegisterScreen extends React.Component {
 
     state = {
             username: '',
+            email: '',
             password: '',
-            email: ''
+            password2: ''
     }
 
     changeHandler = (name) => (text) => {
         this.setState({ [name]: text});
     }
 
-    signInAsync = (userObj) => {
-        this.props.saveUserToken(userObj)
-        this.props.navigation.navigate('Home');
+    signUpAsync = (userObj) => {
+        if(userObj.password !== userObj.password2){
+            Alert.alert('Invalid Entry', 'Password field does not match.', [
+                {text: 'confirmed'}
+            ]);
+            this.setState({ password: '', password2: ''})
+        }else{
+            this.props.saveUserToken(userObj)
+        }
     };
 
     render() {
@@ -95,16 +102,30 @@ class RegisterScreen extends React.Component {
                     />
                     <TextInput
                     style={styles.textInput}
-                    value={this.state.password}
+                    value={this.state.password2}
                     placeholder="Password"
                     secureTextEntry
-                    type='password'
-                    onChangeText={this.changeHandler("password")}
+                    type='password2'
+                    onChangeText={this.changeHandler("password2")}
                     />   
                     </View>
-                    <TouchableOpacity style={styles.text_footer}>
-                        <Button title="Submit" onPress={() => this.signInAsync(this.state)} />
+                    <TouchableOpacity  
+                        onPress={() => this.signUpAsync(this.state)}
+                        style={[styles.signIn, {
+                            borderColor: '#009387',
+                            borderWidth: 1,
+                            marginTop: 15
+                        }]}>
+                        <Text style={[styles.textSign, {color: '#009387'}]}>Sign up</Text>
                     </TouchableOpacity>
+                    <View style={styles.textPrivate}>
+                <Text style={styles.color_textPrivate}>
+                    By signing up you agree to our
+                </Text>
+                    <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Terms of service</Text>
+                <Text style={styles.color_textPrivate}>{" "}and</Text>
+                    <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Privacy policy</Text>
+                </View>
                 </Animatable.View>
             </View>
         );
@@ -185,6 +206,14 @@ const styles = StyleSheet.create({
     textSign: {
         fontSize: 18,
         fontWeight: 'bold'
+    },
+    textPrivate: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginTop: 20
+    },
+    color_textPrivate: {
+        color: 'grey'
     }
   });
  

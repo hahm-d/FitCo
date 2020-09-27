@@ -1,64 +1,63 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import TabBarIcon from '../components/TabBarIcon';
-//import home, find, followers, followings, profile
-import HomeScreen from '../containers/HomeScreen'
-import MainScreen from '../containers/MainScreen'
-import FindScreen from '../containers/FindScreen'
-import FollowersScreen from '../containers/FollowersScreen'
-import FollowingScreen from '../containers/FollowingScreen'
-import ProfileScreen from '../containers/ProfileScreen'
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const HomeStack = createStackNavigator({
-    Home: HomeScreen,
-  });
+import HomeScreen from '../containers/HomeScreen';
+import MainScreen from '../containers/MainScreen';
+import FindScreen from '../containers/FindScreen';
 
-  HomeStack.navigationOptions = {
-    tabBarLabel: 'Home',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={
-          Platform.OS === 'ios'
-            ? `ios-information-circle${focused ? '' : '-outline'}`
-            : 'md-information-circle'
-        }
-      />
-    ),
-  };
+import FollowingNavigator from './FollowingNavigator';
+import ProfileNavigator from './ProfileNavigator';
 
-  const LinksStack = createStackNavigator({
-    Links: LinksScreen,
-  });
-  
-  LinksStack.navigationOptions = {
-    tabBarLabel: 'Links',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+
+const Tab = createBottomTabNavigator();
+
+const MainTabScreen = () => (
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#fff"
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-home" color={color} size={26} />
+          ),
+        }}
       />
-    ),
-  };
-  
-  const SettingsStack = createStackNavigator({
-    Settings: SettingsScreen,
-  });
-  
-  SettingsStack.navigationOptions = {
-    tabBarLabel: 'Settings',
-    tabBarIcon: ({ focused }) => (
-      <TabBarIcon
-        focused={focused}
-        name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      <Tab.Screen
+        name="Find"
+        component={FindScreen}
+        options={{
+          tabBarLabel: 'Find',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-aperture" color={color} size={26} />
+          ),
+        }}
       />
-    ),
-  };
-  
-  export default createBottomTabNavigator({
-    HomeStack,
-    LinksStack,
-    SettingsStack,
-  });
+      <Tab.Screen
+        name="Following"
+        component={FollowingNavigator}
+        options={{
+          tabBarLabel: 'Following',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-notifications" color={color} size={26} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileNavigator}
+        options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <Icon name="ios-person" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+);
+
+export default MainTabScreen;

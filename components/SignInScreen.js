@@ -23,8 +23,8 @@ class SignInScreen extends React.Component {
       };
 
     state = {
-            username: null,
-            password: null
+            username: '',
+            password: ''
     }
 
     changeHandler = (name) => (text) => {
@@ -72,8 +72,14 @@ class SignInScreen extends React.Component {
                             placeholderTextColor={'darkgray'}
                         /> 
                     </View>
-                    <TouchableOpacity style={styles.text_footer}>
-                        <Button title="Sign in!" onPress={() => this.signInAsync(this.state)} />
+                    <TouchableOpacity  
+                        onPress={() => this.signInAsync(this.state)}
+                        style={[styles.signIn, {
+                            borderColor: '#009387',
+                            borderWidth: 1,
+                            marginTop: 15
+                        }]}>
+                        <Text style={[styles.textSign, {color: '#009387'}]}>Log In</Text>
                     </TouchableOpacity>
                 </Animatable.View>
             </View>
@@ -84,12 +90,11 @@ class SignInScreen extends React.Component {
 
         if(userObj.username.length == 0 || userObj.password.length == 0){
             Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
-                {text: 'Okay'}
+                {text: 'confirmed'}
             ]);   
             return;
         }
         this.props.loginUser(userObj)
-        this.props.navigation.navigate('Home');
     };
 };
 

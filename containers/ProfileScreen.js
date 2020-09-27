@@ -34,18 +34,18 @@ class ProfileScreen extends React.Component {
 
 
   addPost = () => {
-    this.props.navigation.navigate("Add Post");
+    this.props.navigation.navigate("CreatePost");
   };
 
   editProfile = () => {
-    this.props.navigation.navigate("Edit Profile");
+    this.props.navigation.navigate("EditProfile");
   };
 
 
   onPressPost = ({ post }) => {
     const { navigation, onSelectPost } = this.props;
     onSelectPost(post);
-    navigation.navigate("Post Details", { title: post.title });
+    navigation.navigate("PostCommentsScreen", { title: post.title });
   };
 
 

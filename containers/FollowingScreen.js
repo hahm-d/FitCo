@@ -19,7 +19,7 @@ class FollowingScreen extends React.Component {
 
     onPressUserRow = ( user ) => {
       this.props.onSelectCoach(user);
-      this.props.navigation.navigate("Coach Detail", { title: user.name });
+      this.props.navigation.navigate("CoachDetailScreen", { title: user.name });
 
     };
 

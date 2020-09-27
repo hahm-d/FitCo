@@ -5,7 +5,6 @@ import {
     TouchableOpacity, 
     Dimensions,
     StyleSheet,
-    StatusBar,
     Image
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -45,15 +44,27 @@ const SplashScreen = ({navigation}) => {
         >
             <Text style={[styles.title, {
                 color: colors.text
-            }]}>Find Coach. Learn. Grow.</Text>
+            }]}>Coach. Learn. Grow.</Text>
             <Text style={styles.text}>network and share </Text>
             <View style={styles.buttons}>
-            <TouchableOpacity onPress={()=>navigation.navigate('SignInScreen')}>
-            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={styles.textSign}> Sign In </Animatable.Text>  
+            <TouchableOpacity 
+                onPress={()=>navigation.navigate('SignInScreen')}
+                    style={[styles.signIn, {
+                    borderColor: '#009387',
+                    borderWidth: 3,
+                    marginTop: 10
+                }]}>
+            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={[styles.textSign, {color: '#009387'}]}> Sign In </Animatable.Text>  
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={()=>navigation.navigate('RegisterScreen')}>
-            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={styles.textSign}> Register </Animatable.Text>  
+            <TouchableOpacity 
+                onPress={()=>navigation.navigate('RegisterScreen')}
+                style={[styles.signIn, {
+                    borderColor: '#009387',
+                    borderWidth: 3,
+                    marginTop: 10
+                }]}>
+            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={[styles.textSign, {color: '#009387'}]}> Register </Animatable.Text>  
             </TouchableOpacity>
             </View>
         </Animatable.View>

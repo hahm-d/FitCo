@@ -10,10 +10,12 @@ import { signOutUser } from '../actions/userActions';
 import AsyncStorage from '@react-native-community/async-storage';
 import {deleteToken} from '../actions/tokenActions';
 import Video from 'react-native-video';
+/* import { LogBox } from 'react-native';
 
+LogBox.ignoreAllLogs(); */
 class HomeScreen extends React.Component {
     static navigationOptions = {
-        title: "Home"
+        title: "HomeScreen"
       };
 
 
@@ -61,7 +63,6 @@ class HomeScreen extends React.Component {
     signOutAsync = () => {
         this.props.signOutUser()
         this.props.deleteToken()
-        this.props.navigation.navigate('Splash');
     };
 }
 

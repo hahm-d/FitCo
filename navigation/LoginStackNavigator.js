@@ -6,7 +6,7 @@ import RegisterScreen from "../components/RegisterScreen";
 
 const RootStack = createStackNavigator();
 
-const RootStackScreen = ({navigation}) => (
+const LoginStackNavigator = ({navigation}) => (
     <RootStack.Navigator headerMode='none'>
         <RootStack.Screen name="SplashScreen" component={SplashScreen}/>
         <RootStack.Screen name="SignInScreen" component={SignInScreen}/>
@@ -14,4 +14,4 @@ const RootStackScreen = ({navigation}) => (
     </RootStack.Navigator>
 );
 
-export default RootStackScreen;
+export default LoginStackNavigator;

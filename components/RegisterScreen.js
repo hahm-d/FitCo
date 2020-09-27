@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    Button,
     View, 
     Text, 
     TouchableOpacity, 
@@ -10,6 +9,7 @@ import {
     StatusBar,
     Alert
 } from 'react-native';
+import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { saveUserToken } from '../actions/userActions';
 import * as Animatable from 'react-native-animatable';
@@ -22,12 +22,17 @@ class RegisterScreen extends React.Component {
             username: '',
             email: '',
             password: '',
-            password2: ''
+            password2: '',
+            flag: false
     }
 
     changeHandler = (name) => (text) => {
         this.setState({ [name]: text});
     }
+
+    changeButtonHandler = () => {
+      this.setState({flag: !this.state.flag})
+      }
 
     signUpAsync = (userObj) => {
         if(userObj.password !== userObj.password2){
@@ -51,6 +56,23 @@ class RegisterScreen extends React.Component {
                 <Animatable.View style={styles.footer}
                     animation="fadeInUpBig"
                     duraton="2000">  
+                    <Text style={styles.text_account}>Select Account</Text>
+                    <View style={styles.buttons}>
+                        <CheckBox
+                        center
+                        iconRight
+                        title='Coach'
+                        checked={this.state.flag}
+                        onPress={() => {this.setState({flag: true})}}
+                        />
+                        <CheckBox
+                        center
+                        iconRight
+                        title='Student'
+                        checked={!this.state.flag}
+                        onPress={() => {this.setState({flag: false})}}
+                        />
+                    </View>
                     <Text style={styles.text_footer}>Username</Text>
                     <View style={styles.action}>
                     <FontAwesome 
@@ -145,10 +167,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
         paddingHorizontal: 30,
-        paddingBottom: 40
+        paddingBottom: 20
     },
     footer: {
-        flex: 3,
+        flex: 5,
         backgroundColor: '#fff',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
@@ -167,6 +189,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         paddingTop: 40,
         paddingBottom: 5
+    },
+    text_account: {
+        color: '#05375a',
+        fontSize: 20,
+        paddingTop: 20,
+        paddingBottom: 5,
+        textAlign: 'center'
     },
     action: {
         flexDirection: 'row',
@@ -192,10 +221,6 @@ const styles = StyleSheet.create({
         color: '#FF0000',
         fontSize: 14,
     },
-    button: {
-        alignItems: 'center',
-        marginTop: 50
-    },
     signIn: {
         width: '100%',
         height: 50,
@@ -214,7 +239,14 @@ const styles = StyleSheet.create({
     },
     color_textPrivate: {
         color: 'grey'
-    }
+    },
+      buttons: {
+      alignItems: 'flex-end',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      marginTop: 20
+  },
   });
  
 

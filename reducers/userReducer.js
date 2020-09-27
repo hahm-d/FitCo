@@ -1,4 +1,9 @@
-import {FETCH_USERS_REQUEST, ADD_USERS, ADD_USER, START_ADDING_USER_REQUEST, SELECT_USER, USER_ERROR} from '../constants/actionTypes'
+import {FETCH_USERS_REQUEST, 
+        ADD_USERS, 
+        ADD_USER, 
+        START_ADDING_USER_REQUEST, 
+        SELECT_USER, 
+        USER_ERROR} from '../constants/actionTypes'
 
 const initialState = {
     currentUser: null,

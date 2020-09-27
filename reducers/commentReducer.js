@@ -1,4 +1,10 @@
-import {FETCH_COMMENT_REQUEST, POST_COMMENTS, START_CREATE_COMMENT_REQUEST, ADD_COMMENT, START_DELETE_COMMENT_REQUEST, DELETE_COMMENT, COMMENT_ERROR} from '../constants/actionTypes'
+import {FETCH_COMMENT_REQUEST, 
+        POST_COMMENTS, 
+        START_CREATE_COMMENT_REQUEST, 
+        ADD_COMMENT, 
+        START_DELETE_COMMENT_REQUEST, 
+        DELETE_COMMENT, 
+        COMMENT_ERROR} from '../constants/actionTypes'
 
 const initialState = {
     comments: [],
@@ -18,7 +24,7 @@ const commentReducer = (state = initialState, action) => {
           case POST_COMMENTS:
             return {
               ...state,
-              comments: action.post.comments,
+              comments: action.comments,
               isLoading: false,
           }
 

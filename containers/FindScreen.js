@@ -7,6 +7,9 @@ import CardItem from '../components/CardItem';
 import styles from '../assets/styles';
 import { connect } from 'react-redux';
 import { fetchUsers, followCoach } from '../actions/followActions';
+import { fetchTypes, addCategory } from '../actions/typeActions';
+
+
 class FindScreen extends React.Component {
     static navigationOptions = {
         title: "Find Instructor"
@@ -14,6 +17,8 @@ class FindScreen extends React.Component {
 
     componentDidMount() {
         this.props.onfetchUsers(this.props.token.authToken)
+        this.props.onFetchTypes(this.props.token.authToken)
+        this.props.addCategory()
     }
 
     swipeRight = (coach_id) => {
@@ -51,7 +56,7 @@ class FindScreen extends React.Component {
                         onSwipedRight={() => this.swipeRight(item.id)}>
                         <CardItem
                             id={item.id}
-                            image={item.image.cloudinary}
+                            image={item.image}
                             user={item} 
                             name={item.username}
                             status={item.status}
@@ -76,12 +81,15 @@ class FindScreen extends React.Component {
 const mapStateToProps = state => {
     return {
         users: state.users,
+        types: state.types,
         token: state.token
         }
   }
   
   const mapDispatchToProps = dispatch => ({
       onfetchUsers: (token) => dispatch(fetchUsers(token)),
+      addCategory: () => dispatch(addCategory()),
+      onFetchTypes: (token) => dispatch(fetchTypes(token)),
       onSelectCoach: (user) => dispatch(selectCoach(user)),
       onfollowCoach: (followObj, token) => dispatch(followCoach(followObj, token))
   });

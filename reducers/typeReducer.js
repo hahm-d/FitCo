@@ -1,13 +1,29 @@
-import {FETCH_TYPE_REQUEST, ADD_TYPES, START_CREATE_TYPE_REQUEST, ADD_TYPE, START_DELETE_TYPE_REQUEST, DELETE_TYPE, TYPE_ERROR} from '../constants/actionTypes'
+import {FETCH_TYPE_REQUEST, 
+        ADD_TYPES, 
+        START_CREATE_TYPE_REQUEST, 
+        ADD_TYPE, 
+        START_DELETE_TYPE_REQUEST, 
+        DELETE_TYPE, 
+        ADD_CATEGORY,
+        TYPE_ERROR} from '../constants/actionTypes'
 
 const initialState = {
-    types: [],
+    types: null,
+    category: null,
+    userTypes: null,
     isLoading: false,
     error: null
 }
 
 const typeReducer = (state = initialState, action) => {
         switch (action.type) {
+           case ADD_CATEGORY:
+            return {
+                ...state,
+                category: action.categories,
+                isLoading: false,
+            }
+
           case FETCH_TYPE_REQUEST: 
             return {
               ...state,

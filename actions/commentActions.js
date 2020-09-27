@@ -18,7 +18,7 @@ export function fetchPostComments(id, token) {
                 }
             })
     .then(resp => resp.json())
-    .then(post => dispatch({ type: POST_COMMENTS, post }));
+    .then(comments => dispatch({ type: POST_COMMENTS, comments }));
   };
 }
 

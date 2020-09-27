@@ -38,7 +38,10 @@ const CardItem = ({
   return (
     <View style={styles.containerCardItem}>
       {/* IMAGE */}
-      <Image source={ {uri: image}} style={imageStyle} />
+      { image == null ? 
+      <Image source={require('../assets/images/logo1.png')} style={imageStyle} />
+      :
+      <Image source={ {uri: image.cloudinary}} style={imageStyle} />}
 
       {/* MATCHES */}
       {matches && (

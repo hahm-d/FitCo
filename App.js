@@ -37,8 +37,7 @@ function UserNavigator(){
       <Drawer.Screen name="Add Post" component={CreatePost}/>
       <Drawer.Screen name="Edit Profile" component={EditProfile}/>
       <Drawer.Screen name="All Posts" component={PostContainer}/>      
-      <Drawer.Screen name="Post Details" component={PostCommentsScreen}/>  
-      <Drawer.Screen name="Splash" component={SplashScreen}/>         
+      <Drawer.Screen name="Post Details" component={PostCommentsScreen}/>          
     </Drawer.Navigator>
   )
 }
@@ -82,10 +81,10 @@ render(){
   return (
     <NavigationContainer>
       {this.props.token.authToken !== null ? (
-        <UserNavigator />
+        <LoginStackNavigator />
       )
         :
-        <HomeScreen/>  
+        <LoginStackNavigator />
       }
     </NavigationContainer>
   )

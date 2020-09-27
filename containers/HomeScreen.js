@@ -61,7 +61,7 @@ class HomeScreen extends React.Component {
     signOutAsync = () => {
         this.props.signOutUser()
         this.props.deleteToken()
-        this.props.navigation.navigate('Sign in');
+        this.props.navigation.navigate('Splash');
     };
 }
 

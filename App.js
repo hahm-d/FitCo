@@ -22,7 +22,7 @@ class App extends Component {
 retrieveData = async () => {
   try{
       const token = await AsyncStorage.getItem('userToken')
-      if(token !==null){
+      if(token !== null){
         this.props.validateUser(token)
         this.props.saveToken(token)
       }
@@ -35,16 +35,26 @@ async componentDidMount() {
   await this.retrieveData()
 }
 
+
+
+
 render(){
   const { users } = this.props;
   return (
     <NavigationContainer>
-      {users.currentUser !== null ? (
-        <Drawer.Navigator initialRouteName="Home">
+      {users.currentUser !== null ? [
+       ( users.currentUser.flag === true ? 
+          <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={CoachTabNavigator} />  
             <Drawer.Screen name="Debugger" component={HomeScreen}/>        
         </Drawer.Navigator>
-      )
+        :
+        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={MainTabNavigator} />  
+        <Drawer.Screen name="Debugger" component={HomeScreen}/>        
+        </Drawer.Navigator>       
+        )
+      ]
         :
        <LoginStackNavigator /> 
        

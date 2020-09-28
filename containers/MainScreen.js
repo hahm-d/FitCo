@@ -30,6 +30,9 @@ class MainScreen extends React.Component {
       const { users, posts } = this.props;
     return (
       <View>
+      {users.isLoading && posts.isLoading ?
+                    <ActivityIndicator size="large" style={{flex: 1, justifyContent: "center"}}/>
+                :
         <ScrollView> 
             <Animatable.View                 
                 animation="fadeInLeft"
@@ -67,7 +70,7 @@ class MainScreen extends React.Component {
                                             height: 250, borderRadius: 10}}
                                          /> }
                                     </TouchableOpacity>
-                                    <Text style={styles.imageText}>{item.title}</Text>
+                                    <Text style={styles.postImageText}>{item.title}</Text>
                                 </View>
                             )
                         }}/>
@@ -131,7 +134,7 @@ class MainScreen extends React.Component {
             </ScrollView>
 
             </ScrollView>          
-
+        }
       </View>
     )
   }
@@ -183,13 +186,22 @@ const styles = StyleSheet.create({
         left: 10,
         bottom: 10
     },
+    postImageText:{
+        position: 'absolute',
+        color: 'white',
+        fontWeight: 'bold',
+        marginTop: 4,
+        fontSize: 17,
+        left: 22,
+        bottom: 15
+    },
     imageText:{
         position: 'absolute',
         color: 'white',
         fontWeight: 'bold',
         marginTop: 4,
         fontSize: 19,
-        left: 20,
+        left: 30,
         bottom: 15
     }
 

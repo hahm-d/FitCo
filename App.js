@@ -9,6 +9,10 @@ import { saveToken } from './actions/tokenActions';
 
 import LoginStackNavigator from './navigation/LoginStackNavigator';
 import MainTabNavigator from './navigation/MainTabNavigator';
+import CoachTabNavigator from './navigation/CoachTabNavigator';
+
+//debugging
+import HomeScreen from './containers/HomeScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -32,11 +36,13 @@ async componentDidMount() {
 }
 
 render(){
+  const { users } = this.props;
   return (
     <NavigationContainer>
-      {this.props.currentUser !== null ? (
+      {users.currentUser !== null ? (
         <Drawer.Navigator initialRouteName="Home">
-            <Drawer.Screen name="Home" component={MainTabNavigator} />          
+            <Drawer.Screen name="Home" component={CoachTabNavigator} />  
+            <Drawer.Screen name="Debugger" component={HomeScreen}/>        
         </Drawer.Navigator>
       )
         :
@@ -50,7 +56,7 @@ render(){
 
 function mapStateToProps(state){
   return {
-          currentUser: state.users.currentUser,
+          users: state.users,
           token: state.token
          }
 }

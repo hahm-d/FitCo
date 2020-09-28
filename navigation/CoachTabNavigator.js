@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import MainScreen from '../containers/MainScreen';
 import FindScreen from '../containers/FindScreen';
-import FollowersNavigator from './FollowersNavigator';
+import FollowersScreen from '../containers/FollowersScreen';
 import ProfileNavigator from './ProfileNavigator';
 
 
@@ -37,7 +37,7 @@ const CoachTabScreen = () => (
       />
       <Tab.Screen
         name="Followers"
-        component={FollowersNavigator}
+        component={FollowersScreen}
         options={{
           tabBarLabel: 'Followers',
           tabBarIcon: ({ color }) => (

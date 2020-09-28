@@ -143,6 +143,14 @@ export default StyleSheet.create({
 		elevation: 5
 	},
 
+	// COMPONENT - FOLLOWERS
+	followerAvatar: {
+		width: 150, 
+		marginRight: 8,
+		height: 200,
+		borderRadius: 10
+	},
+
 
 	// COMPONENT - MESSAGE
 	containerMessage: {

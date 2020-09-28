@@ -1,11 +1,10 @@
 import React from 'react';
-import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList, ImageBackground} from 'react-native';
+import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList, Image} from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import { fetchFollowers, selectCoach } from '../actions/followActions';
 import CoachListItem from "../components/CoachListItem";
-
-//IN PROGRESS FOR COACH 
+import * as Animatable from 'react-native-animatable';
 
 class FollowersScreen extends React.Component {
   static navigationOptions = {
@@ -23,38 +22,55 @@ class FollowersScreen extends React.Component {
     };
 
     render(){
+      const { follows } = this.props;
         return(
             <>
-            {this.props.follows.isLoading ?
+            {follows.isLoading ?
                     <ActivityIndicator size="small"/>
                 :
-                <ImageBackground
-                source={require('../assets/images/bg.png')}
-                style={styles.bg}>
+
                   <ScrollView>
                     <View style={styles.top}>
                       <Text style={styles.title}>Followers</Text>
                       <TouchableOpacity>
-                        <Text style={styles.icon}>
-                        </Text>
+                      <Text style={styles.icon}>
+                    </Text>
                       </TouchableOpacity>
                     </View>
+                    <Animatable.View                 
+                animation="fadeInRight"
+                duraton="9000">
                     <FlatList
-                      numColumns={2}
-                      data={this.props.follows.followings}
-                      keyExtractor={user => user.id.toString()}
-                      renderItem={({ item }) => (
-                        <TouchableOpacity>
-                          <CoachListItem
-                            user={item} 
-                            image={item.image}
-                            onPress={this.onPressUserRow}
-                          />
-                        </TouchableOpacity>
-                      )}
-                    />
+                        numColumns={2}
+                        data={follows.followers}
+                        renderItem={({item}) => {
+                            return(
+                                <View style={{paddingVertial: 20, paddingLeft: 30, paddingRight: 20}}>
+                                    <TouchableOpacity>
+                                        { item.image ? 
+                                        <Image 
+                                            source={{uri: item.image.cloudinary}}
+                                            style={styles.followerAvatar}
+                                         />
+                                        :
+                                        <Image 
+                                            source={require('../assets/images/avatarblank.png')}
+                                            style={styles.followerAvatar}
+                                         />                                              
+                                        }
+                                    </TouchableOpacity>
+                                      <Text style={{flexDirection: 'row'}}>
+                                          <Text style={styles.postImageText}>{item.username}</Text>
+                                          <View style={styles.status}>
+                                            <View style={item.status === "online" ? styles.online : styles.offline} />
+                                            <Text style={styles.statusText}>{item.status}</Text>
+                                         </View>
+                                      </Text>
+                                </View>
+                            )
+                        }}/>
+                </Animatable.View>
                   </ScrollView>
-                  </ImageBackground>
             }
            </>
         )

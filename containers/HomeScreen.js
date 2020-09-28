@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { signOutUser } from '../actions/userActions';
-import AsyncStorage from '@react-native-community/async-storage';
 import {deleteToken} from '../actions/tokenActions';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import Video from 'react-native-video';
 /* import { LogBox } from 'react-native';
 

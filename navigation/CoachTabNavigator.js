@@ -2,26 +2,24 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from '../containers/HomeScreen';
 import MainScreen from '../containers/MainScreen';
 import FindScreen from '../containers/FindScreen';
-
-import FollowingNavigator from './FollowingNavigator';
+import FollowersNavigator from './FollowersNavigator';
 import ProfileNavigator from './ProfileNavigator';
 
 
 const Tab = createBottomTabNavigator();
 
-const MainTabScreen = () => (
+const CoachTabScreen = () => (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Main"
       activeColor="#fff"
     >
       <Tab.Screen
-        name="Home"
+        name="Main"
         component={MainScreen}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Main',
           tabBarIcon: ({ color }) => (
             <Icon name="ios-home" color={color} size={26} />
           ),
@@ -38,10 +36,10 @@ const MainTabScreen = () => (
         }}
       />
       <Tab.Screen
-        name="Following"
-        component={FollowingNavigator}
+        name="Followers"
+        component={FollowersNavigator}
         options={{
-          tabBarLabel: 'Following',
+          tabBarLabel: 'Followers',
           tabBarIcon: ({ color }) => (
             <Icon name="people-circle-outline" color={color} size={26} />
           ),
@@ -60,4 +58,4 @@ const MainTabScreen = () => (
     </Tab.Navigator>
 );
 
-export default MainTabScreen;
+export default CoachTabScreen;

@@ -1,13 +1,19 @@
 import React from 'react';
 import {
-    Text,
+    View, 
+    Text, 
+    TouchableOpacity, 
     TextInput,
-    Button,
-    StyleSheet,
-    View,
-    TouchableOpacity
+    Platform,
+    StyleSheet ,
+    StatusBar,
+    Alert,
+    Button
 } from 'react-native';
+import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux';
+import * as Animatable from 'react-native-animatable';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { updateUser } from '../actions/userActions';
 
 class EditProfile extends React.Component {
@@ -25,7 +31,7 @@ class EditProfile extends React.Component {
         this.setState( {[name]: text} );
     }
 
-    signInAsync = (userObj) => {
+    updateHandler = (userObj) => {
         const { navigation, updateUser, token, currentUser } = this.props;
         userObj["username"] = currentUser.username
         userObj["id"] = currentUser.id
@@ -34,53 +40,181 @@ class EditProfile extends React.Component {
     };
 
     render() {
-            console.log(this.state)
         return (
-            <View style={styles.container}>
-                <Text>Update Profile</Text>
-                {this.props.currentUser && <Text>User: {this.props.currentUser.username}</Text>}
-                <TextInput
-                value={this.state.email}
-                placeholder="email"
-                type='email'
-                onChangeText={this.changeHandler("email")}
-                />
-                <TextInput
-                value={this.state.instagram}
-                placeholder="instagram"
-                type='instagram'
-                onChangeText={this.changeHandler("instagram")}
-                /> 
-                <TextInput
-                value={this.state.twitter}
-                placeholder="twitter"
-                type='twitter'
-                onChangeText={this.changeHandler("twitter")}
-                /> 
-                <TextInput
-                value={this.state.description}
-                placeholder="description"
-                type='description'
-                onChangeText={this.changeHandler("description")}
-                /> 
-                <TouchableOpacity>
-                    <Button title="Update" onPress={() => this.signInAsync(this.state)} />
-                </TouchableOpacity>
-            </View>
-        );
+    <View style={styles.container}>
+    <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+   <View style={styles.header}>
+       <Animatable.Text animation="fadeInDown"  duraton="5000" direction="alternate" style={styles.text_header}> Update </Animatable.Text> 
+   </View>
 
-    }
-    
+   <Animatable.View style={styles.footer}
+       animation="fadeInUpBig"
+       duraton="2000">  
+       <Text style={styles.text_footer}>email</Text>
+       <View style={styles.action}>
+       <FontAwesome 
+           name="id-badge"
+           size={20}
+       />
+       <TextInput
+       style={styles.textInput}
+       value={this.state.email}
+       placeholder="email"
+       type='email'
+       onChangeText={this.changeHandler("email")}
+       />
+       </View>
+       <Text style={styles.text_footer}>Instagram</Text>
+       <View style={styles.action}>
+       <FontAwesome 
+           name="envelope"
+           size={20}
+       />
+       <TextInput
+       style={styles.textInput}
+       value={this.state.instagram}
+       placeholder="Instagram Account"
+       type='instagram'
+       onChangeText={this.changeHandler("instagram")}
+       /> 
+       </View>
+       <Text style={styles.text_footer}>Twitter</Text>
+       <View style={styles.action}>
+       <FontAwesome 
+           name="lock"
+           size={20}
+       />
+       <TextInput
+       style={styles.textInput}
+       value={this.state.twitter}
+       placeholder="twitter account"
+       type='twitter'
+       onChangeText={this.changeHandler("twitter")}
+       />   
+       </View>
+       <Text style={styles.text_footer}> Bio </Text>
+       <View style={styles.action}>
+       <FontAwesome 
+           name="lock"
+           size={20}
+       />
+       <TextInput
+       style={styles.textInput}
+       value={this.state.description}
+       placeholder="description"
+       type='description'
+       onChangeText={this.changeHandler("description")}
+       />   
+       </View>
+       <TouchableOpacity  
+           onPress={() => this.updateHandler(this.state)}
+           style={[styles.signIn, {
+               borderColor: '#009387',
+               borderWidth: 1,
+               marginTop: 15
+           }]}>
+           <Text style={[styles.textSign, {color: '#009387'}]}>Submit</Text>
+       </TouchableOpacity>
+
+   </Animatable.View>
+</View>
+);
+
+}
+
 };
 
 
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+container: {
+flex: 1, 
+backgroundColor: '#000000'
+},
+header: {
+flex: 1,
+justifyContent: 'flex-end',
+paddingHorizontal: 30,
+paddingBottom: 20
+},
+footer: {
+flex: 5,
+backgroundColor: '#fff',
+borderTopLeftRadius: 30,
+borderTopRightRadius: 30,
+paddingHorizontal: 20,
+paddingVertical: 30
+},
+text_header: {
+color: '#fff',
+fontWeight: 'bold',
+fontSize: 40,
+textAlign: 'center',
+paddingBottom: 20
+},
+text_footer: {
+color: '#05375a',
+fontSize: 20,
+paddingTop: 40,
+paddingBottom: 5
+},
+text_account: {
+color: '#05375a',
+fontSize: 20,
+paddingTop: 20,
+paddingBottom: 5,
+textAlign: 'center'
+},
+action: {
+flexDirection: 'row',
+marginTop: 10,
+borderBottomWidth: 1,
+borderBottomColor: '#f2f2f2',
+paddingBottom: 5
+},
+actionError: {
+flexDirection: 'row',
+marginTop: 10,
+borderBottomWidth: 1,
+borderBottomColor: '#FF0000',
+paddingBottom: 5
+},
+textInput: {
+flex: 1,
+marginTop: Platform.OS === 'ios' ? 0 : -12,
+paddingLeft: 10,
+color: '#05375a',
+},
+errorMsg: {
+color: '#FF0000',
+fontSize: 14,
+},
+signIn: {
+width: '100%',
+height: 50,
+justifyContent: 'center',
+alignItems: 'center',
+borderRadius: 10
+},
+textSign: {
+fontSize: 18,
+fontWeight: 'bold'
+},
+textPrivate: {
+flexDirection: 'row',
+flexWrap: 'wrap',
+marginTop: 20
+},
+color_textPrivate: {
+color: 'grey'
+},
+buttons: {
+alignItems: 'flex-end',
+display: 'flex',
+flexDirection: 'row',
+justifyContent: 'space-evenly',
+marginTop: 20
+},
 });
  
 function mapStateToProps(state){

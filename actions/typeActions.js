@@ -48,7 +48,7 @@ const categories = [
         "name": "Dancing"
     },
     {
-        "category": 99,
+        "category": 10,
         "name": "All"
     }
 ]

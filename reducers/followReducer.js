@@ -11,7 +11,7 @@ import {UNFOLLOW_USER,
 const initialState = {
     followers: null,
     followings: null,
-    isLoading: false,
+    isLoading: true,
     error: null
 }
 

@@ -11,7 +11,7 @@ const initialState = {
     types: null,
     category: null,
     userTypes: null,
-    isLoading: false,
+    isLoading: true,
     error: null
 }
 

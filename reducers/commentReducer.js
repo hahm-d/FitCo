@@ -8,7 +8,7 @@ import {FETCH_COMMENT_REQUEST,
 
 const initialState = {
     comments: [],
-    isLoading: false,
+    isLoading: true,
     error: null
 }
 

@@ -15,7 +15,7 @@ const initialState = {
     posts: [],
     coach_posts: [],
     user_posts: [],
-    isLoading: false,
+    isLoading: true,
     selectedPost: null,
     error: null
 }
@@ -95,7 +95,8 @@ const postReducer = (state = initialState, action) => {
             case SELECT_POST:
               return {
                 ...state,
-                selectedPost: action.postObj
+                selectedPost: action.postObj,
+                isLoading: false
             }
 
           case POST_ERROR: 

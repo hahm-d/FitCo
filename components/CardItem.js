@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from '../assets/styles';
 import { Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
-import Icon from './Icon';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const CardItem = ({
   actions,
   id,
   description,
   image,
-  matches,
   name,
   onPressLeft,
   onPressRight,
@@ -43,14 +42,6 @@ const CardItem = ({
       :
       <Image source={ {uri: image.cloudinary}} style={imageStyle} />}
 
-      {/* MATCHES */}
-      {matches && (
-        <View style={styles.matchesCardItem}>
-          <Text style={styles.matchesTextCardItem}>
-            <Icon name="heart" /> {matches}% Match!
-          </Text>
-        </View>
-      )}
 
       {/* NAME */}
       <Text style={nameStyle}>{name}</Text>
@@ -73,8 +64,8 @@ const CardItem = ({
         <View style={styles.actionsCardItem} >
 
           <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
-            <Text style={styles.like}>
-              Pass
+            <Text style={styles.dislike}>
+            <FontAwesome name="times-circle" size={65}/>
             </Text>
           </TouchableOpacity>
 
@@ -82,8 +73,8 @@ const CardItem = ({
             style={styles.button}
             onPress={() => onPressRight()}
           >
-            <Text style={styles.dislike}>
-              Yes
+            <Text style={styles.like}>
+            <FontAwesome name="check-circle" size={65}/>
             </Text>
           </TouchableOpacity>
         </View>

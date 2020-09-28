@@ -1,20 +1,13 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const PRIMARY_COLOR = "#7444C0";
-const SECONDARY_COLOR = "#5636B8";
+const PRIMARY_COLOR = "#00FFFF";
+const SECONDARY_COLOR = "#000000";
 const WHITE = "#FFFFFF";
 const GRAY = "#757E90";
 const DARK_GRAY = "#363636";
 const BLACK = "#000000";
-
 const ONLINE_STATUS = "#46A575";
 const OFFLINE_STATUS = "#D04949";
-
-const STAR_ACTIONS = "#FFA200";
-const LIKE_ACTIONS = "#B644B2";
-const DISLIKE_ACTIONS = "#363636";
-const FLASH_ACTIONS = "#5028D7";
-
 const DIMENSION_WIDTH = Dimensions.get("window").width;
 const DIMENSION_HEIGHT = Dimensions.get("window").height;
 
@@ -98,22 +91,6 @@ export default StyleSheet.create({
 		shadowColor: DARK_GRAY,
 		shadowOffset: { height: 10, width: 0 }
 	},
-	star: {
-		color: STAR_ACTIONS
-	},
-	like: {
-		fontSize: 25,
-		color: LIKE_ACTIONS
-	},
-	dislike: {
-		fontSize: 25,
-		
-		color: DISLIKE_ACTIONS
-	},
-	flash: {
-		
-		color: FLASH_ACTIONS
-	},
 
 	// COMPONENT - FILTERS
 	filters: {
@@ -121,6 +98,20 @@ export default StyleSheet.create({
 		padding: 10,
 		borderRadius: 20,
 		width: 70,
+		alignItems: "center",
+		justifyContent: "space-between",
+		shadowOpacity: 0.05,
+		shadowRadius: 10,
+		shadowColor: BLACK,
+		shadowOffset: { height: 0, width: 0 }
+	},
+	filtersDisplay: {
+		backgroundColor: WHITE,
+		padding: 10,
+		borderRadius: 20,
+		width: 200,
+		alignItems: "center",
+		justifyContent: "space-between",
 		shadowOpacity: 0.05,
 		shadowRadius: 10,
 		shadowColor: BLACK,
@@ -129,8 +120,29 @@ export default StyleSheet.create({
 	filtersText: {
 		
 		color: DARK_GRAY,
-		fontSize: 13
+		justifyContent: "space-between",
+		alignItems: 'flex-end',
+		fontSize: 15
 	},
+	filterList:{
+		marginTop: 20,
+		height: 30,
+		width: 200,
+		borderRadius: 12,
+		justifyContent: 'center',
+		alignItems: 'center',
+		paddingHorizontal: 20,
+		flexDirection: 'row',
+		backgroundColor: GRAY,
+		shadowOffset: {
+			width: 0,
+			height: 3
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5
+	},
+
 
 	// COMPONENT - MESSAGE
 	containerMessage: {
@@ -148,51 +160,12 @@ export default StyleSheet.create({
 		marginRight: 20,
 		marginVertical: 15
 	},
-	message: {
-		color: GRAY,
-		fontSize: 12,
-		paddingTop: 5
-	},
-
-	// COMPONENT - PROFILE ITEM
-	containerProfileItem: {
-		backgroundColor: WHITE,
-		paddingHorizontal: 10,
-		paddingBottom: 25,
-		margin: 20,
-		borderRadius: 8,
-		marginTop: -65,
-		shadowOpacity: 0.05,
-		shadowRadius: 10,
-		shadowColor: BLACK,
-		shadowOffset: { height: 0, width: 0 }
-	},
-	matchesProfileItem: {
-		width: 131,
-		marginTop: -15,
-		backgroundColor: PRIMARY_COLOR,
-		paddingVertical: 7,
-		paddingHorizontal: 20,
-		borderRadius: 20,
-		textAlign: "center",
-		alignSelf: "center"
-	},
-	matchesTextProfileItem: {
-		
-		color: WHITE
-	},
 	name: {
 		paddingTop: 25,
 		paddingBottom: 5,
 		color: DARK_GRAY,
 		fontSize: 15,
 		textAlign: "center"
-	},
-	descriptionProfileItem: {
-		color: GRAY,
-		textAlign: "center",
-		paddingBottom: 20,
-		fontSize: 13
 	},
 	info: {
 		paddingVertical: 8,
@@ -233,88 +206,69 @@ export default StyleSheet.create({
 	},
 
 	// CONTAINER - HOME
-	containerHome: { marginHorizontal: 10 },
-
-	// CONTAINER - MATCHES
-	containerMatches: {
-		justifyContent: "space-between",
-		flex: 1,
-		paddingHorizontal: 10
+	containerHome: { 
+		paddingTop: 40,
+		marginHorizontal: 10 
 	},
 
-	// CONTAINER - MESSAGES
-	containerMessages: {
-		justifyContent: "space-between",
-		flex: 1,
-		paddingHorizontal: 10
-	},
-
-	// CONTAINER - PROFILE
-	containerProfile: { marginHorizontal: 0 },
-	photo: {
-		width: DIMENSION_WIDTH,
-		height: 450
-	},
-	topIconLeft: {
-		
-		fontSize: 20,
-		color: WHITE,
-		paddingLeft: 20,
-		marginTop: -20,
-		transform: [{ rotate: "90deg" }]
-	},
-	topIconRight: {
-		
-		fontSize: 20,
-		color: WHITE,
-		paddingRight: 20
-	},
-	actionsProfile: {
-		justifyContent: "center",
-		flexDirection: "row",
-		alignItems: "center"
-	},
-	iconButton: {  fontSize: 20, color: WHITE },
-	textButton: {
-		
-		fontSize: 15,
-		color: WHITE,
-		paddingLeft: 5
-	},
-	circledButton: {
-		width: 50,
-		height: 50,
-		borderRadius: 25,
-		backgroundColor: PRIMARY_COLOR,
-		justifyContent: "center",
+	// MODAL 
+	modalView: {
+		backgroundColor: "white",
+		borderRadius: 10,
+		padding: 25,
 		alignItems: "center",
-		marginRight: 10
+		shadowColor: "#000",
+		width: "100%",
+		height: "100%",
+		shadowOffset: {
+			width: 0,
+			height: 2
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5
 	},
-	roundedButton: {
-		justifyContent: "center",
-		flexDirection: "row",
-		alignItems: "center",
-		marginLeft: 10,
-		height: 50,
-		borderRadius: 25,
+	nameStyle: {
 		backgroundColor: SECONDARY_COLOR,
-		paddingHorizontal: 20
+		width: '100%',
+		padding: 8,
+		elevation: 20,
+		marginBottom: 30,
+		marginTop: 60,
+		color: "white",
+		fontSize: 30,
+		shadowOffset: {
+			width: 0,
+			height: 3
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 5
 	},
-
-	// MENU
-	tabButton: {
-		paddingTop: 20,
-		paddingBottom: 30,
-		alignItems: "center",
-		justifyContent: "center",
-		flex: 1
+	openButton: {
+		backgroundColor: SECONDARY_COLOR,
+		borderRadius: 20,
+		padding: 8,
+		elevation: 20
 	},
-	tabButtonText: {
-		textTransform: "uppercase"
+	modalButton: {
+		backgroundColor: SECONDARY_COLOR,
+		borderRadius: 20,
+		padding: 8,
+		elevation: 20,
+		marginBottom: 30,
+		marginTop: 60 
 	},
-	iconMenu: {
-		
-		height: 20,
-		paddingBottom: 7
+	textStyle: {
+		color: "white",
+		fontWeight: "bold",
+		textAlign: "center",
+		marginRight: 20,
+		marginLeft: 20
+	},
+	exitButton: {
+		color: "white",
+		fontWeight: "bold",
+		marginHorizontal: 20
 	}
-});
+	});

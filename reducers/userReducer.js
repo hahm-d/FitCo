@@ -8,7 +8,7 @@ import {FETCH_USERS_REQUEST,
 const initialState = {
     currentUser: null,
     users: [],
-    isLoading: false,
+    isLoading: true,
     error: null,
     selectedUser: null,
 }

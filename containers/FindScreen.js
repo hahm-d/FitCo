@@ -22,11 +22,11 @@ class FindScreen extends React.Component {
     state = {
         modalVisible: false,
         selectedType: 11,
-        selectedDisplay: "All"
+        selectedDisplay: "All",
+        filteredList: this.props.users.users
     }
 
     
-
     componentDidMount() {
         this.props.onfetchUsers(this.props.token.authToken)
         this.props.onFetchTypes(this.props.token.authToken)
@@ -47,17 +47,28 @@ class FindScreen extends React.Component {
     }
 
     filterHandler = (index) =>{
-        const { types } = this.props
+        const { types, users } = this.props
         const findId = types.category.find(cat => cat.category === index)
+
+        //filter coach logic 
+        if(index != 10){
+            const findCoachIds = types.types.filter(obj => obj.category === index).map(obj => obj.user_id)
+            const filterCoaches = users.users.filter(user => findCoachIds.includes(user.id))
+           // console.log(filterCoaches)
+            this.setState({filteredList: filterCoaches })
+        }else{
+            this.setState({filteredList: users.users })
+        }
+        
         this.setState({selectedType: findId.category})    
         this.setState({selectedDisplay: findId.name})
+        this.setModalVisible(false);
     }
 
 
       render(){
-          console.log(this.state.selectedType)
         const { types, users } = this.props;
-        const { modalVisible, selectedDisplay } = this.state;
+        const { modalVisible, selectedDisplay, filteredList } = this.state;
         return(
             <>
             <Modal
@@ -87,7 +98,7 @@ class FindScreen extends React.Component {
                 <TouchableHighlight
                     style={{ ...styles.modalButton }}
                     onPress={() => {
-                    this.setModalVisible(false, null);
+                    this.setModalVisible(false);
                     }}>
                     <Text style={styles.exitButton}> x </Text>
                 </TouchableHighlight>
@@ -123,7 +134,7 @@ class FindScreen extends React.Component {
                     renderNoMoreCards={() => null}
                     ref={swiper => (this.swiper = swiper)}
                     >
-                    {users.users.map((item, index) => (
+                    {filteredList.map((item, index) => (
                         <Card key={index}
                         onSwipedRight={() => this.swipeRight(item.id)}>
                         <CardItem

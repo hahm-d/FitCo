@@ -6,15 +6,13 @@ import {
     TextInput,
     Platform,
     StyleSheet ,
-    StatusBar,
-    Alert,
-    Button
+    StatusBar
 } from 'react-native';
-import { CheckBox } from 'react-native-elements'
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { updateUser } from '../actions/userActions';
+import ImagePicker from 'react-native-image-picker';
 
 class EditProfile extends React.Component {
 
@@ -24,7 +22,8 @@ class EditProfile extends React.Component {
             email: this.props.currentUser.email,
             instagram: this.props.currentUser.instagram,
             twitter: this.props.currentUser.twitter,
-            description: this.props.currentUser.description
+            description: this.props.currentUser.description,
+            image: this.props.currentUser.image
     }
 
     changeHandler = (name) => (text) => {

@@ -191,8 +191,8 @@ const styles = StyleSheet.create({
     padding: 25,
     alignItems: "center",
     shadowColor: "#000",
-    width: 400,
-    height: 700,
+    width: 350,
+    height: 600,
     shadowOffset: {
       width: 0,
       height: 2

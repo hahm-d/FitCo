@@ -23,6 +23,7 @@ class RegisterScreen extends React.Component {
             email: '',
             password: '',
             password2: '',
+            status: 'online',
             flag: false
     }
 
@@ -136,7 +137,7 @@ class RegisterScreen extends React.Component {
                         style={[styles.signIn, {
                             borderColor: '#009387',
                             borderWidth: 1,
-                            marginTop: 15
+                            marginTop: 1
                         }]}>
                         <Text style={[styles.textSign, {color: '#009387'}]}>Sign up</Text>
                     </TouchableOpacity>
@@ -160,14 +161,14 @@ class RegisterScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1, 
+      flex: 0.9, 
       backgroundColor: '#000000'
     },
     header: {
         flex: 1,
         justifyContent: 'flex-end',
         paddingHorizontal: 30,
-        paddingBottom: 20
+        paddingBottom: 5
     },
     footer: {
         flex: 5,
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
     text_account: {
         color: '#05375a',
         fontSize: 20,
-        paddingTop: 20,
+        paddingTop: 7,
         paddingBottom: 5,
         textAlign: 'center'
     },
@@ -213,7 +214,6 @@ const styles = StyleSheet.create({
     },
     textInput: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 0 : -12,
         paddingLeft: 10,
         color: '#05375a',
     },
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     textPrivate: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginTop: 20
+        marginTop: 5
     },
     color_textPrivate: {
         color: 'grey'

@@ -51,7 +51,7 @@ class FollowersScreen extends React.Component {
                         data={follows.followers}
                         renderItem={({item}) => {
                             return(
-                                <View style={{paddingVertial: 20, paddingLeft: 30, paddingRight: 20}}>
+                                <View style={{display: 'flex', justifyContent: 'space-around', paddingLeft: 22}}>
                                     <TouchableOpacity>
                                         { item.image ? 
                                         <Image 
@@ -69,7 +69,8 @@ class FollowersScreen extends React.Component {
                                           <Text style={styles.postImageText}>{item.username}</Text>
                                           <View style={styles.status}>
                                             <View style={item.status === "online" ? styles.online : styles.offline} />
-                                            <Text style={styles.statusText}>{item.status}</Text>
+                                            { item.status === "online" ? <Text style={styles.statusText}>{item.status}</Text> 
+                                            : <Text style={styles.statusText}>offline</Text> }
                                          </View>
                                       </Text>
                                 </View>

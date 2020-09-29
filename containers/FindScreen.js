@@ -133,6 +133,7 @@ class FindScreen extends React.Component {
                     verticalSwipe={false}
                     renderNoMoreCards={() => null}
                     ref={swiper => (this.swiper = swiper)}
+                    keyExtractor={(item, index) => index.toString()}
                     >
                     {filteredList.map((item, index) => (
                         <Card key={index}

@@ -61,6 +61,7 @@ class MainScreen extends React.Component {
                     <FlatList
                     horizontal={true}
                         data={posts}
+                        keyExtractor={(item, index) => index.toString()}
                         renderItem={({item}) => {
                             return(
                                 <View style={{paddingVertial: 20, paddingLeft: 16}}>
@@ -92,6 +93,7 @@ class MainScreen extends React.Component {
                     horizontal={true}
                     //fix this later
                         data={users.sort((a,b) => (a.username > b.username) ? 1 : ((b.username > a.username) ? -1 : 0))}
+                        keyExtractor={(item, index) => index.toString()}
                         renderItem={({item}) => {
                             return(
                                 <View style={{paddingVertial: 20, paddingLeft: 16}}>
@@ -120,22 +122,24 @@ class MainScreen extends React.Component {
                 duraton="9000">
                 <FlatList
                     horizontal={true}
-                        data={foods}
+                    data={foods}
+                    keyExtractor={(item, index) => index.toString()}
                         renderItem={({item}) => {
-                            return(
-                                <View style={{paddingVertial: 20, paddingLeft: 16, paddingBottom: 50}}>
-                                    <TouchableOpacity>
-                                        { item.image && 
-                                        <Image 
-                                            source={{uri: item.image}}
-                                            style={{width: 150, marginRight: 8,
-                                                    marginBottom: 10, height: 250, borderRadius: 10}}
-                                         /> }
-                                    </TouchableOpacity>
-                                    <Text style={styles.imageTextFood}>{item.title}</Text>
-                                </View>
-                            )
-                        }}/>
+                        return(
+                            <View style={{paddingVertial: 20, paddingLeft: 16, paddingBottom: 50}}>
+                                <TouchableOpacity>
+                                    { item.image && 
+                                    <Image 
+                                        source={{uri: item.image}}
+                                        style={{width: 150, marginRight: 8,
+                                                marginBottom: 10, height: 250, borderRadius: 10}}
+                                        /> }
+                                </TouchableOpacity>
+                                <Text style={styles.imageTextFood}>{item.title}</Text>
+                            </View>
+                        )
+                        }
+                    }/>
                 </Animatable.View>
             </ScrollView>
 

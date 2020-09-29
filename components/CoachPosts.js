@@ -30,7 +30,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 20
   },
   title: {
-    marginBottom: 10
+    marginBottom: 10,
+    fontSize: 25,
+    fontWeight: 'bold'
   },
   noPostsDescription: {
     height: 140,

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import {fetchCoachPosts, selectPost} from '../actions/postActions';
+import { fetchFollowers } from '../actions/followActions';
 import CoachDetails from "../components/CoachDetails";
 import CoachPosts from "../components/CoachPosts";
 
@@ -26,9 +27,11 @@ class CoachDetailScreen extends Component {
   getCoachData = () => {
     const {
       onFetchCoachPosts,
-      selectedUser
+      selectedUser,
+      token
     } = this.props;
-    onFetchCoachPosts(selectedUser.id, this.props.token.authToken) 
+    onFetchCoachPosts(selectedUser.id, token.authToken) 
+    onFetchFollowers(selectedUser.id, token.authToken)
   };
 
   onPressPost = ({ post }) => {
@@ -39,7 +42,9 @@ class CoachDetailScreen extends Component {
 
 
   render() {
-    const { posts, selectedUser } = this.props;
+    const { posts, selectedUser, follows } = this.props;
+    const postsCount = posts.posts ? posts.posts.length : 0 
+    const followerCount = follows.followers ? follows.followers.length : 0 
     return (
       <ScrollView>
         <>
@@ -55,6 +60,8 @@ class CoachDetailScreen extends Component {
               description={selectedUser.description}
               status={selectedUser.status}
               image={selectedUser.image}
+              postCount={postsCount}
+              followerCount={followerCount}
             />
             <CoachPosts
               posts={posts.coach_posts}
@@ -84,6 +91,7 @@ const mapStateToProps = state => {
   return {
     selectedUser: state.users.selectedUser,
     posts: state.posts,
+    follows: state.follows,
     token: state.token
   };
 };
@@ -91,7 +99,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchCoachPosts: (userId, token) => dispatch(fetchCoachPosts(userId, token)),
-    onSelectPost: postId => dispatch(selectPost(postId))
+    onSelectPost: postId => dispatch(selectPost(postId)),
+    onFetchFollowers: (id, token) => dispatch(fetchFollowers(id, token))
   };
 };
 

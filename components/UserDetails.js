@@ -1,53 +1,97 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, SafeAreaView, TouchableOpacity} from "react-native";
+import {
+  Avatar,
+  Title,
+  Caption,
+  Text,
+} from 'react-native-paper';
+import styles from '../assets/styles';
+import Icon from 'react-native-vector-icons/Ionicons';
+import * as Animatable from 'react-native-animatable';
 
 class UserDetails extends React.Component {
   render() {
-    const { username, email, image, instagram, status, twitter, description } = this.props;
-
+    const { username, email, image, instagram, twitter, description, onPressSignOut, editProfile, postCount, flag, followerCount } = this.props;
     return (
-        <View></View>
+      <SafeAreaView style={styles.container}>
+                  <Animatable.View style={styles.footer}
+                    animation="fadeInDown"
+                    duraton="2000"
+                    delay={700}
+                    style={styles.userInfoSection}>
+          <View style={{flexDirection: 'column', marginTop: 15}}>
+          { image == null ? 
+            <Avatar.Image  source={require('../assets/images/avatarblank.png')} size={240} />
+            :
+            <Avatar.Image  source={ {uri: image.cloudinary}} size={250} />
+          }
+            <View style={{marginLeft: 5}}>
+              <Title style={[styles.usertitle, {
+                marginTop:20,
+                marginBottom: 10,
+              }]}>{username}</Title>
+              <Caption style={styles.caption}>{description}</Caption>
+            </View>
+          </View>
+        </Animatable.View>
+  
+        <Animatable.View style={styles.footer}
+                    animation="fadeInLeft"
+                    duraton="2000"
+                    delay={700}
+                    style={styles.userSocialSection}>
+        <View style={styles.userProfileRow}>
+            <Icon name="mail-outline" size={30} />
+            <Text style={{color:"#777777", marginLeft: 20, marginTop: 10}}>{email}</Text>
+          </View>
+          <View style={styles.userProfileRow}>
+            <Icon name="logo-twitter" size={30} />
+            <Text style={{color:"#777777", marginLeft: 20, marginTop: 10}}>{twitter}</Text>
+          </View>
+          <View style={styles.userProfileRow}>
+            <Icon name="logo-instagram" size={30}/>
+            <Text style={{color:"#777777", marginLeft: 20, marginTop: 10}}>{instagram}</Text>
+          </View>
+        </Animatable.View>
 
-/*       <View style={styles.userCard}>
-        <Image source={{uri: image.cloudinary}} />
-        <View style={styles.userInfo}>
-          <Text style={styles.userLabel}>User: {username}</Text>
-          <Text style={styles.userLabel}>Email: {email}</Text>
-          <Text style={styles.userLabel}>Instagram: {instagram}</Text>
-          <Text style={styles.userLabel}>Twitter: {twitter}</Text>
-          <Text style={styles.userLabel}>Description: {description}</Text>
-          <Text style={styles.userLabel}>Status: {status}</Text>
-        </View>
-      </View> */
-    )
+         { flag &&
+          <View style={styles.infoBoxWrapper}>
+            <View style={[styles.infoBox, {
+              borderRightColor: '#dddddd',
+              borderRightWidth: 1
+            }]}>
+              <Title>{followerCount}</Title>
+              <Caption>Followers</Caption>
+            </View>
+            <View style={styles.infoBox}>
+            <Title>{postCount}</Title>
+              <Caption>Posts</Caption>
+            </View>
+          </View>}
+
+          <Animatable.View style={styles.footer}
+                animation="fadeInRight"
+                duraton="2000"
+                delay={700}
+                style={styles.menuWrapper}>
+          <TouchableOpacity onPress={() => editProfile()}>
+            <View style={styles.menuItem}>
+              <Icon name="heart-outline" size={25}/>
+              <Text style={styles.menuItemText}>Edit Profile</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => onPressSignOut()}>
+            <View style={styles.menuItem}>
+              <Icon name="share-outline" size={25}/>
+              <Text style={styles.menuItemText}>Sign Out</Text>
+            </View>
+          </TouchableOpacity>
+        </Animatable.View>
+      </SafeAreaView>
+    );
   }
 }
 
-const styles = StyleSheet.create({
-  userCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 20,
-    marginTop: 120,
-  },
-  userIcon: {
-    borderRadius: 50,
-    height: 100,
-    width: 100,
-    marginRight: 15,
-    alignItems: "center",
-    justifyContent: "center",
-
-  },
-  userInitials: {
-    color: "white",
-  },
-  userInfo: {
-    flex: 1
-  },
-  userLabel: {
-    marginBottom: 5
-  }
-});
 
 export default UserDetails;

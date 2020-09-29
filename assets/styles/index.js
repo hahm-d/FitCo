@@ -284,5 +284,66 @@ export default StyleSheet.create({
 		color: "white",
 		fontWeight: "bold",
 		marginHorizontal: 20
-	}
+	},
+		// PROFILE PAGE
+	userInfoSection: {
+	paddingHorizontal: 30,
+	marginBottom: 25,
+	alignItems: 'center',
+	justifyContent: 'center',
+	},
+	userSocialSection: {
+	paddingHorizontal: 30,
+	marginBottom: 25,
+	},
+	usertitle: {
+	fontSize: 24,
+	fontWeight: 'bold',
+	},
+	caption: {
+	fontSize: 14,
+	lineHeight: 14,
+	fontWeight: '500',
+	},
+	userProfileRow: {
+	flexDirection: 'row',
+	marginBottom: 10,
+	},
+	userProfileRow2: {
+	flexDirection: 'row',
+	alignItems: 'center',
+	justifyContent: 'center',
+	marginBottom: 10,
+	marginTop: 12
+	},
+	infoBoxWrapper: {
+	borderBottomColor: '#dddddd',
+	borderBottomWidth: 1,
+	borderTopColor: '#dddddd',
+	borderTopWidth: 1,
+	flexDirection: 'row',
+	height: 100,
+	},
+	infoBox: {
+	width: '50%',
+	alignItems: 'center',
+	justifyContent: 'center',
+	},
+	menuWrapper: {
+	marginTop: 10,
+	alignItems: 'center',
+	justifyContent: 'center'
+	},
+	menuItem: {
+	flexDirection: 'row',
+	paddingVertical: 15,
+	paddingHorizontal: 30,
+	},
+	menuItemText: {
+	color: '#777777',
+	marginLeft: 20,
+	fontWeight: '600',
+	fontSize: 16,
+	lineHeight: 26,
+	}		
 	});

@@ -1,64 +1,77 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, SafeAreaView, TouchableOpacity} from "react-native";
+import {
+  Avatar,
+  Title,
+  Caption,
+  Text,
+} from 'react-native-paper';
+import styles from '../assets/styles';
+import Icon from 'react-native-vector-icons/Ionicons';
+import * as Animatable from 'react-native-animatable';
 
-class CoachDetails  extends React.Component {
-
+class CoachDetails extends React.Component {
   render() {
-    const { username, email, instagram, twitter, description, status, image } = this.props;
-
+    const { username, email, image, instagram, twitter, description, postCount, followerCount } = this.props;
     return (
-      <View style={styles.userCard}>
-        <View style={styles.userIcon}>
-          {image ? 
-            <Image source={ {uri: image.cloudinary}} style={styles.image} />
-          :
-            null 
+      <SafeAreaView style={styles.container}>
+                  <Animatable.View style={styles.footer}
+                    animation="fadeInDown"
+                    duraton="2000"
+                    delay={700}
+                    style={styles.userInfoSection}>
+          <View style={{flexDirection: 'column', marginTop: 15}}>
+          { image == null ? 
+            <Avatar.Image  source={require('../assets/images/avatarblank.png')} size={240} />
+            :
+            <Avatar.Image  source={ {uri: image.cloudinary}} size={250} />
           }
-        </View>
-        <View style={styles.userInfo}>
-          {username && <Text style={styles.userLabel}>User: {username}</Text>}
-          {email && <Text style={styles.userLabel}>Email: {email}</Text>}
-          {instagram && <Text style={styles.userLabel}>Instagram: {instagram}</Text>}
-          {twitter && <Text style={styles.userLabel}>Twitter: {twitter}</Text>}
-          {description && <Text style={styles.userLabel}>{description}</Text>}
-          {status && <Text style={styles.userLabel}>{status}</Text>}
-        </View>
-      </View>
+            <View style={{marginLeft: 5}}>
+              <Title style={[styles.usertitle, {
+                marginTop:20,
+                marginBottom: 10,
+              }]}>{username}</Title>
+              <Caption style={styles.caption}>{description}</Caption>
+            </View>
+          </View>
+        </Animatable.View>
+  
+        <Animatable.View style={styles.footer}
+                    animation="fadeInLeft"
+                    duraton="2000"
+                    delay={700}
+                    style={styles.userSocialSection}>
+        <View style={styles.userProfileRow}>
+            <Icon name="mail-outline" size={30} />
+            <Text style={{color:"#777777", marginLeft: 20, marginTop: 10}}>{email}</Text>
+          </View>
+          <View style={styles.userProfileRow}>
+            <Icon name="logo-twitter" size={30} />
+            <Text style={{color:"#777777", marginLeft: 20, marginTop: 10}}>{twitter}</Text>
+          </View>
+          <View style={styles.userProfileRow}>
+            <Icon name="logo-instagram" size={30}/>
+            <Text style={{color:"#777777", marginLeft: 20, marginTop: 10}}>{instagram}</Text>
+          </View>
+        </Animatable.View>
+
+          <View style={styles.infoBoxWrapper}>
+            <View style={[styles.infoBox, {
+              borderRightColor: '#dddddd',
+              borderRightWidth: 1
+            }]}>
+              <Title>{followerCount}</Title>
+              <Caption>Followers</Caption>
+            </View>
+            <View style={styles.infoBox}>
+            <Title>{postCount}</Title>
+              <Caption>Posts</Caption>
+            </View>
+          </View>
+      </SafeAreaView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  userCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 20,
-    marginTop: 30
-  },
-  userIcon: {
-    borderRadius: 50,
-    height: 100,
-    width: 100,
-    marginRight: 15,
-    alignItems: "center",
-    justifyContent: "center",
-
-  },
-  userInitials: {
-    color: "black"
-  },
-  userInfo: {
-    flex: 1
-  },
-  userLabel: {
-    marginBottom: 5
-  },
-  image: {
-    borderRadius: 8,
-    width: 120,
-    height: 120,
-    margin: 3  
-  }
-});
 
 export default CoachDetails;

@@ -33,7 +33,7 @@ class Post extends Component {
     const { modalVisible } = this.state;
     return (
       <Animatable.View  
-      delay={1000}                
+      delay={800}                
       animation="fadeInLeft"
       duraton="9000">
       <View style={styles.centeredView}>

@@ -3,7 +3,7 @@ import {
   ScrollView,
   View,
   ActivityIndicator,
-  Button,
+  TouchableOpacity,
   Text,
   ImageBackground
 } from 'react-native';
@@ -11,9 +11,11 @@ import { connect } from 'react-redux';
 import UserDetails from '../components/UserDetails';
 import {validateUser, signOutUser} from '../actions/userActions';
 import {fetchUserPosts, selectPost} from '../actions/postActions';
+import { fetchFollowers } from '../actions/followActions';
 import {deleteToken} from '../actions/tokenActions';
 import CoachPosts from "../components/CoachPosts";
 import styles from '../assets/styles';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -22,9 +24,10 @@ class ProfileScreen extends React.Component {
 
 
   componentDidMount(){
-    const { token, users, fetchUserPosts, validateUser } = this.props;
+    const { token, users, fetchUserPosts, validateUser, fetchFollowers } = this.props;
     validateUser(token.authToken)
     fetchUserPosts(users.currentUser.id, token.authToken)
+    fetchFollowers(users.currentUser.id, token.authToken)
   }
 
 
@@ -56,8 +59,12 @@ class ProfileScreen extends React.Component {
     this.props.deleteToken()
   };
 
+
   render() {
-    const { users, posts } = this.props;
+    const { users, posts, follows } = this.props;
+    const postsCount = posts.posts ? posts.posts.length : 0 
+    const followerCount = follows.followers ? follows.followers.length : 0 
+ 
     return (
           <View>
             <ImageBackground
@@ -77,14 +84,28 @@ class ProfileScreen extends React.Component {
               instagram={users.currentUser.instagram}
               twitter={users.currentUser.twitter}
               description={users.currentUser.description}
-              status={users.currentUser.status}
               image={users.currentUser.image}
+              flag={users.currentUser.flag}
+              editProfile={this.editProfile}
+              onPressSignOut={this.onPressSignOut}
+              postCount={postsCount}
+              followerCount={followerCount}
             />
-              <Button title="Update Profile" onPress={this.editProfile}/>
-              <Button title="Sign out" onPress={this.onPressSignOut} />
           {users.currentUser.flag === true ?  
             <View >
-              <Button title="Add Post" onPress={this.addPost}/>
+              <View style={styles.userSocialSection}>
+                <TouchableOpacity style={styles.userProfileRow2}
+                      onPress={this.addPost}>
+                  <Icon name="add-circle-outline" size={30}/>
+                  <Text style={{color:"#777777", 
+                                marginLeft: 10, 
+                                marginTop: 8, 	
+                                fontSize: 14,
+                                fontWeight: 'bold'}}>
+                    Add Post
+                    </Text>
+                </TouchableOpacity>
+              </View>
               {posts && <CoachPosts
                 posts={posts.user_posts}
                 onPress={this.onPressPost}
@@ -109,6 +130,7 @@ const mapStateToProps = state => {
   return {
     users: state.users,
     posts: state.posts,
+    follows: state.follows,
     token: state.token
   };
 };
@@ -118,6 +140,7 @@ const mapDispatchToProps = dispatch => {
     validateUser: token => dispatch(validateUser(token)),
     fetchUserPosts: (id, token) => dispatch(fetchUserPosts(id, token)),
     onSelectPost: postId => dispatch(selectPost(postId)),
+    fetchFollowers: (id, token) => dispatch(fetchFollowers(id, token)),
     signOutUser: () => dispatch(signOutUser()),
     deleteToken: () => dispatch(deleteToken())
   };

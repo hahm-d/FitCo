@@ -34,7 +34,8 @@ class CommentsList extends React.Component {
 
 const styles = StyleSheet.create({
   title: {
-    marginBottom: 10
+    marginBottom: 10,  
+    fontSize: 15,
   },
   noCommentsDescription: {
     height: 140,

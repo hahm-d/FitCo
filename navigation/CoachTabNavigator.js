@@ -26,12 +26,12 @@ const CoachTabScreen = () => (
         }}
       />
       <Tab.Screen
-        name="Find"
+        name="Chat"
         component={FindScreen}
         options={{
-          tabBarLabel: 'Find',
+          tabBarLabel: 'Chat',
           tabBarIcon: ({ color }) => (
-            <Icon name="search-outline" color={color} size={26} />
+            <Icon name="chatbubbles-outline" color={color} size={26} />
           ),
         }}
       />

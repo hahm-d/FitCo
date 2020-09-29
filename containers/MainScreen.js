@@ -69,7 +69,7 @@ class MainScreen extends React.Component {
                                         <Image 
                                             source={{uri: item.image.cloudinary}}
                                             style={{width: 150, marginRight: 8,
-                                            height: 250, borderRadius: 10}}
+                                                    height: 250, borderRadius: 10}}
                                          /> }
                                     </TouchableOpacity>
                                     <Text style={styles.postImageText}>{item.title}</Text>
@@ -100,7 +100,7 @@ class MainScreen extends React.Component {
                                         <Image 
                                             source={{uri: item.image.cloudinary}}
                                             style={{width: 200, marginRight: 8,
-                                            height: 250, borderRadius: 10}}
+                                                    height: 250, borderRadius: 10}}
                                          /> }
                                     </TouchableOpacity>
                                     <Text style={styles.imageText}>{item.username}</Text>
@@ -123,13 +123,13 @@ class MainScreen extends React.Component {
                         data={foods}
                         renderItem={({item}) => {
                             return(
-                                <View style={{paddingVertial: 20, paddingLeft: 16}}>
+                                <View style={{paddingVertial: 20, paddingLeft: 16, paddingBottom: 50}}>
                                     <TouchableOpacity>
                                         { item.image && 
                                         <Image 
                                             source={{uri: item.image}}
                                             style={{width: 150, marginRight: 8,
-                                            height: 250, borderRadius: 10}}
+                                                    marginBottom: 10, height: 250, borderRadius: 10}}
                                          /> }
                                     </TouchableOpacity>
                                     <Text style={styles.imageTextFood}>{item.title}</Text>
@@ -207,8 +207,10 @@ const styles = StyleSheet.create({
         fontSize: 19,
         left: 30,
         bottom: 15
+    },
+    imageTextFood:{
+        fontWeight: 'bold'
     }
-
 })
 
 

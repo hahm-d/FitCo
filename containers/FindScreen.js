@@ -21,7 +21,7 @@ class FindScreen extends React.Component {
 
     state = {
         modalVisible: false,
-        selectedType: 11,
+        selectedType: 10,
         selectedDisplay: "All",
         filteredList: this.props.users.users
     }

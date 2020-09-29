@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Text, StyleSheet, Image, Modal, Alert, Touchabl
 import PropTypes from "prop-types";
 import Video from 'react-native-video';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import * as Animatable from 'react-native-animatable';
 class Post extends Component {
   
   state = {
@@ -32,6 +32,10 @@ class Post extends Component {
     const { title, content, likes, views, image, video, url } = this.props;
     const { modalVisible } = this.state;
     return (
+      <Animatable.View  
+      delay={1000}                
+      animation="fadeInLeft"
+      duraton="9000">
       <View style={styles.centeredView}>
         <Modal
           animationType="slide"
@@ -112,6 +116,7 @@ class Post extends Component {
             />
           </View> 
       </View>
+      </Animatable.View> 
     );
   }
 }

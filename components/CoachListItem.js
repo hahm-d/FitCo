@@ -24,7 +24,12 @@ class CoachListItem extends Component {
         onPress={() => onPress({ user })}
       >
         <View>
-          {image && <Image source={ {uri: image.cloudinary}} style={imageStyle} />}
+          {image ? <Image source={ {uri: image.cloudinary}} style={imageStyle} />
+          :
+          <Image 
+              source={require('../assets/images/avatarblank.png')}
+              style={styles.followerAvatar}/>                                              
+          }
           <Text style={styles.descriptionCardItem}>{user.username}</Text>
           {user.status && (
         <View style={styles.status}>

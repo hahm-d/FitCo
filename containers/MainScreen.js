@@ -34,7 +34,8 @@ class MainScreen extends React.Component {
                     <ActivityIndicator size="large" style={{flex: 1, justifyContent: "center"}}/>
                 :
         <ScrollView> 
-            <Animatable.View                 
+            <Animatable.View 
+                delay={1000}                
                 animation="fadeInLeft"
                 duraton="9000">
                 <ImageBackground
@@ -53,7 +54,8 @@ class MainScreen extends React.Component {
                     <Text style={{fontSize: 22, fontWeight: 'bold'}}>Tending Posts</Text>
                 </View>
             <ScrollView>
-            <Animatable.View                 
+            <Animatable.View   
+                delay={1000}                 
                 animation="fadeInRight"
                 duraton="9000">
                     <FlatList
@@ -82,7 +84,8 @@ class MainScreen extends React.Component {
                     <Text style={{fontSize: 22, fontWeight: 'bold'}}>Tending Coaches</Text>
                 </View>
             <ScrollView>
-            <Animatable.View                 
+            <Animatable.View 
+                delay={1000}                 
                 animation="fadeInLeft"
                 duraton="9000">
                     <FlatList
@@ -111,7 +114,10 @@ class MainScreen extends React.Component {
                     <Text style={{fontSize: 22, fontWeight: 'bold'}}>Nutrition & Wellness</Text>
                 </View>
             <ScrollView>
-                <View>
+            <Animatable.View 
+                delay={1000}                 
+                animation="fadeInRight"
+                duraton="9000">
                 <FlatList
                     horizontal={true}
                         data={foods}
@@ -130,7 +136,7 @@ class MainScreen extends React.Component {
                                 </View>
                             )
                         }}/>
-                </View>
+                </Animatable.View>
             </ScrollView>
 
             </ScrollView>          

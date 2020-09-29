@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View, ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { connect } from 'react-redux';
@@ -18,6 +19,9 @@ const Drawer = createDrawerNavigator();
 
 class App extends Component {
 
+state={
+  isLoading: true
+}
 
 retrieveData = async () => {
   try{
@@ -26,6 +30,7 @@ retrieveData = async () => {
         this.props.validateUser(token)
         this.props.saveToken(token)
       }
+      this.setState({isLoading: false})
   }
   catch(error){
     console.log(error)
@@ -40,6 +45,13 @@ async componentDidMount() {
 
 render(){
   const { users } = this.props;
+  if(this.state.isLoading){
+    return(
+      <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+      <ActivityIndicator size="large"/>
+      </View>
+    )
+  }
   return (
     <NavigationContainer>
       {users.currentUser !== null ? [

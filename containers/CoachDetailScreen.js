@@ -64,6 +64,7 @@ class CoachDetailScreen extends Component {
               followerCount={followerCount}
             />
             <CoachPosts
+              permission={false}
               posts={posts.coach_posts}
               onPress={this.onPressPost}
               loading={posts.isloading}

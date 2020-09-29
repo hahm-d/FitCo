@@ -84,6 +84,7 @@ class RegisterScreen extends React.Component {
                     style={styles.textInput}
                     value={this.state.username}
                     placeholder="Username"
+                    placeholderTextColor='#A9A9A9'
                     type='username'
                     onChangeText={this.changeHandler("username")}
                     />
@@ -98,6 +99,7 @@ class RegisterScreen extends React.Component {
                     style={styles.textInput}
                     value={this.state.email}
                     placeholder="Email"
+                    placeholderTextColor='#A9A9A9'
                     type='email'
                     onChangeText={this.changeHandler("email")}
                     /> 
@@ -112,6 +114,7 @@ class RegisterScreen extends React.Component {
                     style={styles.textInput}
                     value={this.state.password}
                     placeholder="Password"
+                    placeholderTextColor='#A9A9A9'
                     secureTextEntry
                     type='password'
                     onChangeText={this.changeHandler("password")}
@@ -127,6 +130,7 @@ class RegisterScreen extends React.Component {
                     style={styles.textInput}
                     value={this.state.password2}
                     placeholder="Password"
+                    placeholderTextColor='#A9A9A9'
                     secureTextEntry
                     type='password2'
                     onChangeText={this.changeHandler("password2")}
@@ -137,7 +141,7 @@ class RegisterScreen extends React.Component {
                         style={[styles.signIn, {
                             borderColor: '#009387',
                             borderWidth: 1,
-                            marginTop: 1
+                            marginTop: 6
                         }]}>
                         <Text style={[styles.textSign, {color: '#009387'}]}>Sign up</Text>
                     </TouchableOpacity>
@@ -186,7 +190,7 @@ const styles = StyleSheet.create({
         paddingBottom: 20
     },
     text_footer: {
-        color: '#05375a',
+        color: '#696969',
         fontSize: 20,
         paddingTop: 40,
         paddingBottom: 5
@@ -215,11 +219,11 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 1,
         paddingLeft: 10,
-        color: '#05375a',
+        color: 'black'
     },
     errorMsg: {
         color: '#FF0000',
-        fontSize: 14,
+        fontSize: 14
     },
     signIn: {
         width: '100%',
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
     textPrivate: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginTop: 5
+        marginTop: 7
     },
     color_textPrivate: {
         color: 'grey'

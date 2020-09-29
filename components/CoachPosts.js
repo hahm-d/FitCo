@@ -8,8 +8,8 @@ class CoachPosts extends Component {
   renderSeparator = () => <View style={styles.separator} />;
 
   render() {
-    const { posts, onPress } = this.props;
-
+    const { posts, onPress, permission } = this.props;
+    
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Posts</Text>

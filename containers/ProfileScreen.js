@@ -32,9 +32,10 @@ class ProfileScreen extends React.Component {
 
 
   componentDidUpdate(prevProps) {
-    const { token, users, fetchUserPosts } = this.props;
+    const { token, users, fetchUserPosts, fetchFollowers } = this.props;
     if (users.currentUser !== prevProps.users.currentUser) {
       fetchUserPosts(users.currentUser.id, token.authToken)
+      fetchFollowers(users.currentUser.id, token.authToken)
     }
   }
 
@@ -107,6 +108,7 @@ class ProfileScreen extends React.Component {
                 </TouchableOpacity>
               </View>
               {posts && <CoachPosts
+                permission={true}
                 posts={posts.user_posts}
                 onPress={this.onPressPost}
                 loading={posts.isloading}

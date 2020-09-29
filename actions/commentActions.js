@@ -6,7 +6,7 @@ import {FETCH_COMMENT_REQUEST,
         DELETE_COMMENT, 
         COMMENT_ERROR} from '../constants/actionTypes'
 
-const api = 'http://localhost:3000'
+const api = 'https://neat-owl-90.loca.lt'
 //fetch individual post by id (with nested comments)
 export function fetchPostComments(id, token) {
   return (dispatch) => {

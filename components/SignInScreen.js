@@ -56,7 +56,7 @@ class SignInScreen extends React.Component {
                             placeholderTextColor={'darkgray'}
                         />    
                     </View>
-                    <Text style={styles.text_footer}>Username</Text>
+                    <Text style={styles.text_footer}>Password</Text>
                     <View style={styles.action}>
                         <FontAwesome 
                             name="lock"

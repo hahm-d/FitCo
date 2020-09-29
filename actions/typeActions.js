@@ -7,7 +7,7 @@ import {FETCH_TYPE_REQUEST,
         ADD_CATEGORY,
         TYPE_ERROR} from '../constants/actionTypes'
 
-const api = 'http://localhost:3000'
+const api = 'https://neat-owl-90.loca.lt'
 
 
 const categories = [

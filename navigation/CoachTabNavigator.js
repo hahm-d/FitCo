@@ -3,10 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import MainScreen from '../containers/MainScreen';
-import FindScreen from '../containers/FindScreen';
 import FollowersScreen from '../containers/FollowersScreen';
 import ProfileNavigator from './ProfileNavigator';
-
+import BroadCastScreen from '../containers/BroadCastScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,12 +25,12 @@ const CoachTabScreen = () => (
         }}
       />
       <Tab.Screen
-        name="Chat"
-        component={FindScreen}
+        name="Broadcast"
+        component={BroadCastScreen}
         options={{
-          tabBarLabel: 'Chat',
+          tabBarLabel: 'Broadcast',
           tabBarIcon: ({ color }) => (
-            <Icon name="chatbubbles-outline" color={color} size={26} />
+            <Icon name="radio-outline" color={color} size={26} />
           ),
         }}
       />

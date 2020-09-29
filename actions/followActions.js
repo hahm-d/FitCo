@@ -9,7 +9,9 @@ import {FETCH_USERS_REQUEST,
         FETCH_FOLLOWERS_REQUEST, 
         FOLLOW_ERROR} from '../constants/actionTypes'
 
-const api = 'http://localhost:3000/api/v1'
+const api = 'https://neat-owl-90.loca.lt/api/v1'
+const api2 = 'https://neat-owl-90.loca.lt'
+
 //fetch all coaches (not users)
 export function fetchUsers(token) {
     return (dispatch) => {
@@ -32,7 +34,7 @@ export const selectCoach = selecteduser => ({ type: SELECT_USER, selecteduser })
 
 
 //User's followers
-//http://localhost:3000/api/v1/users/67/followers
+
 export function fetchFollowers(id, token){
   return (dispatch) => {
       dispatch({ type: FETCH_FOLLOWERS_REQUEST })
@@ -49,7 +51,7 @@ export function fetchFollowers(id, token){
 }
 
 //User following 
-//http://localhost:3000/api/v1/users/64/following
+
 export function fetchFollowing(id, token){
   return (dispatch) => {
       dispatch({ type: FETCH_FOLLOWING_REQUEST })
@@ -70,7 +72,7 @@ export function fetchFollowing(id, token){
 export function followCoach(followObj, token){
   return dispatch => {
      // dispatch({type: START_FOLLOW_REQUEST})
-      fetch(`http://localhost:3000/relationships`, {
+      fetch(`${api2}/relationships`, {
           method: "POST",
           headers: {
                       accepts: "application/json",
@@ -96,7 +98,7 @@ export function followCoach(followObj, token){
 export function unFollowCoach(followObj, token){
   return dispatch => {
      // dispatch({type: START_UNFOLLOW_REQUEST})
-      fetch(`http://localhost:3000/relationships`, {
+      fetch(`${api2}/relationships`, {
           method: "DELETE",
           headers: {
                       Authorization: `Bearer ${token}`

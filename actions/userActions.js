@@ -7,7 +7,7 @@ import {START_ADDING_USER_REQUEST,
         DESTROY_SESSION
     } from '../constants/actionTypes'
 
-const api = 'http://localhost:3000'
+const api = 'https://neat-owl-90.loca.lt'
 
 
 export function validateUser(token){ 

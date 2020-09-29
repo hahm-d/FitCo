@@ -13,7 +13,7 @@ import {FETCH_POSTS_REQUEST,
         POST_ERROR} from '../constants/actionTypes'
 
 
-const api = 'http://localhost:3000'
+const api = 'https://neat-owl-90.loca.lt'
 
 //fetch all posts
 export function fetchPosts(token) {

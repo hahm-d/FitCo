@@ -30,7 +30,7 @@ class FollowingScreen extends React.Component {
                     <ActivityIndicator size="small"/>
                 :
                 <ImageBackground
-                source={require('../assets/images/bg.png')}
+                source={require('../assets/images/bg1.png')}
                 style={styles.bg}>
                   <ScrollView>
                     <View style={styles.top}>

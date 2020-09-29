@@ -46,11 +46,6 @@ const CardItem = ({
       {/* NAME */}
       <Text style={nameStyle}>{name}</Text>
 
-      {/* DESCRIPTION */}
-      {description && (
-        <Text style={styles.descriptionCardItem}>{description}</Text>
-      )}
-
       {/* STATUS */}
       {status && (
         <View style={styles.status}>

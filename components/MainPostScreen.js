@@ -46,13 +46,18 @@ onPressComment = (comment) => {
         >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-                <Text>Add Comment</Text>
-                <TextInput
-                value={this.state.comment}
-                placeholder="comment"
-                type='comment'
-                onChangeText={this.changeHandler("comment")}
-                /> 
+          <View> 
+                <Text style={{size: 20}}>Add Comment</Text>
+                      <TextInput
+                      editable={true}
+                      multiline={true}
+                      style={styles.textInput}
+                      value={this.state.comment}
+                      placeholder="comment"
+                      type='comment'
+                      onChangeText={this.changeHandler("comment")}
+                      placeholderTextColor={'darkgray'}
+                      />  
                 <TouchableOpacity>
                     <Button title="Submit" onPress={() => this.onPressComment(this.state.comment)} />
                 </TouchableOpacity>
@@ -62,8 +67,9 @@ onPressComment = (comment) => {
                   this.setModalVisible(false);
                 }}
               >
-                <Text style={styles.exitButton}> x </Text>
+                <Text style={styles.exitButton}> cancel </Text>
               </TouchableHighlight>
+              </View>            
           </View>
         </View>
         </Modal>
@@ -77,11 +83,11 @@ onPressComment = (comment) => {
         <Text>{content}</Text>
         <Text>likes: {likes}</Text>
         <Text>views: {views}</Text>
-        <TouchableHighlight 
+          <TouchableHighlight 
             onPress={() => this.setModalVisible(true)} 
             style={{ ...styles.openButton, backgroundColor: "#2196F3" }}>
             <Text style={styles.textStyle}>Add Comment</Text>
-            </TouchableHighlight>
+          </TouchableHighlight>
       </View>
     );
   }
@@ -89,6 +95,7 @@ onPressComment = (comment) => {
 
 const styles = StyleSheet.create({
   postTitle: {
+    marginTop: 20,
     marginBottom: 5
   },
   postCommentContainer: {
@@ -122,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     shadowColor: "#000",
     width: 350,
-    height: 600,
+    height: 350,
     shadowOffset: {
       width: 0,
       height: 3
@@ -154,7 +161,18 @@ const styles = StyleSheet.create({
   exitButton: {
     color: "white",
     fontWeight: "bold",
-    marginHorizontal: 20
+    marginHorizontal: 10,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textInput: {
+    flex: 1,
+    padding: 8,
+    marginTop: 22,
+    paddingLeft: 10,
+    color: '#05375a',
+  },
+  textbox:{
   }
 });
 

@@ -1,9 +1,15 @@
 import React from 'react';
-import {ActivityIndicator, ScrollView,View,Text,TouchableOpacity,FlatList, Image} from 'react-native';
+import {ActivityIndicator, 
+        ScrollView,
+        View,
+        Text,
+        TouchableOpacity,
+        FlatList, 
+        Image, 
+        ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import styles from '../assets/styles';
 import { fetchFollowers, selectCoach } from '../actions/followActions';
-import CoachListItem from "../components/CoachListItem";
 import * as Animatable from 'react-native-animatable';
 
 class FollowersScreen extends React.Component {
@@ -25,18 +31,18 @@ class FollowersScreen extends React.Component {
       const { follows } = this.props;
         return(
             <>
+            <ImageBackground
+            source={require('../assets/images/bg1.png')}
+            style={styles.bg2}
+            ></ImageBackground>
             {follows.isLoading ?
                     <ActivityIndicator size="small"/>
                 :
-
-                  <ScrollView>
+                  <>
                     <View style={styles.top}>
                       <Text style={styles.title}>Followers</Text>
-                      <TouchableOpacity>
-                      <Text style={styles.icon}>
-                    </Text>
-                      </TouchableOpacity>
                     </View>
+                <ScrollView>
                     <Animatable.View                 
                 animation="fadeInRight"
                 duraton="9000">
@@ -71,6 +77,7 @@ class FollowersScreen extends React.Component {
                         }}/>
                 </Animatable.View>
                   </ScrollView>
+                  </>
             }
            </>
         )

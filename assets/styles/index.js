@@ -198,6 +198,12 @@ export default StyleSheet.create({
 		width: DIMENSION_WIDTH,
 		height: DIMENSION_HEIGHT
 	},
+	bg2: {
+		flex: 0.1,
+		resizeMode: "cover",
+		width: DIMENSION_WIDTH,
+		height: DIMENSION_HEIGHT
+	},
 	top: {
 		paddingTop: 50,
 		marginHorizontal: 10,
@@ -215,7 +221,7 @@ export default StyleSheet.create({
 
 	// CONTAINER - HOME
 	containerHome: { 
-		paddingTop: 40,
+		paddingTop: 20,
 		marginHorizontal: 10 
 	},
 

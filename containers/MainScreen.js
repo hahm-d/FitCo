@@ -143,7 +143,6 @@ class MainScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
-        backgroundColor: '#fff',
         alignContent: 'center',
         justifyContent: 'center',
     },
@@ -153,7 +152,6 @@ const styles = StyleSheet.create({
         right: 0,
         left: 0,
         height: 270,
-        backgroundColor: '#000',
         opacity: 0.2,
         borderBottomRightRadius: 65
     },

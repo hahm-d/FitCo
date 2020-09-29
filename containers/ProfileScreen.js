@@ -4,7 +4,8 @@ import {
   View,
   ActivityIndicator,
   Button,
-  Text
+  Text,
+  ImageBackground
 } from 'react-native';
 import { connect } from 'react-redux';
 import UserDetails from '../components/UserDetails';
@@ -12,6 +13,7 @@ import {validateUser, signOutUser} from '../actions/userActions';
 import {fetchUserPosts, selectPost} from '../actions/postActions';
 import {deleteToken} from '../actions/tokenActions';
 import CoachPosts from "../components/CoachPosts";
+import styles from '../assets/styles';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -57,13 +59,18 @@ class ProfileScreen extends React.Component {
   render() {
     const { users, posts } = this.props;
     return (
+          <View>
+            <ImageBackground
+            source={require('../assets/images/bg1.png')}
+            style={styles.bg2}
+            ></ImageBackground>
       <ScrollView>
             <>
-            {users.isLoading ?
+          {users.isLoading ?
                     <ActivityIndicator size="small"/>
-                :
+                : 
+          [
           <View>
-            {users.currentUser && 
             <UserDetails
               username={users.currentUser.username}
               email={users.currentUser.email}
@@ -72,19 +79,27 @@ class ProfileScreen extends React.Component {
               description={users.currentUser.description}
               status={users.currentUser.status}
               image={users.currentUser.image}
-            />}
-            <Button title="Update Profile" onPress={this.editProfile}/>
-            <Button title="Add Post" onPress={this.addPost}/>
-            <Button title="Sign out" onPress={this.onPressSignOut} />
-            {posts && <CoachPosts
-              posts={posts.user_posts}
-              onPress={this.onPressPost}
-              loading={posts.isloading}
+            />
+              <Button title="Update Profile" onPress={this.editProfile}/>
+              <Button title="Sign out" onPress={this.onPressSignOut} />
+          {users.currentUser.flag === true ?  
+            <View >
+              <Button title="Add Post" onPress={this.addPost}/>
+              {posts && <CoachPosts
+                posts={posts.user_posts}
+                onPress={this.onPressPost}
+                loading={posts.isloading}
               />}
+            </View>
+          :
+            null
+          }
           </View>
+          ]
         }
         </>
       </ScrollView>
+      </View>
     );
   }
 }

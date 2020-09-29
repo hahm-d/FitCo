@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { TouchableOpacity, View, Text, StyleSheet, Image, Modal, Alert, TouchableHighlight } from "react-native";
 import PropTypes from "prop-types";
 import Video from 'react-native-video';
-
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class Post extends Component {
   
@@ -23,6 +23,10 @@ class Post extends Component {
     const { onPress, id, title, content, likes, views, image } = this.props;
     onPress && onPress({ post: { id, title, content, likes, views, image } });
   };
+
+  onPressLike = () => {
+    //finish this
+  }
 
   render() {
     const { title, content, likes, views, image, video, url } = this.props;
@@ -64,7 +68,7 @@ class Post extends Component {
         {image ? 
             <Image source={ {uri: image.cloudinary}} style={styles.image} />
           :
-            null 
+          <Image source={require('../assets/images/logo1.png')} style={styles.image} />
         }
         {video ? 
             <TouchableHighlight 
@@ -84,14 +88,29 @@ class Post extends Component {
            :
             null
         }
-        <Text >{content}</Text>
-        <Text style={styles.text}>likes: {likes}</Text>
-        <Text style={styles.text}>views: {views}</Text>
-        <TouchableOpacity
-          style={styles.postCommentContainer}
-          onPress={this.onPressComment}> 
-          <Text style={styles.postCommentContainer}> View Comments </Text>
-        </TouchableOpacity>  
+          <Text style={styles.text}>{content}</Text>
+          <View style={styles.textAll}>
+              <Text style={styles.textDisplay}>likes: {likes}</Text>
+              <Text style={styles.textDisplay}>views: {views}</Text>
+          </View>
+          <View style={styles.postCommentContainer}>
+          <FontAwesome 
+              name="thumbs-up"
+              size={15}
+            />
+          <TouchableOpacity
+            onPress={this.onPressLike}> 
+            <Text style={{marginRight: 50}}> Like </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onPressComment}> 
+            <Text style={{marginLeft: 110}}> Comments </Text>
+          </TouchableOpacity> 
+          <FontAwesome 
+              name="comment"
+              size={15}
+            />
+          </View> 
       </View>
     );
   }
@@ -99,13 +118,32 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    marginBottom: 5,
-    fontSize: 15
+    marginTop: 20,
+    marginBottom: 20,
+    fontSize: 16,
+    paddingHorizontal: 10,
+    opacity: 0.5,
+    textAlign: 'justify',
+    lineHeight: 20
+  },
+  textDisplay: {
+    marginTop: 20,
+    marginBottom: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginRight: 80,
+    marginLeft: 70
+  },
+  textAll:{
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   postCommentContainer: {
-    marginTop: 5,
-    alignSelf: "flex-end",
-    flexDirection: "row"
+    marginTop: 10,
+    marginBottom: 20,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    flex: 1
   },
   postCommentIcon: {
     color: "black",
@@ -115,15 +153,16 @@ const styles = StyleSheet.create({
     color: "black"
   },
   nameStyle: {
-    paddingTop: 10,
-    paddingBottom: 7,
+    paddingTop: 25,
+    paddingBottom: 12,
     color: '#363636',
-    fontSize: 30
+    fontSize: 30,
+    fontWeight: 'bold'
   },
   image: {
     borderRadius: 8,
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
     margin: 2
   },  
   centeredView: {
@@ -138,18 +177,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     textAlign: 'right',
-    marginTop: 25, 
     backgroundColor: '#fff',
   },
   modalView: {
-    marginTop: 60,
+    marginTop: 50,
     backgroundColor: "white",
     borderRadius: 10,
     padding: 25,
     alignItems: "center",
     shadowColor: "#000",
     width: 400,
-    height: 650,
+    height: 700,
     shadowOffset: {
       width: 0,
       height: 2
@@ -161,13 +199,14 @@ const styles = StyleSheet.create({
   openButton: {
     backgroundColor: "#2196F3",
     borderRadius: 20,
-    padding: 8,
+    padding: 10,
+    marginTop: 20,
     elevation: 20
   },
   modalButton: {
     backgroundColor: "#2196F3",
     borderRadius: 20,
-    padding: 8,
+    padding: 10,
     elevation: 20,
     marginBottom: 30 
   },

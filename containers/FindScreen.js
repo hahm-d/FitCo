@@ -110,7 +110,7 @@ class FindScreen extends React.Component {
                     <ActivityIndicator size="small"/>
                 :
                 <ImageBackground
-                source={require('../assets/images/bg2.png')}
+                source={require('../assets/images/bg1.png')}
                 style={styles.bg}
                 >
                 <View style={styles.containerHome}>
@@ -143,7 +143,6 @@ class FindScreen extends React.Component {
                             user={item} 
                             name={item.username}
                             status={item.status}
-                            description={item.description}
                             status={item.status}
                             actions
                             onPressLeft={() => this.swiper.swipeLeft()}

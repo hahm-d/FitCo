@@ -1,18 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 
 class UserDetails extends React.Component {
   render() {
     const { username, email, image, instagram, status, twitter, description } = this.props;
+
     return (
-      <View style={styles.userCard}>
-        <View style={styles.userIcon}>
-        {image ? 
-            <Image source={ {uri: image.cloudinary}} style={styles.image} />
-          :
-            <Text>no avatar</Text>
-          }
-        </View>
+        <View></View>
+
+/*       <View style={styles.userCard}>
+        <Image source={{uri: image.cloudinary}} />
         <View style={styles.userInfo}>
           <Text style={styles.userLabel}>User: {username}</Text>
           <Text style={styles.userLabel}>Email: {email}</Text>
@@ -21,8 +18,8 @@ class UserDetails extends React.Component {
           <Text style={styles.userLabel}>Description: {description}</Text>
           <Text style={styles.userLabel}>Status: {status}</Text>
         </View>
-      </View>
-    );
+      </View> */
+    )
   }
 }
 
@@ -31,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     padding: 20,
-    marginTop: 40,
+    marginTop: 120,
   },
   userIcon: {
     borderRadius: 50,

@@ -9,8 +9,8 @@ import {FETCH_USERS_REQUEST,
         FETCH_FOLLOWERS_REQUEST, 
         FOLLOW_ERROR} from '../constants/actionTypes'
 
-const api = 'https://neat-owl-90.loca.lt/api/v1'
-const api2 = 'https://neat-owl-90.loca.lt'
+const api = 'https://tame-wombat-46.loca.lt/api/v1'
+const api2 = 'https://tame-wombat-46.loca.lt'
 
 //fetch all coaches (not users)
 export function fetchUsers(token) {

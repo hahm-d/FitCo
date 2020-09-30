@@ -29,42 +29,30 @@ const SplashScreen = ({navigation}) => {
         <View style={styles.header}>
             <Animatable.Image 
                 animation="fadeInLeft"
-                duraton="2000"
-            source={require('../assets/images/logo1.png')}
-            style={styles.logo}
-            resizeMode="stretch"
+                duraton="8000"
+                delay={1000}
+                source={require('../assets/images/logo2.png')}
+                style={styles.logo}
             />
         </View>
         <Animatable.View 
-            style={[styles.footer, {
-                backgroundColor: colors.background
-            }]}
+            style={styles.footer}
             animation="fadeInRight"
             duraton="2000"
         >
-            <Text style={[styles.title, {
-                color: colors.text
-            }]}>Coach. Learn. Grow.</Text>
-            <Text style={styles.text}>network and share </Text>
+            <Text style={styles.title}>Coach. Learn. Grow.</Text>
+            <Text style={styles.text}> network and share </Text>
             <View style={styles.buttons}>
             <TouchableOpacity 
                 onPress={()=>navigation.navigate('SignInScreen')}
-                    style={[styles.signIn, {
-                    borderColor: '#009387',
-                    borderWidth: 3,
-                    marginTop: 10
-                }]}>
-            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={[styles.textSign, {color: '#009387'}]}> Sign In </Animatable.Text>  
+                style={styles.signIn}>
+            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={[styles.textSign, {color: '#00CED1'}]}> Sign In </Animatable.Text>  
             </TouchableOpacity>
 
             <TouchableOpacity 
                 onPress={()=>navigation.navigate('RegisterScreen')}
-                style={[styles.signIn, {
-                    borderColor: '#009387',
-                    borderWidth: 3,
-                    marginTop: 10
-                }]}>
-            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={[styles.textSign, {color: '#009387'}]}> Register </Animatable.Text>  
+                style={styles.signIn}>
+            <Animatable.Text animation="zoomInLeft"  duraton="3000" direction="alternate" style={[styles.textSign, {color: '#00CED1'}]}> Register </Animatable.Text>  
             </TouchableOpacity>
             </View>
         </Animatable.View>
@@ -89,23 +77,24 @@ const styles = StyleSheet.create({
   },
   footer: {
       flex: .5,
-      backgroundColor: 'rgba(0,0,0,0.5)',
+      backgroundColor: 'rgba(0,0,0,0.9)',
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
       paddingVertical: 50,
       paddingHorizontal: 30,
   },
   logo: {
-      width: height_logo,
-      height: height_logo,
+      width: height_logo - 50,
+      height: height_logo - 50,
+      borderRadius: 30,
   },
   title: {
-      color: '#05375a',
-      fontSize: 30,
+      color: '#FFFFFF',
+      fontSize: 34,
       fontWeight: 'bold'
   },
   text: {
-      color: 'grey',
+      color: '#00CED1',
       marginTop:5
   },
   buttons: {
@@ -121,5 +110,12 @@ const styles = StyleSheet.create({
       fontSize: 20,
       flexDirection: 'row',
       color: '#4682B4'
+  },
+  signIn:{
+    borderColor: '#00CED1',
+    padding: 3,
+    borderWidth: 4,
+    borderRadius: 15,
+    marginTop: 10    
   }
 });

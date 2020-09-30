@@ -129,7 +129,7 @@ class FindScreen extends React.Component {
                     </View>
 
                     <CardStack
-                    loop={true}
+                    loop={false}
                     verticalSwipe={false}
                     renderNoMoreCards={() => null}
                     ref={swiper => (this.swiper = swiper)}

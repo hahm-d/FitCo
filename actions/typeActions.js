@@ -7,7 +7,7 @@ import {FETCH_TYPE_REQUEST,
         ADD_CATEGORY,
         TYPE_ERROR} from '../constants/actionTypes'
 
-const api = 'https://neat-owl-90.loca.lt'
+const api = 'https://tame-wombat-46.loca.lt'
 
 
 const categories = [

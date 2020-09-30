@@ -35,7 +35,7 @@ class MainScreen extends React.Component {
                 :
         <ScrollView> 
             <Animatable.View 
-                delay={1000}                
+                delay={1200}                
                 animation="fadeInLeft"
                 duraton="9000">
                 <ImageBackground
@@ -55,7 +55,7 @@ class MainScreen extends React.Component {
                 </View>
             <ScrollView>
             <Animatable.View   
-                delay={1000}                 
+                delay={1200}                 
                 animation="fadeInRight"
                 duraton="9000">
                     <FlatList
@@ -86,7 +86,7 @@ class MainScreen extends React.Component {
                 </View>
             <ScrollView>
             <Animatable.View 
-                delay={1000}                 
+                delay={1200}                 
                 animation="fadeInLeft"
                 duraton="9000">
                     <FlatList
@@ -117,7 +117,7 @@ class MainScreen extends React.Component {
                 </View>
             <ScrollView>
             <Animatable.View 
-                delay={1000}                 
+                delay={1200}                 
                 animation="fadeInRight"
                 duraton="9000">
                 <FlatList

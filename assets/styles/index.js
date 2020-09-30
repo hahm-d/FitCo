@@ -78,6 +78,12 @@ export default StyleSheet.create({
 		shadowColor: DARK_GRAY,
 		shadowOffset: { height: 10, width: 0 }
 	},
+	button3: {
+		alignItems: "center",
+		justifyContent: "center",
+		marginHorizontal: 19,
+		shadowOffset: { height: 10, width: 0 }
+	},
 	miniButton: {
 		width: 40,
 		height: 40,

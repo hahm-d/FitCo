@@ -57,18 +57,20 @@ const CardItem = ({
       {actions && (
         <View style={styles.actionsCardItem} >
 
-          <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
+          <TouchableOpacity 
+            style={styles.button3} 
+            onPress={() => onPressLeft()}>
             <Text style={styles.dislike}>
-            <FontAwesome name="times-circle" size={65}/>
+            <FontAwesome name="times-circle" size={65} style={{color: '#DC143C'}}/>
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.button}
+            style={styles.button3}
             onPress={() => onPressRight()}
           >
             <Text style={styles.like}>
-            <FontAwesome name="check-circle" size={65}/>
+            <FontAwesome name="check-circle" size={65} style={{color: '#7FFFD4'}}/>
             </Text>
           </TouchableOpacity>
         </View>

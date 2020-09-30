@@ -63,7 +63,7 @@ class ProfileScreen extends React.Component {
 
   render() {
     const { users, posts, follows } = this.props;
-    const postsCount = posts.posts ? posts.posts.length : 0 
+    const postsCount = posts.user_posts ? posts.user_posts.length : 0 
     const followerCount = follows.followers ? follows.followers.length : 0 
  
     return (

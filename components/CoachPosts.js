@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import Post from "./Post";
-
+import * as Animatable from 'react-native-animatable';
 
 class CoachPosts extends Component {
   renderSeparator = () => <View style={styles.separator} />;
@@ -12,7 +12,12 @@ class CoachPosts extends Component {
     
     return (
       <View style={styles.container}>
+        <Animatable.View
+                    animation="fadeInRight"
+                    duraton="2000"
+                    delay={700}>
         <Text style={styles.title}>Posts</Text>
+        </Animatable.View>
           <FlatList
             data={posts}
             keyExtractor={item => `${item.id}`}

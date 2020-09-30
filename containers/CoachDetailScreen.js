@@ -18,15 +18,16 @@ class CoachDetailScreen extends Component {
     this.getCoachData();
   }
 
-  componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps) {
     if (this.props.selectedUser !== prevProps.selectedUser) {
-      this.getCoachData();
+      this.getCoachData()
     }
   }
 
   getCoachData = () => {
     const {
       onFetchCoachPosts,
+      onFetchFollowers,
       selectedUser,
       token
     } = this.props;
@@ -42,8 +43,9 @@ class CoachDetailScreen extends Component {
 
 
   render() {
+    console.log(this.props.selectedUser)
     const { posts, selectedUser, follows } = this.props;
-    const postsCount = posts.posts ? posts.posts.length : 0 
+    const postsCount = posts.coach_posts ? posts.coach_posts.length : 0 
     const followerCount = follows.followers ? follows.followers.length : 0 
     return (
       <ScrollView>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-    Button,
     View, 
     Text, 
     TouchableOpacity, 
@@ -14,7 +13,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/userActions';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { useTheme } from 'react-native-paper';
+
 
 
 class SignInScreen extends React.Component {

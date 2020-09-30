@@ -11,9 +11,9 @@ import {deleteToken} from '../actions/tokenActions';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Video from 'react-native-video';
-/* import { LogBox } from 'react-native';
+import { LogBox } from 'react-native';
 
-LogBox.ignoreAllLogs(); */
+LogBox.ignoreAllLogs();
 class HomeScreen extends React.Component {
     static navigationOptions = {
         title: "HomeScreen"

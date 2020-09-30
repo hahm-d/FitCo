@@ -55,7 +55,10 @@ class CoachDetails extends React.Component {
           </View>
         </Animatable.View>
 
-          <View style={styles.infoBoxWrapper}>
+          <Animatable.View style={styles.infoBoxWrapper}
+                          animation="fadeIn"
+                          duraton="2000"
+                          delay={900}>
             <View style={[styles.infoBox, {
               borderRightColor: '#dddddd',
               borderRightWidth: 1
@@ -67,7 +70,7 @@ class CoachDetails extends React.Component {
             <Title>{postCount}</Title>
               <Caption>Posts</Caption>
             </View>
-          </View>
+          </Animatable.View>
       </SafeAreaView>
     );
   }

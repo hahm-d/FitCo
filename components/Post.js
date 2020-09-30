@@ -33,7 +33,7 @@ class Post extends Component {
     const { modalVisible } = this.state;
     return (
       <Animatable.View  
-      delay={800}                
+      delay={900}                
       animation="fadeInLeft"
       duraton="9000">
       <View style={styles.centeredView}>
@@ -101,6 +101,7 @@ class Post extends Component {
           <FontAwesome 
               name="thumbs-up"
               size={15}
+              style={{color: '#ADD8E6'}}
             />
           <TouchableOpacity
             onPress={this.onPressLike}> 
@@ -113,6 +114,7 @@ class Post extends Component {
           <FontAwesome 
               name="comment"
               size={15}
+              style={{color: '#E6E6FA'}}
             />
           </View> 
       </View>
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
   textDisplay: {
     marginTop: 20,
     marginBottom: 20,
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: 'bold',
     marginRight: 80,
     marginLeft: 70

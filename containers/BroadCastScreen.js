@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StatusBar, StyleSheet } from 'react-native';
 import { NodeCameraView } from 'react-native-nodemediaclient';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -10,7 +10,7 @@ class BroadCastScreen extends React.Component {
 
  
   state = { 
-      'flashenable': false 
+      'flashenable': false,
     };
   
 
@@ -25,7 +25,8 @@ class BroadCastScreen extends React.Component {
         <NodeCameraView
           style={{ flex: 1 }}
           ref={(vb) => { this.vb = vb }}
-          outputUrl={"rtmp://live.mux.com/app/79a49661-3e0e-cd4a-db36-c394c546b81a"}
+          //update stream key for demo
+          outputUrl={"rtmp://live.mux.com/app/fc114220-0edb-c3b8-ac7a-9e5686b8a9d1"}
           camera={{ cameraId: 1, cameraFrontMirror: true }}
           audio={{ bitrate: 32000, profile: 1, samplerate: 44100 }}
           video={{ preset: 1, bitrate: 500000, profile: 1, fps: 15, videoFrontMirror: false }}
@@ -58,6 +59,9 @@ class BroadCastScreen extends React.Component {
             this.vb.flashEnable(this.state.flashenable);
           }}>
             <Icon name="sunny-outline" style={styles.actionButtonIcon} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { this.vb.stop() }}>
+            <Icon name="close-circle-outline" style={styles.actionButtonIcon} />
           </TouchableOpacity>
         </View>
       </View >

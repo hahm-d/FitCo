@@ -7,11 +7,16 @@ import {
     View,
     PixelRatio,
     TouchableOpacity,
-    Image
+    Image,
+    Platform,
+    StatusBar,
+    Alert
 } from 'react-native';
 import { connect } from 'react-redux';
 import { addPost } from '../actions/postActions';
 import ImagePicker from 'react-native-image-picker';
+import * as Animatable from 'react-native-animatable';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 class CreatePost extends React.Component {
     static navigationOptions = ({ navigation }) => {
@@ -103,45 +108,77 @@ class CreatePost extends React.Component {
         console.log(this.state)
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Create Post</Text>
-                <TextInput
-                style={styles.text}
-                value={this.state.title}
-                placeholder="title"
-                type='title'
-                onChangeText={this.changeHandler("title")}
-                />
-                <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-                    <View
-                        style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-                        {this.state.image === null ? (
-                        <Text>Select Photo</Text>
-                        ) : (
-                        <Image style={styles.avatar} source={this.state.image} />
-                        )}
-                    </View>
-                </TouchableOpacity>
+                 <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+                <View style={styles.header}>
+                <Animatable.Text animation="fadeInDown"  duraton="5000" direction="alternate" style={styles.text_header}> Create Post </Animatable.Text> 
+                </View>
 
-                <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
-                    <View style={[styles.avatar, styles.avatarContainer]}>
-                        <Text>Select Video</Text>
+                <Animatable.View style={styles.footer}
+                            animation="fadeInUpBig"
+                            duraton="2000">   
+                <Text style={styles.text_footer}>Title</Text>
+                    <View style={styles.action}>
+                    <FontAwesome 
+                        name="star"
+                        size={20}
+                    />
+                    <TextInput
+                        style={styles.textInput}
+                        value={this.state.username}
+                        placeholder="title"
+                        type='title'
+                        onChangeText={this.changeHandler("title")}
+                        placeholderTextColor={'darkgray'}
+                    />    
                     </View>
-                </TouchableOpacity>
-                {this.state.video && (
-                    <Text style={{margin: 8, textAlign: 'center'}}>
-                        {this.state.video.fileName}
-                    </Text>
-                )}
-                <Text style={styles.text}>Add Description</Text>
-                <TextInput
-                value={this.state.content}
-                placeholder="content"
-                type='content'
-                onChangeText={this.changeHandler("content")}
-                /> 
-                <TouchableOpacity style={styles.touch}>
-                    <Button title="Create Post" onPress={() => this.onPressCreate(this.state)} />
-                </TouchableOpacity>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-evenly', paddingTop: 50}}>
+                      <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+                          <View
+                              style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
+                              {this.state.image === null ? (
+                              <Text>Select Photo</Text>
+                              ) : (
+                              <Image style={styles.avatar} source={this.state.image} />
+                              )}
+                          </View>
+                      </TouchableOpacity>
+
+                      <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
+                          <View style={[styles.avatar, styles.avatarContainer]}>
+                              <Text>Select Video</Text>
+                          </View>
+                      </TouchableOpacity>
+                              {this.state.video && (
+                                  <Text style={{margin: 8, textAlign: 'center'}}>
+                                      {this.state.video.fileName}
+                                  </Text>
+                              )}
+                    </View>
+                <Text style={styles.text_footer}>Add Description</Text>
+                    <View style={styles.action}>
+                    <FontAwesome 
+                        name="sticky-note"
+                        size={20}
+                    />
+                        <TextInput
+                            style={styles.textInput}
+                            value={this.state.username}
+                            placeholder="content"
+                            type='content'
+                            onChangeText={this.changeHandler("content")}
+                            placeholderTextColor={'darkgray'}
+                        />    
+                    </View>                
+                <TouchableOpacity  
+                        onPress={() => this.onPressCreate(this.state)}
+                        style={[styles.signIn, {
+                            borderColor: '#009387',
+                            borderWidth: 1,
+                            marginTop: 50
+                        }]}>
+                        <Text style={[styles.textSign, {color: '#009387'}]}>Create Post</Text>
+                    </TouchableOpacity>
+              </Animatable.View>
             </View>
         );
 
@@ -149,39 +186,98 @@ class CreatePost extends React.Component {
 
 };
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 25,
-    },
-    avatarContainer: {
-        borderColor: '#9B9B9B',
-        borderWidth: 1 / PixelRatio.get(),
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    avatar: {
-        borderRadius: 10,
-        width: 100,
-        height: 100,
-    }, 
-    title: {
-        paddingTop: 25,
-        paddingBottom: 5,
-        fontSize: 25,
-        textAlign: "center"
-    },
-    text: {
-        paddingTop: 25,
-        paddingBottom: 5,
-        fontSize: 15,
-        textAlign: "center"
-    },
-    touch: {
-        paddingTop: 25,       
-    }
+  container: {
+      flex: 1, 
+      backgroundColor: '#000000'
+  },
+  avatarContainer: {
+      borderColor: '#9B9B9B',
+      borderWidth: 1 / PixelRatio.get(),
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  avatar: {
+      borderRadius: 10,
+      width: 100,
+      height: 100,
+  }, 
+  title: {
+      paddingTop: 25,
+      paddingBottom: 5,
+      fontSize: 25,
+      textAlign: "center"
+  },
+  text: {
+      paddingTop: 25,
+      paddingBottom: 5,
+      fontSize: 15,
+      textAlign: "center"
+  },
+  touch: {
+      paddingTop: 25,       
+  },
+  header: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    paddingHorizontal: 30,
+    paddingBottom: 40
+  },
+  footer: {
+      flex: 3,
+      backgroundColor: '#fff',
+      borderTopLeftRadius: 30,
+      borderTopRightRadius: 30,
+      paddingHorizontal: 20,
+      paddingVertical: 30
+  },
+  text_header: {
+      color: '#fff',
+      fontWeight: 'bold',
+      fontSize: 40,
+      textAlign: 'center',
+      paddingBottom: 20
+  },
+  text_footer: {
+      color: '#05375a',
+      fontSize: 20,
+      paddingTop: 25,
+      paddingBottom: 5
+  },
+  action: {
+      flexDirection: 'row',
+      marginTop: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#f2f2f2',
+      paddingBottom: 5
+  },
+  actionError: {
+      flexDirection: 'row',
+      marginTop: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: '#FF0000',
+      paddingBottom: 5
+  },
+  textInput: {
+      flex: 1,
+      marginTop: Platform.OS === 'ios' ? 0 : -12,
+      paddingLeft: 10,
+      color: '#05375a',
+  },
+  button: {
+      alignItems: 'center',
+      marginTop: 50
+  },
+  signIn: {
+      width: '100%',
+      height: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10
+  },
+  textSign: {
+      fontSize: 18,
+      fontWeight: 'bold'
+  }
 });
  
 function mapStateToProps(state){

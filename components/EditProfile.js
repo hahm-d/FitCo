@@ -11,6 +11,7 @@ import {
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { updateUser } from '../actions/userActions';
 import ImagePicker from 'react-native-image-picker';
 
@@ -35,7 +36,7 @@ class EditProfile extends React.Component {
         userObj["username"] = currentUser.username
         userObj["id"] = currentUser.id
         updateUser(userObj, token.authToken)
-        navigation.navigate('Home');
+        navigation.navigate('ProfileScreen');
     };
 
     render() {
@@ -51,10 +52,7 @@ class EditProfile extends React.Component {
        duraton="2000">  
        <Text style={styles.text_footer}>email</Text>
        <View style={styles.action}>
-       <FontAwesome 
-           name="id-badge"
-           size={20}
-       />
+       <Icon name="mail-outline" size={30} />
        <TextInput
        style={styles.textInput}
        value={this.state.email}
@@ -65,10 +63,7 @@ class EditProfile extends React.Component {
        </View>
        <Text style={styles.text_footer}>Instagram</Text>
        <View style={styles.action}>
-       <FontAwesome 
-           name="envelope"
-           size={20}
-       />
+       <Icon name="logo-instagram" size={30}/>
        <TextInput
        style={styles.textInput}
        value={this.state.instagram}
@@ -79,10 +74,7 @@ class EditProfile extends React.Component {
        </View>
        <Text style={styles.text_footer}>Twitter</Text>
        <View style={styles.action}>
-       <FontAwesome 
-           name="lock"
-           size={20}
-       />
+       <Icon name="logo-twitter" size={30} />
        <TextInput
        style={styles.textInput}
        value={this.state.twitter}
@@ -94,7 +86,7 @@ class EditProfile extends React.Component {
        <Text style={styles.text_footer}> Bio </Text>
        <View style={styles.action}>
        <FontAwesome 
-           name="lock"
+           name="address-card"
            size={20}
        />
        <TextInput

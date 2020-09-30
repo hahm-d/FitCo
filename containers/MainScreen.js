@@ -51,7 +51,7 @@ class MainScreen extends React.Component {
                 </ImageBackground>
             </Animatable.View>   
                 <View style={{padding: 25}}>
-                    <Text style={{fontSize: 22, fontWeight: 'bold'}}>Tending Posts</Text>
+                    <Text style={{fontSize: 22, fontWeight: 'bold'}}>Trending Posts</Text>
                 </View>
             <ScrollView>
             <Animatable.View   
@@ -82,7 +82,7 @@ class MainScreen extends React.Component {
 
 
                 <View style={{padding: 25}}>
-                    <Text style={{fontSize: 22, fontWeight: 'bold'}}>Tending Coaches</Text>
+                    <Text style={{fontSize: 22, fontWeight: 'bold'}}>Trending Coaches</Text>
                 </View>
             <ScrollView>
             <Animatable.View 

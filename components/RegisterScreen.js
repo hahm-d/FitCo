@@ -23,7 +23,7 @@ class RegisterScreen extends React.Component {
             email: '',
             password: '',
             password2: '',
-            status: 'online',
+            status: 'offline',
             flag: false
     }
 

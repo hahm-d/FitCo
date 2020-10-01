@@ -6,7 +6,7 @@ import {FETCH_COMMENT_REQUEST,
         DELETE_COMMENT, 
         COMMENT_ERROR} from '../constants/actionTypes'
 
-const api = 'https://bad-snake-61.loca.lt'
+const api = 'https://tender-falcon-18.loca.lt'
 
 //fetch individual post by id (with nested comments)
 export function fetchPostComments(id, token) {

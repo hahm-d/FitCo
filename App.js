@@ -14,6 +14,8 @@ import CoachTabNavigator from './navigation/CoachTabNavigator';
 
 //debugging
 import HomeScreen from './containers/HomeScreen';
+//live stream test
+import LiveVideoScreen from './containers/LiveVideoScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -63,7 +65,8 @@ render(){
         :
         <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={MainTabNavigator} />  
-        <Drawer.Screen name="Debugger" component={HomeScreen}/>        
+        <Drawer.Screen name="Debugger" component={HomeScreen}/>   
+        <Drawer.Screen name="Live View" component={LiveVideoScreen}/>       
         </Drawer.Navigator>       
         )
       ]

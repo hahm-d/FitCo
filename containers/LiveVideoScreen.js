@@ -13,7 +13,7 @@ render(){
     return(
             <View style={styles.container}>
                 <Video 
-                source={{ uri:'https://stream.mux.com/L01HSzW26eTFtZZXksHDXjZ01PMYGRkJOe25FazxpfuXk.m3u8'}} 
+                source={{ uri:'https://stream.mux.com/FBFgltZZSlWzD0083Wnbt9KvSwP1jn9TV02rpwbJcJ67Q.m3u8'}} 
                 ref={(ref) => {
                     this.player = ref
                 }}  // Store reference

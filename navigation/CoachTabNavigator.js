@@ -25,10 +25,10 @@ const CoachTabScreen = () => (
         }}
       />
       <Tab.Screen
-        name="Broadcast"
+        name="Livestream"
         component={BroadCastScreen}
         options={{
-          tabBarLabel: 'Broadcast',
+          tabBarLabel: 'Livestream',
           tabBarIcon: ({ color }) => (
             <Icon name="radio-outline" color={color} size={26} />
           ),

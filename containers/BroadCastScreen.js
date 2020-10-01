@@ -26,7 +26,7 @@ class BroadCastScreen extends React.Component {
           style={{ flex: 1 }}
           ref={(vb) => { this.vb = vb }}
           //update stream key for demo
-          outputUrl={"rtmp://live.mux.com/app/fc114220-0edb-c3b8-ac7a-9e5686b8a9d1"}
+          outputUrl={"rtmp://live.mux.com/app/bd48cbf0-b087-d57d-1e1b-445e8262ea45"}
           camera={{ cameraId: 1, cameraFrontMirror: true }}
           audio={{ bitrate: 32000, profile: 1, samplerate: 44100 }}
           video={{ preset: 1, bitrate: 500000, profile: 1, fps: 15, videoFrontMirror: false }}

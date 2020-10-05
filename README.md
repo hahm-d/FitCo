@@ -1,6 +1,5 @@
 # README
 
-DEMO 
 ![](FitCo1.gif)
 ![](FitCo2.gif)
 

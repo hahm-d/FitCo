@@ -1,5 +1,11 @@
 # README
 
+DEMO 
+![](FitCo1.gif)
+![](FitCo2.gif)
+
+
+
 You can deploy using Xcode Emulator: 
 react-native run-ios
 //react-native run-ios --simulator="iPhone X"

@@ -9,8 +9,8 @@ import {FETCH_USERS_REQUEST,
         FETCH_FOLLOWERS_REQUEST, 
         FOLLOW_ERROR} from '../constants/actionTypes'
 
-const api = 'https://horrible-puma-0.loca.lt/api/v1'
-const api2 = 'https://horrible-puma-0.loca.lt'
+const api = 'https://tall-sloth-16.loca.lt/api/v1'
+const api2 = 'https://tall-sloth-16.loca.lt'
 
 //fetch all coaches (not users)
 export function fetchUsers(token) {

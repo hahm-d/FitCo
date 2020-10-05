@@ -13,7 +13,7 @@ import {FETCH_POSTS_REQUEST,
         POST_ERROR} from '../constants/actionTypes'
 
 
-const api = 'https://horrible-puma-0.loca.lt'
+const api = 'https://tall-sloth-16.loca.lt'
 
 //fetch all posts
 export function fetchPosts(token) {

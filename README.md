@@ -26,3 +26,6 @@ Install the application on iphone:
    APPROVE THIS APP DEVELOPER 
 5. Application should be clickable at this point.
     Background the debugger will be loading the application on Mac. 
+
+NOTE: Only deploy to phone with the project FitCoApp.xcworkspace
+    expect build errors when deploying with FitCoApp,xcodeproj

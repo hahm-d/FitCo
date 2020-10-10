@@ -7,7 +7,7 @@ import {START_ADDING_USER_REQUEST,
         DESTROY_SESSION
     } from '../constants/actionTypes'
 
-const api = 'https://tall-sloth-16.loca.lt'
+const api = 'https://thin-cheetah-59.loca.lt'
 
 
 export function validateUser(token){ 

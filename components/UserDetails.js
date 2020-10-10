@@ -21,11 +21,13 @@ class UserDetails extends React.Component {
                     delay={700}
                     style={styles.userInfoSection}>
           <View style={{flexDirection: 'column', marginTop: 15}}>
+
           { image == null ? 
             <Avatar.Image  source={require('../assets/images/avatarblank.png')} size={240} />
             :
             <Avatar.Image  source={ {uri: image.cloudinary}} size={250} />
           }
+
             <View style={{marginLeft: 5}}>
               <Title style={[styles.usertitle, {
                 marginTop:20,

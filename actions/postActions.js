@@ -13,7 +13,7 @@ import {FETCH_POSTS_REQUEST,
         POST_ERROR} from '../constants/actionTypes'
 
 
-const api = 'https://tall-sloth-16.loca.lt'
+const api = 'https://thin-cheetah-59.loca.lt'
 
 //fetch all posts
 export function fetchPosts(token) {
@@ -74,17 +74,7 @@ export function addPost(postObj, token){
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
           },
-          body: JSON.stringify({
-            post: { 
-              title: postObj.title,
-              content: postObj.content,
-              url: postObj.url,
-              views: postObj.views,
-              likes: postObj.likes,
-              image: postObj.image,
-              video: postObj.video            
-            }
-           })
+          body: JSON.stringify(postObj)
         })
         .then(resp => resp.json())
         .then(post => {

@@ -98,13 +98,7 @@ class ProfileScreen extends React.Component {
                 <TouchableOpacity style={styles.userProfileRow2}
                       onPress={this.addPost}>
                   <Icon name="add-circle-outline" size={30}/>
-                  <Text style={{color:"#777777", 
-                                marginLeft: 10, 
-                                marginTop: 8, 	
-                                fontSize: 14,
-                                fontWeight: 'bold'}}>
-                    Add Post
-                    </Text>
+                  <Text style={styles.menuItemText}>Add Post</Text>
                 </TouchableOpacity>
               </View>
               {posts && <CoachPosts

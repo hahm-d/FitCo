@@ -2,15 +2,13 @@ import React from 'react';
 import {
     Text,
     TextInput,
-    Button,
     StyleSheet,
     View,
     PixelRatio,
     TouchableOpacity,
     Image,
     Platform,
-    StatusBar,
-    Alert
+    StatusBar
 } from 'react-native';
 import { connect } from 'react-redux';
 import { addPost } from '../actions/postActions';
@@ -28,12 +26,10 @@ class CreatePost extends React.Component {
     state = {
         title: null,
         content: null,
-        url: null,
         views: 1,
         likes: 0,
-        image: null,
-        video: null
-        }
+        image: null
+    }
 
 
     changeHandler = (name) => (text) => {
@@ -47,8 +43,9 @@ class CreatePost extends React.Component {
         if(postObj["video"] !== null){
             postObj["video"] = this.state.video.data
         }
-        this.props.addPost(postObj, this.props.token.authToken)
-        this.props.navigation.navigate('Profile');
+        const { navigation, addPost, token } = this.props;
+        addPost(postObj, token.authToken)
+        navigation.navigate('ProfileScreen');
         this.setState({ })
     };
 
@@ -142,7 +139,7 @@ class CreatePost extends React.Component {
                               )}
                           </View>
                       </TouchableOpacity>
-
+{/* 
                       <TouchableOpacity onPress={this.selectVideoTapped.bind(this)}>
                           <View style={[styles.avatar, styles.avatarContainer]}>
                               <Text>Select Video</Text>
@@ -152,7 +149,7 @@ class CreatePost extends React.Component {
                                   <Text style={{margin: 8, textAlign: 'center'}}>
                                       {this.state.video.fileName}
                                   </Text>
-                              )}
+)} */}
                     </View>
                 <Text style={styles.text_footer}>Add Description</Text>
                     <View style={styles.action}>
